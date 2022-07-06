@@ -1,0 +1,39 @@
+<div class="row" *ngFor="let question of this.form.questions; let i = index">
+    <div class="col s2"></div>
+    <div class="col s8">
+      <article class="large-margin">
+        <h3 class="absolute circle">{{ i + 1 }}.</h3>
+        <div class="padding">
+          <div class="row no-wrap">
+            <div class="col"></div>
+            {{ question.options?.required }}
+            <!-- required -->
+
+            <div class="col s"></div>
+          </div>
+        </div>
+
+        <div class="row padding">
+          <div class="col s12 m6">
+            <h5>{{ question.query }}</h5>
+            
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+          <div class="col m3"></div>
+          <div class="col s12 m6">
+              <app-text *ngIf="question.answerType == 'TextQuestion'" [question]="question"></app-text>
+              <app-number *ngIf="question.answerType ==  'NumberQuestion'" [question]="question"></app-number>
+              <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question"></app-date>
+              <app-multiple *ngIf="question.answerType ==  'MultipleQuestion'" [question]="question"></app-multiple>
+              <app-file *ngIf="question.answerType ==  'FileQuestion'" [question]="question"></app-file>
+          </div>
+          <div class="col m3"></div>
+        </div>
+      </article>
+    </div>
+    <div class="col s2"></div>
+  </div>

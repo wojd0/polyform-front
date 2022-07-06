@@ -1,0 +1,38 @@
+<div class="row no-wrap margin">
+  <div class="col">
+    <div class="row no-wrap middle-align">
+      <div class="col field background suffix">
+        <input type="text" ngModel #newOne placeholder="New question">
+      </div>
+      <div class="col min">
+        <a class="circle green button" (click)="this.add(newOne.value)"><i>add</i></a>
+      </div>
+    </div>
+    
+
+    <div class="row" style="height: auto;">
+      <ul>
+        <li class="row no-wrap middle-align divider background" *ngFor="let option of options;">
+          <div class="col min">
+            <div>{{ option }}</div>
+          </div>
+          <div class="col"></div>
+          <div class="col min">
+            <button class="red flat circle" style="margin-right: 16rem;" (click)="this.remove(option)"><i>delete</i></button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+  <div class="col min"></div>
+  <div class="col">
+    <div class="row field background suffix">
+      <input type="number" [appForceMinMax]="{min: 1}" name="" id="" app min="0">
+      <span>Maximum answers</span>
+    </div>
+  </div>
+  <div class="col min"></div>
+  
+</div>
+  

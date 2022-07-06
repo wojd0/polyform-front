@@ -1,0 +1,12 @@
+<form class="row no-wrap" #form="ngForm">
+  <!-- TODO: use validators for the values entered  -->
+  <div class="field col background suffix margin">
+    <input type="number" appMakeInt [appForceMinMax]="{max: this.maxWords}"  name="min"  min="0" [(ngModel)]="this.minWords" >
+    <span>Minimum words</span>
+  </div>
+  <div class="field col background suffix margin">
+    <input type="number" appMakeInt [appForceMinMax]="{min: this.minWords}"  name="max" min="0" [(ngModel)]="this.maxWords" >
+    <span>Maximum words</span>
+  </div>
+</form>
+  

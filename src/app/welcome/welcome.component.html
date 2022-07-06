@@ -1,0 +1,76 @@
+<div class="row middle-align large-height">
+  <div class="col s0 l3"></div>
+  <div class="col s12 l6">
+    <div class="row">
+      <div class="col s6">
+        <article class="border left-round">
+          <div class="padding">
+            <div class="row">
+              <div class="col m3 s12 l m">
+                <button class="extended square extra" routerLink="/f/new">
+                  <i>add</i>
+                </button>
+              </div>
+              <div class="col m3 s12 s left-align">
+                <button class="extended square extra" routerLink="/f/new">
+                  <i>add</i>
+                </button>
+              </div>
+              <div class="col m9 s12">
+                <h5 class="right-align">Create</h5>
+                <div class="right-align">Fill a form from provided link</div>
+              </div>
+              {{this.hello}}
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col s6">
+        <article class="border right-round">
+          <div class="padding">
+            <div class="row">
+              <div class="col m3 s12 s right-align">
+                <button class="extended square extra" (click)="showUrlInput()">
+                  <i>checklist</i>
+                </button>
+              </div>
+              <div class="col m9 s12">
+                <h5 class="left-align">Fill</h5>
+                <div class="left-align">Fill a form with provided link</div>
+              </div>
+              <div class="col m3 s12 l m">
+                <button class="extended square extra" (click)="showUrlInput()">
+                  <i>checklist</i>
+                </button>
+              </div>
+            </div>
+            <div class="row enterLink" *ngIf="this.showEnterLink">
+              <div class="">
+                <div class="field border no-margin">
+                  <input type="text" name="url" placeholder="form code" />
+                  <i class="front" (click)="goToForm()">done</i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="col s0 l3"></div>
+</div>
+<div class="row no-wrap">
+  <div class="col"></div>
+  <div class="col min">
+    <em>Proste&nbsp;jak</em>
+  </div>
+  <div class="col"></div>
+</div>
+<div class="row no-margin">
+  <div class="col s0 l4"></div>
+  <div class="col s12 l4">
+    <img src="../../assets/cep.jpg" class="responsive" alt="Budowa Cepa">
+  </div>
+  
+  <div class="col s0 l4"></div>
+</div>
