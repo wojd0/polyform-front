@@ -17,9 +17,9 @@ export class Form implements FormModel{
   name = '';
   url = '';
   userId = '';
-  questions: Question<any>[] = [];
+  questions: Question[] = [];
   constructor(
-    private data: Partial<FormModel>, private state: 'new' | 'existing' = 'existing', questions: Question<any>[] | null
+    private data: Partial<FormModel>, private state: 'new' | 'existing' = 'existing', questions: Question[] | null
   ){
     Object.assign(this, data);
     if(state == "new" && questions && questions.length > 0){

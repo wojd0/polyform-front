@@ -19,7 +19,7 @@ export class NumberAnswerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.options =  <NumberQuestion> this.question.format;
+    this.options =  <NumberQuestion> this.question.type;
     this.min = this.options.min;
     this.max = this.options.max;
     this.prefix = this.options.prefix;

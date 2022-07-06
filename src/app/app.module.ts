@@ -7,12 +7,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FormComponent } from './form/form.component';
-import { FormCreatorComponent } from './form/form-creator/form-creator.component';
+import { FormCreatorComponent } from './creator/form-creator.component';
 import { FormsModule } from '@angular/forms';
-import { TextCreatorComponent } from './form/form-creator/formats/creator-text/creator-text.component';
-import { DateCreatorComponent } from './form/form-creator/formats/creator-date/creator-date.component';
-import { NumberCreatorComponent } from './form/form-creator/formats/creator-number/creator-number.component';
-import { MultipleCreatorComponent } from './form/form-creator/formats/creator-multiple/creator-multiple.component';
+import { TextCreatorComponent } from './creator/formats/creator-text/creator-text.component';
+import { DateCreatorComponent } from './creator/formats/creator-date/creator-date.component';
+import { NumberCreatorComponent } from './creator/formats/creator-number/creator-number.component';
+import { MultipleCreatorComponent } from './creator/formats/creator-multiple/creator-multiple.component';
 import { FormListComponent } from './form/form-list/form-list.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FileAnswerComponent } from './form/form-list/formats/file/file.component';
@@ -24,6 +24,10 @@ import { MakeIntDirective } from './shared/directives/make-int.directive';
 import { GreaterValidatorDirective } from './shared/directives/greater.directive';
 import { ForceMinMaxDirective } from './shared/directives/forceMinMax.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { creatorReducer } from './creator/store/creator.reducer';
+import { CreatorEffects } from './creator/store/creator.effects';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     DragDropModule,
     MatTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({creator: creatorReducer}),
+    EffectsModule.forRoot([CreatorEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

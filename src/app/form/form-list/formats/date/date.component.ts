@@ -7,7 +7,7 @@ import Question, { DateQuestion } from 'src/app/shared/question.model';
   styleUrls: ['./date.component.scss']
 })
 export class DateAnswerComponent implements OnInit {
-  @Input('question') question = new Question<DateQuestion>();
+  @Input('question') question = new Question();
 
   constructor() { }
 

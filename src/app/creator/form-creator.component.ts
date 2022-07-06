@@ -1,7 +1,11 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { FormService } from 'src/app/shared/form.service';
-import { MultipleQuestion, NumberQuestion, TextQuestion } from 'src/app/shared/question.model';
+import Question, { MultipleQuestion, NumberQuestion, TextQuestion } from 'src/app/shared/question.model';
+import { AppState } from '../store/app.reducer';
+
+import * as CreatorActions from './store/creator.actions';
 
 interface CreatorData {
   required: boolean;
@@ -9,6 +13,8 @@ interface CreatorData {
   answer: TextQuestion | NumberQuestion | MultipleQuestion;
   type: string;
 }
+
+type questionTypes = TextQuestion | NumberQuestion | MultipleQuestion;
 
 @Component({
   selector: 'app-form-creator',
@@ -18,20 +24,24 @@ interface CreatorData {
 export class FormCreatorComponent implements OnInit {
   @Input('index') index = 0;
   formName: string = '';
-  questions: CreatorData[] = [{question: '', required: false, answer: new TextQuestion, type: 'text'}];
+  questions: Question[] = [];
 
-  constructor(private formService: FormService) { }
+  constructor(private formService: FormService, private store: Store<AppState>) { }
 
-  onChange(event: TextQuestion | NumberQuestion | MultipleQuestion, index: number){
-    this.questions[index].answer = event;    
+  onChange(event: questionTypes, index: number){
+    this.questions[index].type = event;    
   }
 
-  putForm(){
-    
+  submitForm(){
+    console.log(this.questions);
+    this.store.dispatch(CreatorActions.upload({questions: this.questions.slice()}));
   }
 
   ngOnInit(): void {
-    
+    this.store.select('creator').subscribe(data => {
+      console.log('The response: ' + data.url);
+      console.log('The error: ' + data.errorMsg);
+    })
   }
 
   deleteForm(id: number){
@@ -43,7 +53,7 @@ export class FormCreatorComponent implements OnInit {
   }
 
   addMore(){
-    this.questions.push({question: '', required: false, answer: new TextQuestion, type: 'text'});
+    this.questions.push(new Question(new TextQuestion()));
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);

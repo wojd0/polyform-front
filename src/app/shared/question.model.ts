@@ -1,13 +1,13 @@
-export default class Question<T> {
+export default class Question {
   answerType: string;
   constructor(
-    public query: string | null = "",
-    public format: TextQuestion | DateQuestion | NumberQuestion | MultipleQuestion | FileQuestion = new TextQuestion,
+    public type: TextQuestion | DateQuestion | NumberQuestion | MultipleQuestion | FileQuestion = new TextQuestion,
+    public query: string = '',
     public id: string = '',
-    public user: string | null = null,
-    public options: QuestionOptions | null = new QuestionOptions(),
+    public user: string = 'anon',
+    public options: QuestionOptions = new QuestionOptions(),
   ) {
-    this.answerType = this.format.constructor.name;
+    this.answerType = this.type.constructor.name;
   }
 
 }

@@ -7,7 +7,7 @@ import Question, { FileQuestion } from 'src/app/shared/question.model';
   styleUrls: ['./file.component.scss']
 })
 export class FileAnswerComponent implements OnInit {
-  @Input('question') question = new Question<FileQuestion>();
+  @Input('question') question = new Question();
 
   constructor() { }
 

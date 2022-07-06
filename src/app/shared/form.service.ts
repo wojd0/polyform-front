@@ -8,9 +8,9 @@ import Question, { DateQuestion, MultipleQuestion, NumberQuestion, TextQuestion 
 export class FormService {
   private fakeForm = [
     new Form({name: 'test'}, 'new', [
-      new Question('What is your favorite dish?', new TextQuestion({minWords: 4})),
-      new Question('When was the last time you had it?', new DateQuestion()),
-      new Question('test', new NumberQuestion({max: 4})),
+      new Question( new TextQuestion({minWords: 4}), 'What is your favorite dish?'),
+      new Question( new DateQuestion() , 'When was the last time you had it?'),
+      new Question( new NumberQuestion({max: 4}), 'test'),
       
     ])
   ];

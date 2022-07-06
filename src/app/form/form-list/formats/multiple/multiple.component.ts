@@ -14,7 +14,7 @@ export class MultipleAnswerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.options = <MultipleQuestion> this.question.format;
+    this.options = <MultipleQuestion> this.question.type;
     console.log(this.options.answers);
     
     this.type  = this.options.limit === 1 ? 'radio' : 'checkbox';

@@ -35,7 +35,9 @@
               "./node_modules/beercss/dist/cdn/beer.min.css",
               "./src/assets/custom.css"
             ],
-            "scripts": ["./node_modules/beercss/dist/cdn/beer.min.js"]
+            "scripts": [
+              "./node_modules/beercss/dist/cdn/beer.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -109,5 +111,8 @@
       }
     }
   },
-  "defaultProject": "polyform-front"
+  "defaultProject": "polyform-front",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

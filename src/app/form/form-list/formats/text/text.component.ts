@@ -16,7 +16,7 @@ export class TextAnswerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.options = <TextQuestion> this.question.format;
+    this.options = <TextQuestion> this.question.type;
     this.min = this.options.minWords;
     this.max = this.options.maxWords;
   }

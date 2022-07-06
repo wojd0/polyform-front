@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="col right-align">
-        <button class="extra" (click)="this.putForm()">Save&nbsp;<i>save</i></button>
+        <button class="extra" (click)="this.submitForm()">Save&nbsp;<i>save</i></button>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
             <div class="row no-wrap">
               <div class="col"></div>
               <label class="switch col min">
-                <input type="checkbox" [(ngModel)]="this.questions[index].required">
+                <input type="checkbox" [(ngModel)]="this.questions[index].options.required">
                 <span>Required</span>
               </label>
               <div class="col min">
@@ -37,16 +37,16 @@
           </div>
 
           <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12">
               <div class="field border background">
-                <input type="text" name="name" [(ngModel)]="this.questions[index].question" />
+                <input type="text" name="name" [(ngModel)]="this.questions[index].query" />
                 <span>Question</span>
               </div>
             </div>
           </div>
 
           <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12">
               <div class="field suffix border background">
                 <select name="" ngModel #type [(ngModel)]="this.questions[index].type">
                   <option value=""></option>
