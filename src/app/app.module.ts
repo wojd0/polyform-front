@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FormComponent } from './form/form.component';
 import { FormCreatorComponent } from './creator/form-creator.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextCreatorComponent } from './creator/formats/creator-text/creator-text.component';
 import { DateCreatorComponent } from './creator/formats/creator-date/creator-date.component';
 import { NumberCreatorComponent } from './creator/formats/creator-number/creator-number.component';
@@ -28,6 +28,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { creatorReducer } from './creator/store/creator.reducer';
 import { CreatorEffects } from './creator/store/creator.effects';
+import { ChangesGuard } from './shared/changes.guard';
 
 @NgModule({
   declarations: [
@@ -57,10 +58,11 @@ import { CreatorEffects } from './creator/store/creator.effects';
     DragDropModule,
     MatTooltipModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({creator: creatorReducer}),
     EffectsModule.forRoot([CreatorEffects])
   ],
-  providers: [],
+  providers: [ChangesGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

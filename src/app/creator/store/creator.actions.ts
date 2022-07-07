@@ -7,6 +7,7 @@ export const CREATOR_UPLOAD = '[Creator] Upload';
 export const CREATOR_UPLOAD_SUCCESS = '[Creator] Upload Success';
 export const CREATOR_UPLOAD_FAILURE = '[Creator] Upload Failure';
 export const CREATOR_UPLOAD_ACKNOWLEDGE = '[Creator] Upload Acknwoledge';
+export const CREATOR_CHANGES = '[Creator] Changes';
 
 export const uploadStart = createAction(
   CREATOR_UPLOAD,
@@ -27,3 +28,6 @@ export const uploadAcknowledge = createAction(
   CREATOR_UPLOAD_ACKNOWLEDGE
 )
 
+export const changes = createAction(
+  CREATOR_CHANGES
+)

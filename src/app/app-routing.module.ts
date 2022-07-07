@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormCreatorComponent } from './creator/form-creator.component';
 import { FormListComponent } from './form/form-list/form-list.component';
 import { FormComponent } from './form/form.component';
+import { ChangesGuard } from './shared/changes.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
@@ -10,8 +11,8 @@ const routes: Routes = [
   {path: 'test', component: FormComponent},
   {path: 'f', children: [
     {path: 'test', component: FormListComponent},
-    {path: 'new', component: FormCreatorComponent}
-  ]}
+    {path: 'new', component: FormCreatorComponent,}
+  ], canDeactivate: [ChangesGuard]}
 ];
 
 @NgModule({

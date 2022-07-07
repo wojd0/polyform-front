@@ -1,88 +1,92 @@
 <div class="row">
+
   <div class="col s1"></div>
   <div class="col s10" cdkDropList (cdkDropListDropped)="this.drop($event)">
-
-    <div class="row padding no-wrap">
-      <div class="col">
-        <div class="field">
-          <input type="text" placeholder="Form name" [(ngModel)]="this.formName">
+      <div class="row padding no-wrap">
+        <div class="col">
+          <div class="field">
+            <input type="text" placeholder="Form name" [(ngModel)]="formName" (change)="this.onTouch()" >
+          </div>
+        </div>
+        <div class="col right-align">
+          <button class="extra" (click)="this.submitForm()">Save&nbsp;<i>save</i></button>
         </div>
       </div>
-      <div class="col right-align">
-        <button class="extra" (click)="this.submitForm()">Save&nbsp;<i>save</i></button>
-      </div>
-    </div>
 
 
-    <div cdkDrag *ngFor="let item of this.questions; let index = index" class="large-padding">
+      <div cdkDrag *ngFor="let item of this.questions; let index = index" class="large-padding">
 
-      <div class="row">
-        <article class="col s11 large-padding">
-          <h3 class="absolute circle">{{ index + 1 }}.</h3>
-          <div class="padding">
-            <div class="row no-wrap">
-              <div class="col"></div>
-              <label class="switch col min">
-                <input type="checkbox" [(ngModel)]="this.questions[index].options.required">
-                <span>Required</span>
-              </label>
-              <div class="col min">
-                <button class="large red circle" (click)="this.deleteForm(index)"><i>delete</i></button>
+        <div class="row">
+          <article class="col s11 large-padding">
+            <h3 class="absolute circle">{{ index + 1 }}.</h3>
+            <div class="padding">
+              <div class="row no-wrap">
+                <div class="col"></div>
+                <label class="switch col min">
+                  <input type="checkbox" [(ngModel)]="this.questions[index].options.required">
+                  <span>Required</span>
+                </label>
+                <div class="col min">
+                  <button class="large red circle" (click)="this.deleteForm(index)"><i>delete</i></button>
 
-              </div>
+                </div>
 
 
-              <div class="col s"></div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col s12">
-              <div class="field border background">
-                <input type="text" name="name" [(ngModel)]="this.questions[index].query" />
-                <span>Question</span>
+                <div class="col s"></div>
               </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col s12">
-              <div class="field suffix border background">
-                <select name="" ngModel #type [(ngModel)]="this.questions[index].answerType">
-                  <option value=""></option>
-                  <option value="TextQuestion">Text</option>
-                  <option value="NumberQuestion">Number</option>
-                  <option value="multiple gray" disabled>Multiple options (temporary off)</option>
-                  <option value="date gray" disabled>Date (soon)</option>
-                  <option value="file gray" disabled>File (soon)</option>
-                </select>
-                <i>arrow_drop_down</i>
-                <span>Answer type</span>
+            <div class="row">
+              <div class="col s12">
+                <div class="field border background">
+                  <input type="text" name="name" [(ngModel)]="this.questions[index].query" />
+                  <span>Question</span>
+                </div>
               </div>
             </div>
-          </div>
-          <br>
-          <hr>
-          <br>
-          <div class="row">
-            <creator-date *ngIf="type.value == 'DateQuestion'"></creator-date>
-            <creator-multiple *ngIf="type.value == 'multiple'" (changed)="this.onChange($event, index)"></creator-multiple>
-            <creator-number *ngIf="type.value == 'NumberQuestion'" (changed)="this.onChange($event, index)"></creator-number>
-            <creator-text *ngIf="type.value == 'TextQuestion'" (changed)="this.onChange($event, index)"></creator-text>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="field suffix border background">
+                  <select name="" ngModel #type [(ngModel)]="this.questions[index].answerType">
+                    <option value=""></option>
+                    <option value="TextQuestion">Text</option>
+                    <option value="NumberQuestion">Number</option>
+                    <option value="multiple gray" disabled>Multiple options (temporary off)</option>
+                    <option value="date gray" disabled>Date (soon)</option>
+                    <option value="file gray" disabled>File (soon)</option>
+                  </select>
+                  <i>arrow_drop_down</i>
+                  <span>Answer type</span>
+                </div>
+              </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="row">
+              <creator-date *ngIf="type.value == 'DateQuestion'"></creator-date>
+              <creator-multiple *ngIf="type.value == 'multiple'" (changed)="this.onQuestionChange($event, index)">
+              </creator-multiple>
+              <creator-number *ngIf="type.value == 'NumberQuestion'" (changed)="this.onQuestionChange($event, index)">
+              </creator-number>
+              <creator-text *ngIf="type.value == 'TextQuestion'" (changed)="this.onQuestionChange($event, index)">
+              </creator-text>
+            </div>
+
+          </article>
+          <div class="col min" style="align-self: center;">
+            <a cdkDragHandle class="square button" style="cursor: grab;">
+              <i>drag_indicator</i>
+            </a>
           </div>
 
-        </article>
-        <div class="col min" style="align-self: center;">
-          <a cdkDragHandle class="square button" style="cursor: grab;">
-            <i>drag_indicator</i>
-          </a>
+
         </div>
-
-        
       </div>
-    </div>
-    <a class="button center extended" (click)="this.addMore()">Add more<i class="large">add</i></a>
-
+      <a class="button center extended" (click)="this.addMore()">Add more<i class="large">add</i></a>
   </div>
   <div class="col s1"></div>
+
+
 </div>

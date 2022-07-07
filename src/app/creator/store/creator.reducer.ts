@@ -10,19 +10,14 @@ export interface CreatorState {
   url: string,
   errorMsg: string,
   done: boolean,
-  form: FormModel
+  changes: boolean
 }
 
 export const initialState: CreatorState = {
   url: '',
   done: true,
   errorMsg: '',
-  form: {
-    id: '',
-    options: {},
-    url: '',
-    user: ''
-  }
+  changes: false
 };
 
 export const creatorReducer = createReducer(
@@ -63,4 +58,13 @@ export const creatorReducer = createReducer(
       errorMsg: ''
     })
   ),
+
+  on(
+    CreatorActions.changes,
+    (state) => ({
+      ...state,
+      changes: true
+    })
+  )
+
 );
