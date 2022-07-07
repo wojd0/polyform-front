@@ -20,7 +20,7 @@ export class WelcomeComponent implements OnInit {
     console.log("works");
     this.router.navigate(['/f/test']);
   }
-  
+
   showUrlInput(){
     this.showEnterLink = true;
   }

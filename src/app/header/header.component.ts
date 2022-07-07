@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private beerService: BeerService){}
   ngOnInit(){
-    this.beerService.beerIt();
+    this.beerService.beerPage();
   }
 
   switchTheme(){

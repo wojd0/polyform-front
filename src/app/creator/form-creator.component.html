@@ -90,3 +90,16 @@
 
 
 </div>
+
+
+<div class="modal top" id="finishModal">
+  <h5 class="row">{{ this.formName | titlecase }} created!</h5>
+  <div class="row">You have successfully created a form. To access it, use either this URL or manually enter the ID on main page:</div>
+  <div class="row">
+    <h5>URL: {{ 'test' }}</h5>
+    <h5>ID: {{ 'and id '}}</h5>
+  </div>
+  <nav class="right-align">
+    <button routerLink="/">Return to main page</button>
+  </nav>
+</div>

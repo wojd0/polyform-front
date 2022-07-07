@@ -1,12 +1,16 @@
 import { Injectable } from "@angular/core";
 
-declare function ui(): any;
+declare function ui(value?: any): any;
 
 @Injectable({
   providedIn: "root",
 })
 export class BeerService {
-    beerIt(){
+    beerPage(){
         ui()
+    }
+
+    beerIt(val: string){
+      ui(val)
     }
 }

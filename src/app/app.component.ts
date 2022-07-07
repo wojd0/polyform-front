@@ -10,6 +10,6 @@ export class AppComponent implements OnInit{
   title = 'polyform-front';
   constructor(private beerService: BeerService){}
   ngOnInit(){
-    this.beerService.beerIt();
+    this.beerService.beerPage();
   }
 }

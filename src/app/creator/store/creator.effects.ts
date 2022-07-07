@@ -29,8 +29,6 @@ export class CreatorEffects {
     this.actions$.pipe(
       ofType(CreatorActions.uploadStart),
       switchMap((action) => {
-        console.log(action.questions);
-
         return this.http
           .put<{ formId: string; formUrl: string }>(environment.myApi + "form", {
             questions: action.questions,
@@ -41,8 +39,6 @@ export class CreatorEffects {
           })
           .pipe(
             map((resData) => {
-              console.log(resData.formId);
-
               return handleUpload(resData.formUrl);
             }),
             catchError((errorRes) => {
