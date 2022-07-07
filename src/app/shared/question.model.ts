@@ -1,21 +1,18 @@
-export default class Question {
-  answerType: string;
+export default class QuestionModel {
   constructor(
     public type: TextQuestion | DateQuestion | NumberQuestion | MultipleQuestion | FileQuestion = new TextQuestion,
     public query: string = '',
     public id: string = '',
-    public user: string = 'anon',
     public options: QuestionOptions = new QuestionOptions(),
+    public answerType: string = ''
   ) {
-    this.answerType = this.type.constructor.name;
+    if(this.answerType === '') this.answerType = this.type.constructor.name;
   }
-
 }
 
 export class QuestionOptions{
+  index: number = NaN;
   required: boolean = false;
-  langQ: string = 'en';
-  langA: string = 'en';
   constructor(options?: Partial<QuestionOptions>){
     Object.assign(this, options);
   }

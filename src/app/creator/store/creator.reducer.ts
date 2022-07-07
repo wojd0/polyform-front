@@ -1,27 +1,35 @@
 import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
+import { FormModel } from 'src/app/shared/form.model';
 import Question from 'src/app/shared/question.model';
-import * as AuthActions from './creator.actions';
+import * as CreatorActions from './creator.actions';
 
 export const creatorFeatureKey = 'creator';
 
 export interface CreatorState {
   url: string,
   errorMsg: string,
-  done: boolean
+  done: boolean,
+  form: FormModel
 }
 
 export const initialState: CreatorState = {
   url: '',
   done: true,
-  errorMsg: ''
+  errorMsg: '',
+  form: {
+    id: '',
+    options: {},
+    url: '',
+    user: ''
+  }
 };
 
 export const creatorReducer = createReducer(
   initialState,
 
   on(
-    AuthActions.upload,
+    CreatorActions.uploadStart,
     (state) => ({
       ...state,
       url: '',
@@ -30,7 +38,7 @@ export const creatorReducer = createReducer(
   ),
 
   on(
-    AuthActions.uploadSuccess,
+    CreatorActions.uploadSuccess,
     (state, action) => ({
       ...state,
       url: action.url,
@@ -39,7 +47,7 @@ export const creatorReducer = createReducer(
   ),
 
   on(
-    AuthActions.uploadFailure,
+    CreatorActions.uploadFailure,
     (state, action) => ({
       ...state,
       done: true,
@@ -49,10 +57,10 @@ export const creatorReducer = createReducer(
   ),
   
   on(
-    AuthActions.acknowledgeError,
+    CreatorActions.uploadAcknowledge,
     (state) => ({
       ...state,
       errorMsg: ''
     })
-  )
+  ),
 );

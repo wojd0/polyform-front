@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from 'src/app/shared/form.model';
-import { FormService } from 'src/app/shared/form.service';
+import { FormModel } from 'src/app/shared/form.model';
+import QuestionModel from 'src/app/shared/question.model';
 import Question, { TextQuestion } from 'src/app/shared/question.model';
 
 @Component({
@@ -9,10 +9,10 @@ import Question, { TextQuestion } from 'src/app/shared/question.model';
   styleUrls: ['./form-list.component.scss']
 })
 export class FormListComponent implements OnInit {
-  form: Form;
+  form: FormModel;
+  questions: QuestionModel[] = [];
   
-  constructor(private formService: FormService) {
-    this.form = this.formService.getForm(0);
+  constructor() {
   }
 
   ngOnInit(): void {

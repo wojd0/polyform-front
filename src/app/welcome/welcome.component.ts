@@ -14,11 +14,6 @@ export class WelcomeComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient){}
 
   ngOnInit(): void {
-    const response =this.http.get(`http://127.0.0.1:4000/form?id=${'19WQVEG5SZ2K'}`);
-    response.subscribe(result => {
-      console.log(result);
-      
-    })
   }
 
   goToForm(){

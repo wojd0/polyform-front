@@ -1,7 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FormService } from 'src/app/shared/form.service';
 import Question, { MultipleQuestion, NumberQuestion, TextQuestion } from 'src/app/shared/question.model';
 import { AppState } from '../store/app.reducer';
 
@@ -26,21 +25,18 @@ export class FormCreatorComponent implements OnInit {
   formName: string = '';
   questions: Question[] = [];
 
-  constructor(private formService: FormService, private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>) { }
 
   onChange(event: questionTypes, index: number){
     this.questions[index].type = event;    
   }
 
   submitForm(){
-    console.log(this.questions);
-    this.store.dispatch(CreatorActions.upload({questions: this.questions.slice()}));
+    this.store.dispatch(CreatorActions.uploadStart({questions: this.questions.slice()}));
   }
 
   ngOnInit(): void {
     this.store.select('creator').subscribe(data => {
-      console.log('The response: ' + data.url);
-      console.log('The error: ' + data.errorMsg);
     })
   }
 
