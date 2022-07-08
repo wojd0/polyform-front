@@ -26,5 +26,4 @@ export class NumberAnswerComponent implements OnInit {
     this.suffix = this.options.suffix;
     this.precision = this.options.precision;
   }
-  //TODO: add prefix and suffix when returning values
 }

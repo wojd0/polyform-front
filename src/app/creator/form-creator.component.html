@@ -5,11 +5,11 @@
       <div class="row padding no-wrap">
         <div class="col">
           <div class="field">
-            <input type="text" placeholder="Form name" [(ngModel)]="formName" (change)="this.onTouch()" >
+            <input type="text" placeholder="Form name" [(ngModel)]="formName" (change)="this.onTouch()" #name="ngModel" >
           </div>
         </div>
         <div class="col right-align">
-          <button class="extra" (click)="this.submitForm()">Save&nbsp;<i>save</i></button>
+          <button class="button extra" (click)="this.submitForm()" [disabled]="this.questions.length < 1 || name.control.pristine">Save&nbsp;<i>save</i></button>
         </div>
       </div>
 
@@ -84,7 +84,7 @@
 
         </div>
       </div>
-      <a class="button center extended" (click)="this.addMore()">Add more<i class="large">add</i></a>
+      <a class="button center extended" (click)="this.addMore()">Add next question<i class="large">add</i></a>
   </div>
   <div class="col s1"></div>
 
@@ -99,7 +99,7 @@
     <h5>URL: {{ 'test' }}</h5>
     <h5>ID: {{ 'and id '}}</h5>
   </div>
-  <nav class="right-align">
+  <nav class="left-align">
     <button routerLink="/">Return to main page</button>
   </nav>
 </div>
