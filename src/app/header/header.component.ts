@@ -7,10 +7,23 @@ import { BeerService } from "../beer.service";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  //light         dark
-  backgroundColor: "#ffffff" | "#1c1b1f";
-  highlightColor: "#006a5f" | "#78dc77";
-  
+  //light/dark
+  darkTheme = {
+    backgroundColor: "#1c1b1f",
+    highlightColor: "#78dc77",
+    textColor: "#ffffff",
+    boxColor: "#424840",
+  };
+  lightTheme = {
+    boxColor: "#dbe5e2",
+    backgroundColor: "#ffffff",
+    highlightColor: "#006a5f",
+    textColor: "#191c1b",
+  };
+
+  activeTheme: {
+    boxColor: any, backgroundColor: any, highlightColor: any, textColor: any
+  };
 
   constructor(private beerService: BeerService) {}
   ngOnInit() {
@@ -24,26 +37,29 @@ export class HeaderComponent implements OnInit {
   }
 
   checkTheme() {
-    const rootEl: HTMLElement = document.querySelector(':root');
+    const rootEl: HTMLElement = document.querySelector(":root");
 
     if (localStorage.getItem("theme") == "light") {
-      this.backgroundColor = "#ffffff";
-      this.highlightColor = "#006a5f";
+      this.activeTheme = this.lightTheme;
     } else {
-      this.backgroundColor = "#1c1b1f";
-      this.highlightColor = "#78dc77";
+      this.activeTheme = this.darkTheme;
     }
 
-    rootEl.style.setProperty('--primary', this.highlightColor);
-    rootEl.style.setProperty('--background', this.backgroundColor);
+    rootEl.style.setProperty("--primary", this.activeTheme.highlightColor);
+    rootEl.style.setProperty("--background", this.activeTheme.backgroundColor);
+    rootEl.style.setProperty("--on-background", this.activeTheme.textColor);
+    rootEl.style.setProperty("--on-surface-variant", this.activeTheme.textColor);
+    rootEl.style.setProperty("--on-background", this.activeTheme.textColor);
+    rootEl.style.setProperty("--surface-variant", this.activeTheme.boxColor);
+    rootEl.style.setProperty("-internal-light-dark", this.activeTheme.boxColor);
   }
 
   switchTheme() {
-    console.log('switch');
-    
+    console.log("switch");
+
     if (localStorage.getItem("theme") === "light") {
       localStorage.setItem("theme", "dark");
-    }else{
+    } else {
       localStorage.setItem("theme", "light");
     }
 

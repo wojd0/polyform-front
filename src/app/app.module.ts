@@ -29,6 +29,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { creatorReducer } from './creator/store/creator.reducer';
 import { CreatorEffects } from './creator/store/creator.effects';
 import { ChangesGuard } from './shared/changes.guard';
+import { AppState } from './store/app.reducer';
+import { formReducer } from './form/store/form.reducer';
+import { FormEffects } from './form/store/form.effects';
 
 @NgModule({
   declarations: [
@@ -59,8 +62,8 @@ import { ChangesGuard } from './shared/changes.guard';
     MatTooltipModule,
     HttpClientModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({creator: creatorReducer}),
-    EffectsModule.forRoot([CreatorEffects])
+    StoreModule.forRoot({creator: creatorReducer, form: formReducer}),
+    EffectsModule.forRoot([CreatorEffects, FormEffects])
   ],
   providers: [ChangesGuard],
   bootstrap: [AppComponent]

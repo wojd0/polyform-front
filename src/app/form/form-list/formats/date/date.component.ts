@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import Question, { DateQuestion } from 'src/app/shared/question.model';
 
 @Component({
@@ -8,6 +9,7 @@ import Question, { DateQuestion } from 'src/app/shared/question.model';
 })
 export class DateAnswerComponent implements OnInit {
   @Input('question') question = new Question();
+  @Input('form') form: FormGroup;
 
   constructor() { }
 

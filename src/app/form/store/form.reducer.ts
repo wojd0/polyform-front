@@ -20,7 +20,7 @@ export const initialState: FormState = {
   questions: [],
 };
 
-export const reducer = createReducer(
+export const formReducer = createReducer(
   initialState,
 
   on(FormActions.retrieveStart, (state) => ({

@@ -10,8 +10,8 @@ const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'test', component: FormComponent},
   {path: 'f', children: [
-    {path: 'test', component: FormListComponent},
-    {path: 'new', component: FormCreatorComponent,}
+    {path: 'new', component: FormCreatorComponent,},
+    {path: '**', component: FormListComponent},
   ], canDeactivate: [ChangesGuard]}
 ];
 

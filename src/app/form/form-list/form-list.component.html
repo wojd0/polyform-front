@@ -1,4 +1,6 @@
-<div class="row" *ngFor="let question of this.questions; let i = index">
+<h4 class="center-align margin">{{ this.formName | titlecase }}</h4>
+<form [formGroup]="this.formGroup" (ngSubmit)="this.onSubmit()" *ngIf="this.questions">
+  <div class="row" *ngFor="let question of this.questions; let i = index">
     <div class="col s2"></div>
     <div class="col s8">
       <article class="large-margin">
@@ -6,34 +8,33 @@
         <div class="padding">
           <div class="row no-wrap">
             <div class="col"></div>
-            {{ question.options?.required }}
             <!-- required -->
-
+            <i *ngIf="question.options?.required">new_releases</i>
             <div class="col s"></div>
           </div>
         </div>
-
-        <div class="row padding">
+        <div class="row margin">
           <div class="col s12 m6">
-            <h5>{{ question.query }}</h5>
-            
+            <h5>{{ question.query | titlecase }}</h5>
           </div>
         </div>
-        <br>
         <hr>
         <br>
         <div class="row">
-          <div class="col m3"></div>
-          <div class="col s12 m6">
-              <app-text *ngIf="question.answerType == 'TextQuestion'" [question]="question"></app-text>
-              <app-number *ngIf="question.answerType ==  'NumberQuestion'" [question]="question"></app-number>
-              <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question"></app-date>
-              <app-multiple *ngIf="question.answerType ==  'MultipleQuestion'" [question]="question"></app-multiple>
-              <app-file *ngIf="question.answerType ==  'FileQuestion'" [question]="question"></app-file>
+          <div class="col m2"></div>
+          <div class="col s12 m8">
+            <app-text *ngIf="question.answerType == 'TextQuestion'" [question]="question" [form]="this.formGroup"></app-text>
+            <app-number *ngIf="question.answerType ==  'NumberQuestion'" [question]="question" [form]="this.formGroup"></app-number>
+            <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question" [form]="this.formGroup"></app-date>
+            <app-multiple *ngIf="question.answerType ==  'MultipleQuestion'" [question]="question" [form]="this.formGroup"></app-multiple>
+            <app-file *ngIf="question.answerType ==  'FileQuestion'" [question]="question" [form]="this.formGroup"></app-file>
           </div>
-          <div class="col m3"></div>
+          <div class="col m2"></div>
         </div>
       </article>
     </div>
     <div class="col s2"></div>
   </div>
+  
+  <button class="button extra center" type="submit" [disabled]="!this.valid">Submit&nbsp;&nbsp;<i>send</i></button>
+</form>

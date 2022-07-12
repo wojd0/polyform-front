@@ -47,7 +47,7 @@
             <div class="row enterLink" *ngIf="this.showEnterLink">
               <div class="">
                 <div class="field border no-margin">
-                  <input type="text" name="url" placeholder="form code" />
+                  <input type="text" name="url" placeholder="form code" [(ngModel)]="this.id" />
                   <i class="front" (click)="goToForm()">done</i>
                 </div>
               </div>

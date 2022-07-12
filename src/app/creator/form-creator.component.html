@@ -96,8 +96,8 @@
   <h5 class="row">{{ this.formName | titlecase }} created!</h5>
   <div class="row">You have successfully created a form. To access it, use either this URL or manually enter the ID on main page:</div>
   <div class="row">
-    <h5>URL: {{ 'test' }}</h5>
-    <h5>ID: {{ 'and id '}}</h5>
+    <h5><a [href]="'http://' + this.finishedInfo.url">URL: {{ this.finishedInfo.url }}</a></h5>
+    <h6>ID: {{ this.finishedInfo.id }}</h6>
   </div>
   <nav class="left-align">
     <button routerLink="/">Return to main page</button>

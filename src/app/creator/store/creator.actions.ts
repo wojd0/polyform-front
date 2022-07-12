@@ -11,7 +11,7 @@ export const CREATOR_CHANGES = '[Creator] Changes';
 
 export const uploadStart = createAction(
   CREATOR_UPLOAD,
-  props<{questions: Question[]}>()
+  props<{questions: Question[], name: string}>()
 );
 
 export const uploadSuccess = createAction(

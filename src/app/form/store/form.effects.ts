@@ -10,8 +10,9 @@ import * as FormActions from './form.actions';
 
 function handleRetrieveError(errorResponse: any) {
   let errorMsg = "An error occurred!";
+    
   if (!errorResponse.error || !errorResponse.error.error) {
-    return of();
+    return of(FormActions.retrieveFailure({ error: errorMsg }));
   }
   //handle different errors
   switch (errorResponse) {
@@ -26,12 +27,12 @@ export class FormEffects {
     ofType(FormActions.retrieveStart),
     switchMap((action) =>
       this.http
-        .get<{ form: FormModel; quesions: QuestionModel[] }>(environment.myApi + "form", {
+        .get<{ form: FormModel; questions: QuestionModel[]; }>(environment.myApi + "form", {
           params: new HttpParams().set("id", action.id),
         })
         .pipe(
-          map((resData) => {
-            return FormActions.retrieveSuccess({ form: resData.form, questions: resData.quesions });
+          map((resData) => {            
+            return FormActions.retrieveSuccess({ form: resData.form, questions: resData.questions });
           }),
           catchError((error) => {
             return handleRetrieveError(error);

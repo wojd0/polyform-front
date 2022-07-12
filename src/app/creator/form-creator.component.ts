@@ -27,7 +27,7 @@ export class FormCreatorComponent implements OnInit {
   formName: string = "";
   questions: Question[] = [];
   touched: boolean = false;
-  finishedInfo: { url: string; id: string };
+  finishedInfo = { url: '', id: '' };
 
   constructor(private store: Store<AppState>, private beer: BeerService) {}
 
@@ -44,7 +44,7 @@ export class FormCreatorComponent implements OnInit {
   }
 
   submitForm() {
-    this.store.dispatch(CreatorActions.uploadStart({ questions: this.questions.slice() }));
+    this.store.dispatch(CreatorActions.uploadStart({ questions: this.questions.slice(), name: this.formName }));
     this.store.select("creator").subscribe((state) => {
       if (state.url !== "" && state.done === true) {
         this.finishedInfo = {

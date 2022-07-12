@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import Question, { MultipleQuestion } from 'src/app/shared/question.model';
 
 @Component({
@@ -8,6 +9,9 @@ import Question, { MultipleQuestion } from 'src/app/shared/question.model';
 })
 export class MultipleAnswerComponent implements OnInit {
   @Input('question') question = new Question;
+  @Input('form') form: FormGroup;
+  
+  controlName = '';
 
   options = new MultipleQuestion;
   type: 'radio' | 'checkbox' = 'checkbox';

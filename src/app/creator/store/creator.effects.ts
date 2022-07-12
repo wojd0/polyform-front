@@ -34,14 +34,16 @@ export class CreatorEffects {
             questions: action.questions,
             formData: {
               username: "dummy",
-              options: {},
+              options: {
+                name: action.name
+              },
             },
           })
           .pipe(
             map((resData) => {
               return handleUpload(resData.formUrl);
             }),
-            catchError((errorRes) => {
+            catchError((errorRes) => {              
               return handleUploadError(errorRes);
             })
           );

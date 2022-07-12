@@ -37,7 +37,8 @@ export const creatorReducer = createReducer(
     (state, action) => ({
       ...state,
       url: action.url,
-      done: true
+      done: true,
+      changes: false
     })
   ),
 
