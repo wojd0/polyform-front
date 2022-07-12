@@ -20,7 +20,6 @@ export class ChangesGuard implements CanDeactivate<unknown> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log(currentRoute);
     //TODO: it may be enough, but consider changing it to some sorts of a regxp
     if (currentState.url.endsWith("new")) {
       //in creator

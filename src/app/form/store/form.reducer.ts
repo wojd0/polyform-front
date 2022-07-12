@@ -11,13 +11,15 @@ export interface FormState {
   form: FormModel;
   done: boolean;
   errorMsg: string;
+  errorId: string;
 }
 
 export const initialState: FormState = {
-  done: true,
-  errorMsg: "",
+  done: false,
+  errorMsg: null,
   form: null,
   questions: [],
+  errorId: null
 };
 
 export const formReducer = createReducer(
@@ -25,10 +27,10 @@ export const formReducer = createReducer(
 
   on(FormActions.retrieveStart, (state) => ({
     ...state,
-    done: false,
     errorMsg: "",
     form: null,
     questions: [],
+    done: false
   })),
 
   on(FormActions.retrieveSuccess, (state, action) => ({
@@ -41,10 +43,13 @@ export const formReducer = createReducer(
   on(FormActions.retrieveFailure, (state, action) => ({
     ...state,
     errorMsg: action.error,
+    errorId: action.id,
+    done: true
   })),
 
   on(FormActions.retrieveAcknowledge, (state) => ({
     ...state,
-    errorMsg: "",
+    errorMsg: null,
+    errorId: null
   }))
 );

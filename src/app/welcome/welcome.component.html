@@ -74,3 +74,13 @@
   
   <div class="col s0 l4"></div>
 </div>
+
+<div class="modal top" id="navError">
+  <h5 class="row">{{ this.error }}</h5>
+  <div class="row">
+    Wrong ID: {{ this.errorId }}
+  </div>
+  <nav class="left-align">
+    <button (click)="this.onAccknowledge()">Return to main page</button>
+  </nav>
+</div>

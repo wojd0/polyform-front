@@ -8,16 +8,18 @@ import { environment } from "src/environments/environment";
 
 import * as FormActions from './form.actions';
 
-function handleRetrieveError(errorResponse: any) {
-  let errorMsg = "An error occurred!";
-    
-  if (!errorResponse.error || !errorResponse.error.error) {
-    return of(FormActions.retrieveFailure({ error: errorMsg }));
+function handleRetrieveError(errorResponse: any, id: string) {
+  let errorMsg = "An error occurred!";  
+  
+  if (!errorResponse.status || !errorResponse.error.text) {    
+    return of(FormActions.retrieveFailure({ error: errorMsg, id: id }));
   }
   //handle different errors
-  switch (errorResponse) {
+  switch (errorResponse.status) {
+    case 200:
+      errorMsg = 'No such form';
   }
-  return of(FormActions.retrieveFailure({ error: errorMsg }));
+  return of(FormActions.retrieveFailure({ error: errorMsg, id: id }));
 }
 
 @Injectable()
@@ -31,11 +33,11 @@ export class FormEffects {
           params: new HttpParams().set("id", action.id),
         })
         .pipe(
-          map((resData) => {            
+          map((resData) => {
             return FormActions.retrieveSuccess({ form: resData.form, questions: resData.questions });
           }),
           catchError((error) => {
-            return handleRetrieveError(error);
+            return handleRetrieveError(error, action.id);
           })
         )
     )

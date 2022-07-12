@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { sample, Subject, Subscription } from "rxjs";
 import { FormModel } from "src/app/shared/form.model";
@@ -26,12 +26,20 @@ export class FormListComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup = new FormGroup({});
 
-  constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
+  constructor(private store: Store<AppState>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.store.dispatch(FormActions.retrieveStart({ id: this.route.snapshot.url[this.route.snapshot.url.length - 1].toString() }));
+    //check if there is id in url
+    if (this.route.snapshot.url[this.route.snapshot.url.length - 1]) {      
+      this.store.dispatch(FormActions.retrieveStart({ id: this.route.snapshot.url[this.route.snapshot.url.length - 1].toString() }));
+    }
+
     this.storeSub = this.store.select("form").subscribe((data) => {
-      if (data.form) {
+
+      if (data.errorMsg) {
+        this.router.navigate(["/"]);
+      }
+      if (data.done) {
         this.form = data.form;
         this.formName = data.form.options.name || "Unnamed Form 🤷";
         this.questions = data.questions;

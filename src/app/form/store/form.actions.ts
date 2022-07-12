@@ -19,7 +19,7 @@ export const retrieveSuccess = createAction(
 
 export const retrieveFailure = createAction(
   CREATOR_RETRIEVE_FAILURE,
-  props<{ error: string }>()
+  props<{ error: string, id: string}>()
 );
 
 export const retrieveAcknowledge = createAction(

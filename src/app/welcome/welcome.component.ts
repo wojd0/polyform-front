@@ -19,17 +19,32 @@ export class WelcomeComponent implements OnInit {
   id = "";
   storeSub: Subscription;
 
-  constructor(private router: Router, private store: Store<AppState>) {}
+  error = "";
+  errorId = "";
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private store: Store<AppState>, private beer: BeerService) {}
+
+  ngOnInit(): void {
+    this.storeSub = this.store.select("form").subscribe((state) => {
+      if (state.errorMsg === "No such form") {
+        this.error = state.errorMsg;
+        this.errorId = state.errorId;
+        this.beer.beerIt("#navError");
+
+        // document
+        //   .querySelector("body > app-root > app-welcome > div.overlay.active")
+        //   .replaceWith(document.querySelector("body > app-root > app-welcome > div.overlay.active").cloneNode(true));
+      }
+    });
+  }
 
   goToForm() {
-    this.store.dispatch(FormActions.retrieveStart({ id: this.id }));
-    this.storeSub = this.store.select('form').subscribe(state => {
-      if(state.done){
-        this.router.navigate(['/f', this.id]);
-      }
-    })
+    this.router.navigate(["/f", this.id]);
+  }
+
+  onAccknowledge() {
+    this.store.dispatch(FormActions.retrieveAcknowledge());
+    this.beer.beerIt("#navError");
   }
 
   showUrlInput() {
