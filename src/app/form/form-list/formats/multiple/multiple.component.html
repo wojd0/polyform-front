@@ -1,8 +1,8 @@
 <form [formGroup]="this.form" class="row">
-  <div *ngFor="let answer of this.options.answers" class="col s6">
+  <div *ngFor="let answer of this.options.answers; let i = index" class="col s6">
     <label [ngClass]="[this.type]">
-      <input [type]="this.type" [name]="answer.name" [formControlName]="this.controlName">
-      <span>{{ answer.answer }}</span>
+      <input [type]="this.type" [formControlName]="this.controlName + i">
+      <span>{{ answer }}</span>
     </label>
     
     

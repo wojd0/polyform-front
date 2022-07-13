@@ -1,6 +1,6 @@
 export default class QuestionModel {
   constructor(
-    public type: TextQuestion | DateQuestion | NumberQuestion | MultipleQuestion | FileQuestion = new TextQuestion,
+    public type: TextQuestion | DateQuestion | NumberQuestion | MultipleQuestion | FileQuestion = new TextQuestion ,
     public query: string = '',
     public id: string = '',
     public options: QuestionOptions = new QuestionOptions(),
@@ -45,7 +45,7 @@ export class NumberQuestion {
 }
 
 export class MultipleQuestion {
-  answers: Array<{answer: string, name: string}> = [];
+  answers: Array<string> = [];
   limit: number = 0;
   constructor(options?: Partial<MultipleQuestion>){
     Object.assign(this, options)

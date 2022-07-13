@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { sample, Subject, Subscription } from "rxjs";
+import { of, sample, Subject, Subscription } from "rxjs";
 import { FormModel } from "src/app/shared/form.model";
-import QuestionModel from "src/app/shared/question.model";
+import QuestionModel, { MultipleQuestion } from "src/app/shared/question.model";
 import Question, { TextQuestion } from "src/app/shared/question.model";
 import { AppState } from "src/app/store/app.reducer";
 
@@ -30,12 +30,11 @@ export class FormListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //check if there is id in url
-    if (this.route.snapshot.url[this.route.snapshot.url.length - 1]) {      
+    if (this.route.snapshot.url[this.route.snapshot.url.length - 1]) {
       this.store.dispatch(FormActions.retrieveStart({ id: this.route.snapshot.url[this.route.snapshot.url.length - 1].toString() }));
     }
 
     this.storeSub = this.store.select("form").subscribe((data) => {
-
       if (data.errorMsg) {
         this.router.navigate(["/"]);
       }
@@ -47,8 +46,17 @@ export class FormListComponent implements OnInit, OnDestroy {
         const formControls = {};
 
         for (let question of this.questions) {
-          formControls[question.options.index + "q"] = new FormControl(null, question.options.required ? Validators.required : null);
+          // if (question.type.constructor.name === 'MultipleQuestion' ) {
+          //   for (let [index, value] of question.type.answers.entries()) {
+          //     formControls[question.options.index + 'q' + index] = new FormControl(null, question.options.required ? Validators.required : null);
+          //   }
+          // } else {
+            formControls[question.options.index + "q"] = new FormControl(null, question.options.required ? Validators.required : null);
+          // }
         }
+
+        console.log(formControls);
+        
 
         this.formGroup = new FormGroup(formControls);
 

@@ -27,9 +27,13 @@ export class FormCreatorComponent implements OnInit {
   formName: string = "";
   questions: Question[] = [];
   touched: boolean = false;
-  finishedInfo = { url: '', id: '' };
+  finishedInfo = { url: "", id: "" };
+
+  formGroup: FormGroup;
 
   constructor(private store: Store<AppState>, private beer: BeerService) {}
+
+  ngOnInit(): void {}
 
   onTouch() {
     if (!this.touched) {
@@ -44,6 +48,8 @@ export class FormCreatorComponent implements OnInit {
   }
 
   submitForm() {
+    console.log(this.questions);
+    
     this.store.dispatch(CreatorActions.uploadStart({ questions: this.questions.slice(), name: this.formName }));
     this.store.select("creator").subscribe((state) => {
       if (state.url !== "" && state.done === true) {
@@ -51,7 +57,7 @@ export class FormCreatorComponent implements OnInit {
           id: state.url,
           url: `website.com/${state.url}`,
         };
-        
+
         this.beer.beerIt("#finishModal");
 
         //remove event listener from modal, so losing focus wont hide it
@@ -61,8 +67,6 @@ export class FormCreatorComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit(): void {}
 
   deleteForm(id: number) {
     this.questions.splice(id, 1);

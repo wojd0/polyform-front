@@ -52,7 +52,7 @@
                     <option value=""></option>
                     <option value="TextQuestion">Text</option>
                     <option value="NumberQuestion">Number</option>
-                    <option value="multiple gray" disabled>Multiple options (temporary off)</option>
+                    <option value="MultipleQuestion">Multiple options</option>
                     <option value="date gray" disabled>Date (soon)</option>
                     <option value="file gray" disabled>File (soon)</option>
                   </select>
@@ -66,7 +66,7 @@
             <br>
             <div class="row">
               <creator-date *ngIf="type.value == 'DateQuestion'"></creator-date>
-              <creator-multiple *ngIf="type.value == 'multiple'" (changed)="this.onQuestionChange($event, index)">
+              <creator-multiple *ngIf="type.value == 'MultipleQuestion'" (changed)="this.onQuestionChange($event, index)">
               </creator-multiple>
               <creator-number *ngIf="type.value == 'NumberQuestion'" (changed)="this.onQuestionChange($event, index)">
               </creator-number>

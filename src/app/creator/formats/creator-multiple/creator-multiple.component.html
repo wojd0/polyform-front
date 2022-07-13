@@ -1,11 +1,11 @@
-<div class="row no-wrap margin">
+<form class="row no-wrap margin" (ngSubmit)="this.add()" #form="ngForm">
   <div class="col">
-    <div class="row no-wrap middle-align">
+    <div class="row no-wrap middle-align" >
       <div class="col field background suffix">
-        <input type="text" ngModel #newOne placeholder="New question">
+        <input type="text" name="newQuestion" [(ngModel)]="this.newQuestion" placeholder="New question" >
       </div>
       <div class="col min">
-        <a class="circle green button" (click)="this.add(newOne.value)"><i>add</i></a>
+        <button class="circle green button" type="submit"><i>add</i></button>
       </div>
     </div>
     
@@ -13,7 +13,7 @@
     <div class="row" style="height: auto;">
       <ul>
         <li class="row no-wrap middle-align divider background" *ngFor="let option of options;">
-          <div class="col min">
+          <div class="col">
             <div>{{ option }}</div>
           </div>
           <div class="col"></div>
@@ -28,11 +28,11 @@
   <div class="col min"></div>
   <div class="col">
     <div class="row field background suffix">
-      <input type="number" [appForceMinMax]="{min: 1}" name="" id="" app min="0">
-      <span>Maximum answers</span>
+      <input type="number" [appForceMinMax]="{min: 1}" name="limit" id="" app min="0" [(ngModel)]="this.max" >
+      <span>Maximum selected answers</span>
     </div>
   </div>
   <div class="col min"></div>
   
-</div>
+</form>
   

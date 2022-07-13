@@ -1,5 +1,4 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { BeerService } from "../beer.service";
@@ -13,8 +12,9 @@ import { Subscription } from "rxjs";
   templateUrl: "./welcome.component.html",
   styleUrls: ["./welcome.component.scss"],
 })
+
 export class WelcomeComponent implements OnInit {
-  showEnterLink = false;
+showEnterLink = false;
   hello = "";
   id = "";
   storeSub: Subscription;

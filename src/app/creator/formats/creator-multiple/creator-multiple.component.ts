@@ -1,25 +1,37 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MultipleQuestion } from 'src/app/shared/question.model';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { MultipleQuestion } from "src/app/shared/question.model";
 
 @Component({
-  selector: 'creator-multiple',
-  templateUrl: './creator-multiple.component.html'
+  selector: "creator-multiple",
+  templateUrl: "./creator-multiple.component.html",
 })
-export class MultipleCreatorComponent implements OnInit {
-  options = ['1', '2', '3'];
-  @Output('changed') changed = new EventEmitter<MultipleQuestion>();
+export class MultipleCreatorComponent implements AfterViewInit {
+  options = [];
+  newQuestion = "";
+  max: number;
+  @Output("changed") changed = new EventEmitter<MultipleQuestion>();
+  @ViewChild("form") form!: NgForm;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.form.valueChanges?.subscribe(changes => {
+      this.changed.emit(
+        new MultipleQuestion({
+          answers: [...this.options],
+          limit: this.max,
+        })
+      );
+    });
   }
 
-  add(value: string){
-    this.options.push(value);
+  add() {
+    this.options.push(this.newQuestion);
+    this.newQuestion = "";
   }
 
-  remove(value: string){
+  remove(value: string) {
     this.options.splice(this.options.indexOf(value), 1);
   }
-
 }

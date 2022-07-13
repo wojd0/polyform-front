@@ -25,9 +25,9 @@
           <div class="col s12 m8">
             <app-text *ngIf="question.answerType == 'TextQuestion'" [question]="question" [form]="this.formGroup"></app-text>
             <app-number *ngIf="question.answerType ==  'NumberQuestion'" [question]="question" [form]="this.formGroup"></app-number>
-            <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question" [form]="this.formGroup"></app-date>
+            <!-- <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question" [form]="this.formGroup"></app-date> -->
             <app-multiple *ngIf="question.answerType ==  'MultipleQuestion'" [question]="question" [form]="this.formGroup"></app-multiple>
-            <app-file *ngIf="question.answerType ==  'FileQuestion'" [question]="question" [form]="this.formGroup"></app-file>
+            <!-- <app-file *ngIf="question.answerType ==  'FileQuestion'" [question]="question" [form]="this.formGroup"></app-file> -->
           </div>
           <div class="col m2"></div>
         </div>
