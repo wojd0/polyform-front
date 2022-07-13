@@ -20,12 +20,12 @@ export class NumberCreatorComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.form.valueChanges?.subscribe(val=>{
-      this.value.emit(new NumberQuestion({
+      this.value.emit({
         max: this.max,
         min: this.min,
         prefix: this.prefix,
         suffix: this.suffix
-      }));
+      });
     })
   }
 

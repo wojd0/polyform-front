@@ -34,10 +34,13 @@ export class FormListComponent implements OnInit, OnDestroy {
       this.store.dispatch(FormActions.retrieveStart({ id: this.route.snapshot.url[this.route.snapshot.url.length - 1].toString() }));
     }
 
+    //watch if the form is in the state
     this.storeSub = this.store.select("form").subscribe((data) => {
+      //redir to home on error
       if (data.errorMsg) {
         this.router.navigate(["/"]);
       }
+      //load form into the componenent if it is in state
       if (data.done) {
         this.form = data.form;
         this.formName = data.form.options.name || "Unnamed Form 🤷";
@@ -46,20 +49,19 @@ export class FormListComponent implements OnInit, OnDestroy {
         const formControls = {};
 
         for (let question of this.questions) {
-          // if (question.type.constructor.name === 'MultipleQuestion' ) {
-          //   for (let [index, value] of question.type.answers.entries()) {
-          //     formControls[question.options.index + 'q' + index] = new FormControl(null, question.options.required ? Validators.required : null);
-          //   }
-          // } else {
+          //handle multiple option question
+          if (question.type.answers ) {
+            for (let [index, value] of question.type.answers.entries()) {
+              formControls[question.options.index + 'q' + index] = new FormControl(false, question.options.required ? Validators.required : null);
+            }
+          } else {
             formControls[question.options.index + "q"] = new FormControl(null, question.options.required ? Validators.required : null);
-          // }
-        }
-
-        console.log(formControls);
-        
+          }
+        }       
 
         this.formGroup = new FormGroup(formControls);
 
+        //utility for grayed-out send button
         this.formGroup.statusChanges.subscribe((status) => {
           this.valid = status === "VALID" ? true : false;
         });
@@ -68,7 +70,9 @@ export class FormListComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    //TODO: send data to api
     console.log(this.formGroup.value);
+    
   }
 
   ngOnDestroy(): void {

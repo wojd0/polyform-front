@@ -11,7 +11,7 @@ export class NumberAnswerComponent implements OnInit {
   @Input('question') question= new Question;
   @Input('form') form: FormGroup;
   
-  options: NumberQuestion = new NumberQuestion;
+  options: NumberQuestion;
   min = 0;
   max = 0;
   prefix = '';

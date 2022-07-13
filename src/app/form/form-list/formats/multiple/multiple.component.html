@@ -1,7 +1,8 @@
 <form [formGroup]="this.form" class="row">
   <div *ngFor="let answer of this.options.answers; let i = index" class="col s6">
     <label [ngClass]="[this.type]">
-      <input [type]="this.type" [formControlName]="this.controlName + i">
+      <input type="checkbox" [formControlName]="this.controlName + i" *ngIf="this.type === 'checkbox'" />
+      <input type="radio" [formControlName]="this.controlName + i" *ngIf="this.type === 'radio'"  />
       <span>{{ answer }}</span>
     </label>
     

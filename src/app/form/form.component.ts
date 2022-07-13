@@ -8,8 +8,7 @@ import { timeout } from 'rxjs';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-
-  
+  //TODO: depricate this component
 
   constructor() { }
 

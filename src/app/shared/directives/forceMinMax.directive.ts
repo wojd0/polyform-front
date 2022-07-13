@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ForceMinMaxDirective implements OnInit {
   @Input('appForceMinMax') borders: {min?: number, max?: number} = {min: 0, max: 0};
-  value = 0;
+  value = 1;
   constructor(private elRef: ElementRef<HTMLInputElement>, private renderer: Renderer2) {
   }
 

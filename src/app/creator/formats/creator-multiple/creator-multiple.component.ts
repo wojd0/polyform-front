@@ -17,11 +17,12 @@ export class MultipleCreatorComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.form.valueChanges?.subscribe(changes => {
+      //emit new values
       this.changed.emit(
-        new MultipleQuestion({
+        {
           answers: [...this.options],
           limit: this.max,
-        })
+        }
       );
     });
   }

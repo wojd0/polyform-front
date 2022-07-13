@@ -13,7 +13,7 @@ export class MultipleAnswerComponent implements OnInit {
   
   controlName = '';
 
-  options = new MultipleQuestion;
+  options: MultipleQuestion;
   type: 'radio' | 'checkbox' = 'checkbox';
   constructor() { }
 
@@ -22,5 +22,4 @@ export class MultipleAnswerComponent implements OnInit {
     this.controlName = this.question.options.index + 'q';
     this.type  = this.options.limit === 1 ? 'radio' : 'checkbox';
   }
-
 }

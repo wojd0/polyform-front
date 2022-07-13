@@ -28,6 +28,7 @@ export class FormCreatorComponent implements OnInit {
   questions: Question[] = [];
   touched: boolean = false;
   finishedInfo = { url: "", id: "" };
+  ready = false;
 
   formGroup: FormGroup;
 
@@ -35,6 +36,7 @@ export class FormCreatorComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //store info that form is changed and so the user will be warned when trying to leave the page
   onTouch() {
     if (!this.touched) {
       this.touched = true;
@@ -42,17 +44,29 @@ export class FormCreatorComponent implements OnInit {
     }
   }
 
+  onTypeChange(){
+    for(let question of this.questions){
+      console.log(question.answerType);
+      
+      if(question.answerType == ''){
+        this.ready = false;
+        return;
+      }
+    }
+    this.ready = true;
+  }
+
   onQuestionChange(event: questionTypes, index: number) {
     this.onTouch();
     this.questions[index].type = event;
   }
 
-  submitForm() {
-    console.log(this.questions);
-    
+  //send the form to db
+  submitForm() {    
     this.store.dispatch(CreatorActions.uploadStart({ questions: this.questions.slice(), name: this.formName }));
     this.store.select("creator").subscribe((state) => {
-      if (state.url !== "" && state.done === true) {
+      if (state.url !== "" && state.done === true && !state.changes) {
+        //display finish modal
         this.finishedInfo = {
           id: state.url,
           url: `website.com/${state.url}`,
@@ -70,16 +84,20 @@ export class FormCreatorComponent implements OnInit {
 
   deleteForm(id: number) {
     this.questions.splice(id, 1);
+    this.onTypeChange();
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
+    
   }
 
   addMore() {
-    this.questions.push(new Question(new TextQuestion()));
+    this.questions.push(new Question());
+    //delayed window scroll so the new question will be visible
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
-    }, 100);
+    }, 10);
+    this.onTypeChange();
   }
 }

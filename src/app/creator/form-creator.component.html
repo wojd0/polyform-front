@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="col right-align">
-          <button class="button extra" (click)="this.submitForm()" [disabled]="this.questions.length < 1 || name.control.pristine">Save&nbsp;<i>save</i></button>
+          <button class="button extra" (click)="this.submitForm()" [disabled]="this.questions.length < 1 || name.control.pristine || !this.ready ">Save&nbsp;<i>save</i></button>
         </div>
       </div>
 
@@ -48,7 +48,7 @@
             <div class="row">
               <div class="col s12">
                 <div class="field suffix border background">
-                  <select name="" ngModel #type [(ngModel)]="this.questions[index].answerType">
+                  <select ngModel #type [(ngModel)]="this.questions[index].answerType" (change)="this.onTypeChange()" required >
                     <option value=""></option>
                     <option value="TextQuestion">Text</option>
                     <option value="NumberQuestion">Number</option>
