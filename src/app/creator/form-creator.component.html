@@ -5,11 +5,11 @@
       <div class="row padding no-wrap">
         <div class="col">
           <div class="field">
-            <input type="text" placeholder="Form name" [(ngModel)]="formName" (change)="this.onTouch()" #name="ngModel" >
+            <input type="text" placeholder="Form name" [(ngModel)]="formName" (change)="this.onTouch()" #name="ngModel" required="">
           </div>
         </div>
         <div class="col right-align">
-          <button class="button extra" (click)="this.submitForm()" [disabled]="this.questions.length < 1 || name.control.pristine || !this.ready ">Save&nbsp;<i>save</i></button>
+          <button class="button extra" (click)="this.submitForm()" [disabled]="this.questions.length < 1 || !name.control.valid || !this.ready ">Save&nbsp;<i>save</i></button>
         </div>
       </div>
 

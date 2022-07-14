@@ -46,7 +46,6 @@ export class FormCreatorComponent implements OnInit {
 
   onTypeChange(){
     for(let question of this.questions){
-      console.log(question.answerType);
       
       if(question.answerType == ''){
         this.ready = false;

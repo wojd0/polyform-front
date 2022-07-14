@@ -1,6 +1,6 @@
 <form [formGroup]="this.form" class="field border background">
   <input type="number" placeholder="Enter a number" [formControlName]="this.controlName" [min]="this.min"
-    [max]="this.max" [appForceMinMax]="{min: this.min, max: this.max}">
+    [max]="this.max" [appForceMinMax]="{min: this.min, max: this.max}" [required]="this.question.options.required" >
   <small>Min: {{ this.min }}</small><br>
   <small>Max: {{ this.max }}</small>
 </form>

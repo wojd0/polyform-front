@@ -2,7 +2,7 @@
   <div *ngFor="let answer of this.options.answers; let i = index" class="col s6">
     <label [ngClass]="[this.type]">
       <input type="checkbox" [formControlName]="this.controlName + i" *ngIf="this.type === 'checkbox'" />
-      <input type="radio" [formControlName]="this.controlName + i" *ngIf="this.type === 'radio'"  />
+      <input type="radio" [formControlName]="this.controlName + i" *ngIf="this.type === 'radio'" required="true" />
       <span>{{ answer }}</span>
     </label>
     

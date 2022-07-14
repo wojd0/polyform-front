@@ -24,6 +24,8 @@ export class FormListComponent implements OnInit, OnDestroy {
   storeSub: Subscription;
   notFilled = true;
 
+  required: string[][] = [];
+
   formGroup: FormGroup = new FormGroup({});
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute, private router: Router) {}
@@ -50,20 +52,49 @@ export class FormListComponent implements OnInit, OnDestroy {
 
         for (let question of this.questions) {
           //handle multiple option question
-          if (question.type.answers ) {
+          if (question.type.answers) {
+            const answersControlNames = [];
+
             for (let [index, value] of question.type.answers.entries()) {
-              formControls[question.options.index + 'q' + index] = new FormControl(false, question.options.required ? Validators.required : null);
+              const formControlName = question.options.index + "q" + index;
+
+              formControls[formControlName] = new FormControl(false);
+
+              if (question.options.required) answersControlNames.push(formControlName);
             }
+
+            if (question.options.required) this.required.push(answersControlNames);
           } else {
             formControls[question.options.index + "q"] = new FormControl(null, question.options.required ? Validators.required : null);
           }
-        }       
+        }
 
         this.formGroup = new FormGroup(formControls);
 
         //utility for grayed-out send button
         this.formGroup.statusChanges.subscribe((status) => {
           this.valid = status === "VALID" ? true : false;
+
+          for (let group of this.required) {
+            let noAnswer = true;
+
+            for (let answer of group) {
+              const answerValue = !!this.formGroup.get(answer).value;
+
+              if (answerValue) {
+                noAnswer = false;
+                break;
+              }
+            }
+            if (noAnswer) {
+              this.valid = false;
+              break;
+            }
+          }
+        });
+
+        this.formGroup.valueChanges.subscribe((values) => {
+          console.log(values);
         });
       }
     });
@@ -71,8 +102,6 @@ export class FormListComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     //TODO: send data to api
-    console.log(this.formGroup.value);
-    
   }
 
   ngOnDestroy(): void {
