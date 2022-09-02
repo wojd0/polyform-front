@@ -1,0 +1,63 @@
+<h5 class="center-align margin">Answers for form {{ this.results ? this.results.formName : null }}</h5>
+<div>
+  <div class="row">
+    <div class="col s2"></div>
+    <div class="col s8">
+      <div class="tabs">
+        <a [ngClass]="{'active': this.activeTab === 0}" (click)="this.activeTab = 0">by question</a>
+        <a [ngClass]="{'active': this.activeTab === 1}" (click)="this.activeTab = 1">by submissions</a>
+      </div>
+      <div class="page padding" [ngClass]="{'active': this.activeTab === 0}">
+
+        <table class="border space">
+          <thead>
+            <th></th>
+            <th>Question</th>
+            <th>Answer count</th>
+            <th>Answer percentage</th>
+            <th></th>
+          </thead>
+          <tbody *ngIf="this.results">
+            <tr *ngFor="let question of this.results.questions; let i = index">
+              <td>{{ i + 1 }}.</td>
+              <td>
+                <h5>{{ question }}</h5>
+              </td>
+              <td>{{ this.answersByquestion(i).length }}</td>
+              <td>Image here</td>
+              <td>
+                <button class="extra center" (click)="showAnswersToQuestion(i)">Answers list</button><br><br>
+                <button class="extra center">Other action</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="page padding" [ngClass]="{'active': this.activeTab === 1}">
+        <table class="border space">
+          <thead>
+            <th></th>
+            <th>Answer date</th>
+            <th>Answers</th>
+            <th></th>
+          </thead>
+          <tbody *ngIf="this.results">
+            <tr *ngFor="let submision of this.results.submissions; let i = index">
+              <td>{{ i+1 }}.</td>
+              <td>{{ submision.submitDate | date }}</td>
+              <td><b>{{ submision.answers.length }}</b> / {{ this.results.questions.length }}</td>
+              <td>
+                <button class="extra" (click)="showAnswersFromSubmission(i)">Browse answers</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <div class="col s2"></div>
+  </div>
+</div>
+
+<app-answers-list [list]="this.modalList" [heading]="this.listHeading"></app-answers-list>

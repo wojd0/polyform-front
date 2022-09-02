@@ -1,0 +1,31 @@
+:root{
+--primary: #006a5f;
+--on-primary: #ffffff;
+--primary-container: #74f7e5;
+--on-primary-container: #00201c;
+--secondary: #4a635f;
+--on-secondary: #ffffff;
+--secondary-container: #cde8e2;
+--on-secondary-container: #05201c;
+--tertiary: #466179;
+--on-tertiary: #ffffff;
+--tertiary-container: #cbe5ff;
+--on-tertiary-container: #001d31;
+--error: #ba1b1b;
+--error-container: #ffdad4;
+--on-error: #ffffff;
+--on-error-container: #410001;
+--background: #fafdfa;
+--on-background: #191c1b;
+--surface: #fafdfa;
+--on-surface: #191c1b;
+--surface-variant: #dbe5e2;
+--on-surface-variant: #3f4947;
+--outline: #6e7976;
+--inverse-on-surface: #eff1ef;
+--inverse-surface: #2d3130;
+--inverse-primary: #53dbc9;
+--shadow: #000000;
+--active: rgba(0, 0, 0, 0.1);
+--mode: light;
+}

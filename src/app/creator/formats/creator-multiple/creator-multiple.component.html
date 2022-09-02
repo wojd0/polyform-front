@@ -1,0 +1,38 @@
+<form class="row no-wrap margin" (ngSubmit)="this.add()" #form="ngForm">
+  <div class="col">
+    <div class="row no-wrap middle-align" >
+      <div class="col field background suffix">
+        <input type="text" name="newQuestion" [(ngModel)]="this.newQuestion" placeholder="New question" >
+      </div>
+      <div class="col min">
+        <button class="circle green button" type="submit"><i>add</i></button>
+      </div>
+    </div>
+    
+
+    <div class="row" style="height: auto;">
+      <ul>
+        <li class="row no-wrap middle-align divider background" *ngFor="let option of options;">
+          <div class="col">
+            <div>{{ option }}</div>
+          </div>
+          <div class="col"></div>
+          <div class="col min">
+            <button class="red flat circle" style="margin-right: 16rem;" (click)="this.remove(option)"><i>delete</i></button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+  <div class="col min"></div>
+  <div class="col">
+    <div class="row field background suffix">
+      <input type="number" [appForceMinMax]="{min: 1}" name="limit" min="0" [(ngModel)]="this.max" >
+      <span>Maximum selected answers</span>
+    </div>
+  </div>
+  <div class="col min"></div>
+  
+</form>
+  

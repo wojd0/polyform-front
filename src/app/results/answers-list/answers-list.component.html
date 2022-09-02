@@ -1,0 +1,43 @@
+<div class="overlay" [ngClass]="{ 'active': this.active}" (click)="this.active = false"></div>
+<div [ngSwitch]="this.heading">
+  <div *ngSwitchCase="'bys'">
+    <div class="modal round" [ngClass]="{ 'active': this.active}">
+      <h5 class="padding">All answers from this submission</h5>
+      <article>
+        <ol class="margin">
+          
+          <li *ngFor="let line of this.list; let i = index" style="margin-bottom: 10px;">
+            Q: <strong class="large-text">{{ line.name }}</strong>
+            <br><br>
+            <ul>
+              <li style="list-style-position: outside;" *ngFor="let item of line.content">
+                A: {{ line.content | trimNulls }}
+              </li>
+            </ul>
+            
+          </li>
+        </ol>
+      </article>
+      <nav class="right-align"><button class="red" (click)="this.active = false">Close</button></nav>
+    </div>
+  </div>
+  
+  
+  <!-- to question -->
+  <div *ngSwitchCase="'byq'">
+    <div class="modal round" [ngClass]="{ 'active': this.active}">
+      <h5 class="padding">All answers to this question</h5>
+      <article>
+        Question: <b>{{ this.list[0].name }}</b>
+        <ul class="margin">
+          <li *ngFor="let line of this.list[0].content; let i = index" style="margin-bottom: 5px;">
+            {{ line }}
+          </li>
+        </ul>
+      </article>
+      <nav class="right-align"><button class="red" (click)="this.active = false">Close</button></nav>
+    </div>
+  </div>
+</div>
+<!-- to submission -->
+

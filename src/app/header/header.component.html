@@ -1,0 +1,37 @@
+<header class="padding primary">
+  <div class="row no-wrap middle-align">
+    <div class="col min">
+      <a class="circle" data-ui="#menu-left">
+        <i>menu</i>
+      </a>
+    </div>
+    <div class="col">
+      <h5 class="no-margin center-align">PolyForm</h5>
+      <p class="no-margin center-align">Simple forms with simple URLs</p>
+    </div>
+    <div class="col min">
+      <a class="circle" (click)="this.switchTheme()" type="button">
+        <i>dark_mode</i>
+      </a><div class="row"></div>      
+    </div>
+  </div>
+</header>
+<div class="modal left" id="menu-left">
+  <h5>PolyForm</h5>
+  <nav class="center-align wrap">
+    <div>
+        
+      <button class="responsive" routerLink="/"><i class="padding">home</i></button>
+    </div>
+    <div>
+      <button class="responsive" routerLink="/f/new">Create new form</button>
+    </div>
+    <div>
+      <button class="responsive">Fill a form</button>
+    </div>
+    <div>
+      <button class="responsive">About</button>
+    </div>
+  </nav>
+</div>
+
