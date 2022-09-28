@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { BeerService } from "../beer.service";
 import { AppState } from "../store/app.reducer";
 
-import * as FormActions from "../form/store/form.actions";
+import * as FormActions from "../form-list/store/form.actions";
 import { Subscription } from "rxjs";
 
 @Component({

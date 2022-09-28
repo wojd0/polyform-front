@@ -1,31 +1,32 @@
-<div class="overlay" [ngClass]="{'active': this.show | async}">
-</div>
-<div class="modal top" [ngClass]="{'active': (this.show | async).type === 'created' }" id="finishModal" *ngIf="(this.show | async) as finishedInfo">
-  <h5 class="row">Your form has been created!</h5>
-  <div class="row">You have successfully created a form. To access it, use either this URL or manually enter the ID on
-    main page:</div>
-  <div class="row">
-    <h5><a [href]="'http://' + this.finishedInfo.content.url">URL: {{ finishedInfo.content.url }}</a></h5>
-    <h6>ID: {{ this.finishedInfo.content.id }}</h6>
+<div  [ngClass]="{'active': (this.modalSubject | async)}" *ngIf="(this.modalSubject | async) as modal">
+  <div class="overlay active"></div>
+  <div class="modal top active">
+    <div id="finishModal" *ngIf="modal.type === 'created'">
+      <h5 class="row">Your form has been created!</h5>
+      <div class="row">You have successfully created a form. To access it, use either this URL or manually enter the ID
+        on
+        main page:</div>
+      <div class="row">
+        <h5><a [href]="'http://' + modal.content.url">URL: {{ modal.content.url }}</a></h5>
+        <h6>ID: {{ modal.content.id }}</h6>
+      </div>
+      <div class="row">To access the results go to website.com/results and enter this code:</div>
+      <div class="row">
+        <h5>{{ modal.content.accessCode }}</h5>
+      </div>
+      <nav class="left-align">
+        <button (click)="this.returnToMain()">Return to main page</button>
+      </nav>
+    </div>
+    <div id="finishModal" *ngIf="modal.type === 'general'">
+      <div class="overlay">
+      </div>
+      <h5 class="row">{{ modal.content.msg }}</h5>
+      <p>{{ modal.content.sub }}</p>
+      <nav class="left-align">
+        <button (click)="this.returnToMain()" *ngIf="modal.content.redirect">Return to main page</button>
+      </nav>
+    </div>
   </div>
-  <div class="row">To access the results go to website.com/results and enter this code:</div>
-  <div class="row">
-    <h5>{{ this.finishedInfo.content.accessCode }}</h5>
-  </div>
-  <nav class="left-align">
-    <button (click)="this.returnToMain()">Return to main page</button>
-  </nav>
-</div>
-<div class="modal top" [ngClass]="{'active': (this.show | async).type === 'filled'}" id="finishModal" *ngIf="(this.show | async) as filledMsg">
-  <h5 class="row">{{ filledMsg.content.msg }}</h5>
-  <p>{{ filledMsg.content.sub }}</p>
-  <nav class="left-align">
-    <button (click)="this.returnToMain()">Return to main page</button>
-  </nav>
-</div>
-<div class="modal top" [ngClass]="{'active': (this.show | async).type === 'wrongAccess'}" id="finishModal" *ngIf="(this.show | async) as filledMsg">
-  <h5 class="row">{{ filledMsg.content.msg }}</h5>
-  <nav class="left-align">
-    <button (click)="this.returnToMain()">Return to main page</button>
-  </nav>
+   
 </div>

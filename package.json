@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "remote": "fuser -k 4200/tcp | ng serve --host 0.0.0.0"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
+    "@swimlane/ngx-charts": "^20.1.0",
     "beercss": "^2.0.27",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

@@ -81,7 +81,7 @@ export class FormCreatorComponent implements OnInit {
           accessCode: state.accessCode
         };
 
-        this.beer.showModal.next({type: 'created', content: {
+        this.beer.modal.next({type: 'created', content: {
           url: `https://website.com/${state.url}`,
           id: state.url,
           accessCode: state.accessCode,

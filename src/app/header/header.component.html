@@ -5,33 +5,39 @@
         <i>menu</i>
       </a>
     </div>
-    <div class="col">
-      <h5 class="no-margin center-align">PolyForm</h5>
+    <div class="col pointer" [routerLink]="'/'">
+      <h4 class="no-margin center-align">PolyForms</h4>
       <p class="no-margin center-align">Simple forms with simple URLs</p>
     </div>
     <div class="col min">
       <a class="circle" (click)="this.switchTheme()" type="button">
         <i>dark_mode</i>
-      </a><div class="row"></div>      
+      </a>
+      <div class="row"></div>
     </div>
   </div>
 </header>
 <div class="modal left" id="menu-left">
-  <h5>PolyForm</h5>
-  <nav class="center-align wrap">
-    <div>
-        
-      <button class="responsive" routerLink="/"><i class="padding">home</i></button>
+  <nav class="wrap margin">
+    <div class="col pointer margin" [routerLink]="'/'">
+      <h4 class="no-margin center-align">PolyForms</h4>
+      <p class="no-margin center-align">Simple forms with simple URLs</p>
     </div>
-    <div>
-      <button class="responsive" routerLink="/f/new">Create new form</button>
+    <div class="col">
+      <button class="responsive large tertiary" tabindex="0" routerLink="/">
+        <h6>Home</h6>
+      </button>
     </div>
-    <div>
-      <button class="responsive">Fill a form</button>
+    <div class="col">
+      <button class="responsive large" tabindex="1" routerLink="/f/new">
+        <h6>Create</h6>
+      </button>
     </div>
-    <div>
-      <button class="responsive">About</button>
+    <div class="col">
+      <button class="responsive large" tabindex="2"><h6>Fill</h6></button>
+    </div>
+    <div class="col">
+      <button class="responsive large" tabindex="3"><h6>About</h6></button>
     </div>
   </nav>
 </div>
-

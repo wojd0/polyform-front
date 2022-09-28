@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BeerService } from '../beer.service';
+import QuestionModel from '../shared/models/question.model';
 import { Results } from '../shared/models/results.model';
 import { AppState } from '../store/app.reducer';
 import { loadResults } from './store/results.actions';
@@ -18,10 +19,12 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   accessCode = '';
   formName = 'exampleForm';
   results: Results;
-  activeTab = 1;
+  activeTab = 0;
 
-  modalList: {name: string, content: string[]}[];
-  listHeading: 'byq' | 'bys';
+  modalList: {question: string, answers: string | number | string[]}[];
+  listHeading: string;
+
+  graphResults: any;
 
   ngOnInit(): void {
     this.accessCode = this.router.url.substring(this.router.url.lastIndexOf("/") + 1);
@@ -29,16 +32,16 @@ export class ResultsComponent implements OnInit, AfterViewInit {
     this.store.select('results').subscribe(state=>{
       if(state.error){
         this.router.navigate(['/']);
-        this.beerService.showModal.next({
-          type: 'wrongAccess',
+        this.beerService.modal.next({
+          type: 'general',
           content: {
-            msg: 'Provided results access code is invalid!'
+            msg: 'Provided results access code is invalid!',
+            redirect: true
           }
         });
       }
       
       this.results = state.results;
-      console.log(this.results);
       
     });
     
@@ -60,19 +63,32 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   //'BY SUBMISSIONS'
   showAnswersFromSubmission(id: number){
     this.modalList = this.results.submissions[id].answers.map((answer, questionIndex) => ({
-      content: [answer],
-      name: this.results.questions[questionIndex]
+      answers: answer,
+      question: this.results.questions[questionIndex].query
     }));
-    this.listHeading = 'bys';
+    this.listHeading = `Answers from submission number ${id + 1}`;
   }
+
+
 
   //'BY QUESTIONS'
   showAnswersToQuestion(id: number){
     this.modalList = [{
-      name: this.results.questions[id],
-      content: this.results.submissions.map(submission => submission.answers[id])
+      question: this.results.questions[id].query,
+      answers: this.results.submissions.map(submission => submission.answers[id]).flat()
     }]
     this.listHeading = 'byq';
+  }
+
+  showGraph(id: number){
+    const answers = {};
+    this.results.submissions.map(submission => submission.answers[id]).flat().forEach((ans) => {
+      answers[ans] = typeof answers[ans] === 'undefined' ? 1 : answers[ans] + 1;
+    });
+    
+    this.graphResults = Object.entries(answers).map(([key, val]) => {
+      return {name: key, value: val}
+    });
   }
 
 }

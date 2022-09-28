@@ -1,17 +1,16 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
-import { FormControl, FormGroup, RequiredValidator, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Actions, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
-import { of, sample, Subject, Subscription, take } from "rxjs";
+import { Subscription, take } from "rxjs";
 import { BeerService } from "src/app/beer.service";
 import { FormModel } from "src/app/shared/models/form.model";
 import QuestionModel, { MultipleQuestion } from "src/app/shared/models/question.model";
-import Question, { TextQuestion } from "src/app/shared/models/question.model";
 import { AppState } from "src/app/store/app.reducer";
 import { environment } from "src/environments/environment";
 
-import * as FormActions from "../store/form.actions";
+import * as FormActions from "./store/form.actions";
 
 @Component({
   selector: "app-form-list",
@@ -39,9 +38,10 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
     const formId = this.router.url.substring(this.router.url.lastIndexOf("/") + 1);
 
     this.actions.pipe(ofType(FormActions.sendSuccess), take(1)).subscribe(() => {
-      this.beerService.showModal.next({type: 'filled', content: {
+      this.beerService.modal.next({type: 'general', content: {
         msg: "Thank you for filling out the form.",
-        sub: "Your answers have been sent to the form's creator."
+        sub: "Your answers have been sent to the form's creator.",
+        redirect: true
       }});
       this.router.navigate(['/'])}
     )
@@ -97,7 +97,7 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
   flatValues(values: { [key: string]: { [key: string]: string } | string }) {
     return Object.values(values).reduce((prev, curr, qindex) => {
       return typeof curr === "object" && curr ? [
-        ...prev, 
+        ...prev,
         Object.values(curr)
         .map((value, aindex) => {        
         return value ? <MultipleQuestion> this.questions[qindex].type.answers[aindex] : null;

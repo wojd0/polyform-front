@@ -1,5 +1,5 @@
 import { creatorReducer, CreatorState } from "../creator/store/creator.reducer";
-import { formReducer, FormState } from "../form/store/form.reducer";
+import { formReducer, FormState } from "../form-list/store/form.reducer";
 import { resultsReducer, ResultsState } from "../results/store/results.reducer";
 
 

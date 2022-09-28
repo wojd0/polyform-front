@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   fireApi: 'https://polyform-ebf1a-default-rtdb.europe-west1.firebasedatabase.app/',
-  myApi: 'http://127.0.0.1:1500/',
+  myApi: 'http://138.3.255.87:1500/',
   idLength: 6
 };
 

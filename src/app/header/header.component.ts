@@ -22,7 +22,10 @@ export class HeaderComponent implements OnInit {
   };
 
   activeTheme: {
-    boxColor: any, backgroundColor: any, highlightColor: any, textColor: any
+    boxColor: any;
+    backgroundColor: any;
+    highlightColor: any;
+    textColor: any;
   };
 
   constructor(private beerService: BeerService) {}
@@ -55,8 +58,6 @@ export class HeaderComponent implements OnInit {
   }
 
   switchTheme() {
-    console.log("switch");
-
     if (localStorage.getItem("theme") === "light") {
       localStorage.setItem("theme", "dark");
     } else {

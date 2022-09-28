@@ -10,9 +10,9 @@ import { AppState } from "src/app/store/app.reducer";
   styleUrls: ["./answers-list.component.scss"],
 })
 export class AnswersListComponent implements OnChanges, OnInit {
-  active = false;
+  show = false;
 
-  @Input('list') list: {name: string, content: string[]}[];
+  @Input('list') list: {question: string, answers: string | number | string[]}[];
   @Input('heading') heading: string;
   results: Results;
   constructor(private state: Store<AppState>){}
@@ -23,8 +23,13 @@ export class AnswersListComponent implements OnChanges, OnInit {
     })
   }
 
+  handleArray(val: any){
+    if(Array.isArray(val)) return val.join(', ');
+    return val;
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
 
-    if(!changes['list'].isFirstChange()) this.active = true;      
+    if(!changes['list'].isFirstChange()) this.show = true;      
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormComponent } from './form/form.component';
+import { FormListComponent } from './form-list/form-list.component';
 import { ChangesGuard } from './shared/changes.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'f', children: [
     {path: 'new',  loadChildren: () => import('./creator/creator.module').then(m=>m.FormCreatorModule)},
-    {path: '**', loadChildren: () => import('./form/form.module').then(m=>m.FormFillModule)},
+    {path: '**', loadChildren: () => import('./form-list/form-list.module').then(m=>m.FormListModule)},
   ], canDeactivate: [ChangesGuard]},
   {path: 'r', children: [
     {path: '**', loadChildren: () => import('./results/results.module').then(m=>m.ResultsModule)},

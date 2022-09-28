@@ -7,7 +7,7 @@ import Question, { MultipleQuestion } from 'src/app/shared/models/question.model
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss']
 })
-export class RadioComponent implements OnInit {
+export class RadioAnswerComponent implements OnInit {
   @Input("question") question = new Question();
   @Input("form") form: FormGroup;
 
