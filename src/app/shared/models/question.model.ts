@@ -21,7 +21,7 @@ export interface TextQuestion {
 }
 
 export interface DateQuestion {
-  displayFormat?: "short" | "locale" | "full";
+  displayFormat?: string;
 }
 
 export interface NumberQuestion {
