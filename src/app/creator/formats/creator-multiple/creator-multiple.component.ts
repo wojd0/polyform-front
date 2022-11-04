@@ -17,7 +17,7 @@ export class MultipleCreatorComponent implements AfterViewInit, MultipleQuestion
 
   ngAfterViewInit(): void {
     this.form.valueChanges?.subscribe(() => {    
-      this.changed.emit(Object.assign(new Object(), this``) as MultipleQuestionOptions);
+      this.changed.emit(Object.assign(new Object(), this) as MultipleQuestionOptions);
     });
   }
 
