@@ -13,7 +13,6 @@ export class TextCreatorComponent implements AfterViewInit {
   minWords = 0;
   maxWords = 40;
   question = '';
-  constructor() { }
 
   ngAfterViewInit(): void {
     this.form.valueChanges?.subscribe(val =>{

@@ -1,3 +1,5 @@
+import { DateQuestion } from "./question.model";
+
 export default class Answer {
   constructor(
     public questionId: string,
@@ -8,3 +10,5 @@ export default class Answer {
   }
 
 }
+
+new DateQuestion().setOptions({displayFormat: "full"})

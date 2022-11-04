@@ -1,13 +1,6 @@
-import Question from "./question.model";
-
-interface Options {
-  [key: string]: any;
-  name: string;
-}
-
-export class FormModel {
-  createdAt: string;
-  updatedAt: string;
+export class Form {
+  id: string;
   accessCode: string;
-  constructor(public id: string, public user: string, public url: string, public options: Options) {}
+  closed: boolean;
+  name: string;
 }

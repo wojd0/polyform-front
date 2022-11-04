@@ -1,21 +1,11 @@
-<h5 class="center-align margin">
-  Answers for form {{ this.results ? this.results.formName : null }}
-</h5>
+<h5 class="center-align margin">Answers for form {{ this.results ? this.results.formName : null }}</h5>
 <!-- <app-pie-chart></app-pie-chart> -->
 <div>
   <div class="row">
     <div class="col s12">
       <div class="tabs">
-        <a
-          [ngClass]="{ active: this.activeTab === 0 }"
-          (click)="this.activeTab = 0"
-          >by question</a
-        >
-        <a
-          [ngClass]="{ active: this.activeTab === 1 }"
-          (click)="this.activeTab = 1"
-          >by submissions</a
-        >
+        <a [ngClass]="{ active: this.activeTab === 0 }" (click)="this.activeTab = 0">by question</a>
+        <a [ngClass]="{ active: this.activeTab === 1 }" (click)="this.activeTab = 1">by submissions</a>
       </div>
       <div class="page padding" [ngClass]="{ active: this.activeTab === 0 }">
         <table class="border space" style="width: 100%">
@@ -34,14 +24,10 @@
               </td>
               <td>{{ this.answersByquestion(i).length }}</td>
               <td>
-                <button class="extra center" (click)="showGraph(i)">
-                  Anser graph
-                </button>
+                <button class="extra center" (click)="showGraph(i)">Anser graph</button>
               </td>
               <td>
-                <button class="extra center" (click)="showAnswersToQuestion(i)">
-                  Unique answers</button
-                >
+                <button class="extra center" (click)="showAnswersToQuestion(i)">Unique answers</button>
               </td>
             </tr>
           </tbody>
@@ -56,9 +42,7 @@
             <th></th>
           </thead>
           <tbody *ngIf="this.results">
-            <tr
-              *ngFor="let submision of this.results.submissions; let i = index"
-            >
+            <tr *ngFor="let submision of this.results.submissions; let i = index">
               <td>{{ i + 1 }}.</td>
               <td>{{ submision.submitDate | date: "medium" }}</td>
               <td>
@@ -66,9 +50,7 @@
                 {{ this.results.questions.length }}
               </td>
               <td>
-                <button class="extra" (click)="showAnswersFromSubmission(i)">
-                  Browse answers
-                </button>
+                <button class="extra" (click)="showAnswersFromSubmission(i)">Browse answers</button>
               </td>
             </tr>
           </tbody>
@@ -78,8 +60,5 @@
   </div>
 </div>
 
-<app-answers-list
-  [list]="this.modalList"
-  [heading]="this.listHeading"
-></app-answers-list>
+<app-answers-list [list]="this.modalList" [heading]="this.listHeading"></app-answers-list>
 <app-pie-chart [results]="this.graphResults"></app-pie-chart>

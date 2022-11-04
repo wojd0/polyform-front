@@ -38,7 +38,7 @@ export class PieChartComponent implements OnChanges {
 
   }
 
-  @Input("results") results: { name: string; value: number }[];
+  @Input("results") results: { name: string; value: any }[];
   show = false;
 
   names: string[];

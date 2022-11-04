@@ -2,8 +2,6 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, tap, map, switchMap, of } from "rxjs";
-import { FormModel } from "src/app/shared/models/form.model";
-import QuestionModel from "src/app/shared/models/question.model";
 import { environment } from "src/environments/environment";
 
 import * as CreatorActions from "./creator.actions";
@@ -30,15 +28,7 @@ export class CreatorEffects {
       ofType(CreatorActions.uploadStart),
       switchMap((action) => {
         return this.http
-          .put<{ formId: string; formUrl: string; accessCode: string }>(environment.myApi + "form", {
-            questions: action.questions,
-            formData: {
-              username: "dummy",
-              options: {
-                name: action.name
-              },
-            },
-          })
+          .post<{ formId: string; formUrl: string; accessCode: string }>(environment.myApi + "form", action)
           .pipe(
             map((resData) => {
               return handleUpload(resData);

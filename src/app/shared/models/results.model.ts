@@ -1,13 +1,13 @@
-import QuestionModel from "./question.model";
+import Question from "./question.model";
 
 export interface Results {
   formName: string;
   options?: {[key:string]: any};
   submissions: Submission[];
-  questions: QuestionModel[];
+  questions: Question<any, any>[];
 }
 
 export interface Submission{
   submitDate: Date;
-  answers: (string[] | string)[];
+  answers: (string[] | string | number | Date)[];
 }

@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { of, switchMap, map, catchError, withLatestFrom } from "rxjs";
-import { FormModel } from "src/app/shared/models/form.model";
+import { Form } from "src/app/shared/models/form.model";
+import Question from "src/app/shared/models/question.model";
 import QuestionModel from "src/app/shared/models/question.model";
 import { Submission } from "src/app/shared/models/results.model";
 import { AppState } from "src/app/store/app.reducer";
@@ -32,7 +33,7 @@ export class FormEffects {
       ofType(FormActions.retrieveStart),
       switchMap((action) =>
         this.http
-          .get<{ form: FormModel; questions: QuestionModel[] }>(`${environment.myApi}form`, {
+          .get<{ form: Form; questions: Question<any, any>[] }>(`${environment.myApi}form`, {
             params: new HttpParams().set("id", action.id),
           })
           .pipe(

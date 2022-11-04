@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import Question, { MultipleQuestion, NumberQuestion, TextQuestion } from "src/app/shared/models/question.model";
+import Question, { MultipleQuestion, NumberQuestion, QuestionTypesMap, TextQuestion } from "src/app/shared/models/question.model";
 import { BeerService } from "../beer.service";
 import { AppState } from "../store/app.reducer";
 
@@ -16,8 +16,6 @@ interface CreatorData {
   type: string;
 }
 
-type questionTypes = TextQuestion | NumberQuestion | MultipleQuestion;
-
 @Component({
   selector: "app-form-creator",
   templateUrl: "./form-creator.component.html",
@@ -26,10 +24,11 @@ type questionTypes = TextQuestion | NumberQuestion | MultipleQuestion;
 export class FormCreatorComponent implements OnInit {
   @Input("index") index = 0;
   formName: string = "";
-  questions: Question[] = [];
+  questions: Question<any, any>[] = [];
   touched: boolean = false;
   finishedInfo = { url: "", id: "", accessCode: ''};
-  ready = false;
+  types: string[] = [];
+  haveQueries: boolean[] = []
 
   formGroup: FormGroup;
 
@@ -37,41 +36,32 @@ export class FormCreatorComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
   //store info that form is changed and so the user will be warned when trying to leave the page
-  onTouch() {
+  onTouch(val?: any) {
     if (!this.touched) {
       this.touched = true;
       this.store.dispatch(CreatorActions.changes());
     }
-  }
-
-  onTypeChange() {
-    for (let question of this.questions) {
-      if (question.answerType == "") {
-        this.ready = false;
-        return;
-      }
-    }
-    this.ready = true;
-  }
-
-  onQuestionChange(event: questionTypes, index: number) {
-    this.onTouch();
-    this.questions[index].type = event;
-    console.log(this.questions);
     
+  }
+
+  onQuestionChange(event: any, index: number) {
+    this.onTouch();
+    this.questions[index].details = event;    
   }
 
   //send the form to db
-  submitForm() {
-    console.log(this.questions);
-    
+  submitForm() {     
     this.store.dispatch(
       CreatorActions.uploadStart({
-        questions: this.questions.slice(),
+        questions: this.questions.slice().map((question, index) => {
+          return ({...question, type: this.types[index]})
+        }),
         name: this.formName,
       })
     );
+        
     this.store.select("creator").subscribe((state) => {
       if (state.url !== "" && state.done === true && !state.changes) {
         //display finish modal
@@ -93,19 +83,28 @@ export class FormCreatorComponent implements OnInit {
 
   deleteForm(id: number) {
     this.questions.splice(id, 1);
-    this.onTypeChange();
+    this.types.splice(id, 1);
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
   }
 
+  onTypeChange(index: number, type: string){
+    this.types[index] = type;
+  }
+
   addMore() {
-    this.questions.push(new Question());
+    const newQuestion = new Question();
+    newQuestion.index = this.questions.length;
+    newQuestion.required = false;
+    this.questions.push(newQuestion);
+    this.haveQueries.push(false);
+    this.types.push('text');
+    
     //delayed window scroll so the new question will be visible
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 10);
-    this.onTypeChange();
   }
 }

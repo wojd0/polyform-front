@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { filter, map } from "rxjs";
 import { BeerService } from "../beer.service";
 
 @Component({
@@ -27,9 +29,13 @@ export class HeaderComponent implements OnInit {
     highlightColor: any;
     textColor: any;
   };
+  isHome: any;
 
-  constructor(private beerService: BeerService) {}
+  constructor(private beerService: BeerService, private router: Router) {
+  }
+  
   ngOnInit() {
+    this.isHome = this.router.events.pipe(filter(event => event instanceof NavigationEnd), map((event: NavigationEnd) => event.url === '/'));
     this.beerService.beerPage();
 
     if (!localStorage.getItem("theme")) {
@@ -37,6 +43,7 @@ export class HeaderComponent implements OnInit {
     }
 
     this.checkTheme();
+
   }
 
   checkTheme() {

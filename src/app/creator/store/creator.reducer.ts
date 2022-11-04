@@ -1,6 +1,5 @@
 import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
-import { FormModel } from 'src/app/shared/models/form.model';
 import Question from 'src/app/shared/models/question.model';
 import * as CreatorActions from './creator.actions';
 

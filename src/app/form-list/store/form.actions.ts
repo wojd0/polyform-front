@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Submission } from 'src/app/shared/models/results.model';
-import { FormModel } from 'src/app/shared/models/form.model';
-import QuestionModel from 'src/app/shared/models/question.model';
+import { Form } from 'src/app/shared/models/form.model';
+import Question from 'src/app/shared/models/question.model';
 
 export const FORM_RETRIEVE = '[Form] Retrieve';
 export const FORM_RETRIEVE_SUCCESS = '[Form] Retrieve Success';
@@ -20,7 +20,7 @@ export const retrieveStart = createAction(
 
 export const retrieveSuccess = createAction(
   FORM_RETRIEVE_SUCCESS,
-  props<{ form: FormModel, questions: QuestionModel[]}>()
+  props<{ form: Form, questions: Question<any, any>[]}>()
 );
 
 export const retrieveFailure = createAction(

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
   testConectivity() {
     this.http
-      .get(environment.myApi, { observe: "response", headers: new HttpHeaders().set("Content-Type", "text/plain") })
+      .get<string>(environment.myApi)
       .pipe(
         catchError((err) => {
           if (err.status !== 200) {

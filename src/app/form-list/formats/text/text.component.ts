@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import QuestionModel from 'src/app/shared/models/question.model';
+import QuestionModel, { TextQuestionOptions } from 'src/app/shared/models/question.model';
 import Question, { TextQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
@@ -9,9 +9,9 @@ import Question, { TextQuestion } from 'src/app/shared/models/question.model';
   styleUrls: ['./text.component.scss']
 })
 export class TextAnswerComponent implements OnInit {
-  @Input('question') question: QuestionModel;
+  @Input('question') question: Question<TextQuestionOptions, string>;
   @Input('form') form: FormGroup;
-  options: TextQuestion;
+  options: TextQuestionOptions;
   min = 0;
   max = 10;
   controlName = '';
@@ -19,13 +19,13 @@ export class TextAnswerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.options = <TextQuestion> this.question.type;
+    this.options = this.question.details;
     this.min = this.options.minWords;
-    this.max = this.options.maxWords;    
+    this.max = this.options.maxWords;
 
-    this.controlName = this.question.options.index + 'q';
+    this.controlName = this.question.index + 'q';
     
 
-    if(this.question.options.required) this.form.addValidators(Validators.required);
+    if(this.question.required) this.form.addValidators(Validators.required);
   }
 }

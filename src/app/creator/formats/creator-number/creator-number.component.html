@@ -1,20 +1,20 @@
-<form class="row" #form="ngForm">
-  <div class="row no-wrap">
-    <div class="field col background suffix margin">
+<form class="grid" #form="ngForm">
+  <div class="grid s12">
+    <div class="field s12 m6 background suffix margin">
       <input appMakeInt type="number" name="min" [appForceMinMax]="{max: this.max}" [(ngModel)]="this.min">
       <span>Minimum value</span>
     </div>
-    <div class="field col background suffix margin">
+    <div class="field s12 m6 background suffix margin">
       <input appMakeInt type="number" name="max" [appForceMinMax]="{min: this.min}" [(ngModel)]="this.max">
       <span>Maximum value</span>
     </div>
   </div>
-  <div class="row no-wrap">
-    <div class="field col background suffix margin">
+  <div class="grid s12">
+    <div class="field s12 m6 background suffix margin">
       <input appMakeInt type="text" name="prefix" [(ngModel)]="this.prefix">
       <span>Prefix</span>
     </div>
-    <div class="field col background suffix margin">
+    <div class="field s12 m6 background suffix margin">
       <input type="text" appMakeInt name="suffix" [(ngModel)]="this.suffix">
       <span>Suffix</span>
     </div>

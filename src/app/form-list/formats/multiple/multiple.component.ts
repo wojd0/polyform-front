@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import Question, { MultipleQuestion } from "src/app/shared/models/question.model";
+import Question, { MultipleQuestion, MultipleQuestionOptions } from "src/app/shared/models/question.model";
 
 @Component({
   selector: "app-multiple",
@@ -8,12 +8,12 @@ import Question, { MultipleQuestion } from "src/app/shared/models/question.model
   styleUrls: ["./multiple.component.scss"],
 })
 export class MultipleAnswerComponent implements OnInit {
-  @Input("question") question = new Question();
+  @Input("question") question: Question<MultipleQuestionOptions, string[]>;
   @Input("form") form: FormGroup;
 
   controlName = "";
 
-  options: MultipleQuestion;
+  options: MultipleQuestionOptions;
 
   lastChanged = "";
   lastValues: boolean[] = [];
@@ -21,7 +21,7 @@ export class MultipleAnswerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.options = <MultipleQuestion> this.question.type;
-    this.controlName = this.question.options.index + "q";
+    this.options = this.question.details;
+    this.controlName = this.question.index + "q";
   }
 }

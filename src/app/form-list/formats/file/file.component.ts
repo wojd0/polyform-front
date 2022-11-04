@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import Question, { FileQuestion } from 'src/app/shared/models/question.model';
+import Question, { FileQuestion, FileQuestionOptions } from 'src/app/shared/models/question.model';
 
 @Component({
   selector: 'app-file',
@@ -8,7 +8,7 @@ import Question, { FileQuestion } from 'src/app/shared/models/question.model';
   styleUrls: ['./file.component.scss']
 })
 export class FileAnswerComponent implements OnInit {
-  @Input('question') question = new Question();
+  @Input('question') question: Question<FileQuestionOptions, any>;
   @Input('form') form: FormGroup;
 
   constructor() { }

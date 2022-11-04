@@ -5,10 +5,11 @@ import { Actions, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { Subscription, take } from "rxjs";
 import { BeerService } from "src/app/beer.service";
-import { FormModel } from "src/app/shared/models/form.model";
+import Question, { DateQuestion, FileQuestion, MultipleQuestionOptions, NumberQuestion, TextQuestion } from "src/app/shared/models/question.model";
 import QuestionModel, { MultipleQuestion } from "src/app/shared/models/question.model";
 import { AppState } from "src/app/store/app.reducer";
 import { environment } from "src/environments/environment";
+import { Form } from "../shared/models/form.model";
 
 import * as FormActions from "./store/form.actions";
 
@@ -18,9 +19,9 @@ import * as FormActions from "./store/form.actions";
   styleUrls: ["./form-list.component.scss"],
 })
 export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
-  form: FormModel;
+  form: Form;
   formName: string;
-  questions: QuestionModel[];
+  questions: Question<any, any>[];
   valid: boolean = false;
   values = [];
   storeSub: Subscription;
@@ -62,24 +63,24 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
       //load form into the componenent if it is in state
       if (data.form) {
         this.form = data.form;
-        this.formName = data.form.options.name || "Unnamed Form 🤷";
+        this.formName = data.form.name || "Unnamed Form 🤷";
         this.questions = data.questions;
 
         const formControls = {};
         let i = 0;
         for (let question of this.questions) {
           //handle multiple option question
-          if (question.type.answers && question.type.limit !== 1) {
-            //handle radio type question
-            const answerControls = {};
-            for (let [index, value] of question.type.answers.entries()) {
-              const answerName = question.options.index + "q" + index;
-              answerControls[answerName] = new FormControl(false);
-            }
-            this.nestedFormGroups[question.options.index] = new FormGroup(answerControls);
-            formControls[question.options.index + "q"] = this.nestedFormGroups[question.options.index];
-          } else {
-            formControls[question.options.index + "q"] = new FormControl(null, question.options.required ? Validators.required : null);
+          if (question instanceof MultipleQuestion && question.details.limit !== 1) {
+             //handle radio type question
+             const answerControls = {};
+             for (let [index, value] of question.details.answers.entries()) {
+               const answerName = question.index + "q" + index;
+               answerControls[answerName] = new FormControl(false);
+             }
+             this.nestedFormGroups[question.index] = new FormGroup(answerControls);
+             formControls[question.index + "q"] = this.nestedFormGroups[question.index];
+          }else{
+            formControls[question.index + "q"] = new FormControl(null, question.required ? Validators.required : null);
           }
         }
         this.formGroup = new FormGroup(formControls);
@@ -90,7 +91,6 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSubmit() {
-    //TODO: send data to api
     this.store.dispatch(FormActions.sendStart({ values: this.flatValues(this.formGroup.value) }));
   }
 
@@ -100,11 +100,28 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
         ...prev,
         Object.values(curr)
         .map((value, aindex) => {        
-        return value ? <MultipleQuestion> this.questions[qindex].type.answers[aindex] : null;
+        return value ? (<MultipleQuestion> this.questions[qindex]).details.answers[aindex] : null;
         })
         .filter(val => !!val)
     ] : [...prev, curr];
     }, []);
+  }
+
+  checkQuestionType(question: any){
+    switch(question.type){
+      case 'text':
+        return question as TextQuestion;
+      case 'number':
+        return question as NumberQuestion;
+      case 'multiple':
+        return question as MultipleQuestion;
+      case 'date':
+        return question as DateQuestion;
+      case 'file':
+        return question as FileQuestion;
+      default:
+        return null;
+    }
   }
 
   ngOnDestroy(): void {

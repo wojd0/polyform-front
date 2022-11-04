@@ -1,11 +1,41 @@
 <header class="padding primary">
-  <div class="row no-wrap middle-align">
-    <div class="col min">
-      <a class="circle" data-ui="#menu-left">
+  <div class="row no-wrap">
+    <div class="min">
+      <a class="circle" data-ui="#menu-left" *ngIf="!(this.isHome | async)">
         <i>menu</i>
+        <div class="modal left" id="menu-left">
+          <div class="pointer" [routerLink]="'/'">
+            <h4 class="">PolyForms</h4>
+            <p class="">Simple forms with simple URLs</p>
+          </div>
+          <div class="row">
+            <i>home</i>
+            <button class="responsive large tertiary max" tabindex="0" routerLink="/">
+              <h6>Home</h6>
+            </button>
+          </div>
+          <div class="row">
+            <i>add</i>
+            <button class="responsive large max" tabindex="1" routerLink="/f/new">
+              <h6>Create</h6>
+            </button>
+          </div>
+          <div class="row">
+            <i>checklist</i>
+            <button class="responsive large max" tabindex="2"><h6>Fill</h6></button>
+          </div>
+          <div class="row">
+            <i>assessment</i>
+            <button class="responsive large max" tabindex="2"><h6>Results</h6></button>
+          </div>
+          <div class="row">
+            <i>help</i>
+            <button class="responsive large max" tabindex="3"><h6>About</h6></button>
+          </div>
+      </div>
       </a>
     </div>
-    <div class="col pointer" [routerLink]="'/'">
+    <div class="pointer max" [routerLink]="'/'">
       <h4 class="no-margin center-align">PolyForms</h4>
       <p class="no-margin center-align">Simple forms with simple URLs</p>
     </div>
@@ -13,31 +43,6 @@
       <a class="circle" (click)="this.switchTheme()" type="button">
         <i>dark_mode</i>
       </a>
-      <div class="row"></div>
     </div>
   </div>
 </header>
-<div class="modal left" id="menu-left">
-  <nav class="wrap margin">
-    <div class="col pointer margin" [routerLink]="'/'">
-      <h4 class="no-margin center-align">PolyForms</h4>
-      <p class="no-margin center-align">Simple forms with simple URLs</p>
-    </div>
-    <div class="col">
-      <button class="responsive large tertiary" tabindex="0" routerLink="/">
-        <h6>Home</h6>
-      </button>
-    </div>
-    <div class="col">
-      <button class="responsive large" tabindex="1" routerLink="/f/new">
-        <h6>Create</h6>
-      </button>
-    </div>
-    <div class="col">
-      <button class="responsive large" tabindex="2"><h6>Fill</h6></button>
-    </div>
-    <div class="col">
-      <button class="responsive large" tabindex="3"><h6>About</h6></button>
-    </div>
-  </nav>
-</div>

@@ -1,7 +1,7 @@
 <form [formGroup]="this.form" class="field background border no-margin" style="height: 100%;"
   *ngIf="this.max - this.min >= 50">
   <textarea style="height: 10em;" type="text" placeholder="Your answer" [minlength]="this.min" [maxlength]="this.max"
-    [formControlName]="this.controlName" *ngIf="this.max - this.min >= 50" [required]="this.question.options.required" ></textarea>
+    [formControlName]="this.controlName" *ngIf="this.max - this.min >= 50" [required]="this.question.required" ></textarea>
 
 </form>
 <div class="no-margin" *ngIf="this.max - this.min >= 50">
@@ -11,7 +11,7 @@
 
 <form [formGroup]="this.form" class="field background border" *ngIf="this.max - this.min < 50">
   <input type="text" placeholder="Your answer" [minlength]="this.min" [maxlength]="this.max"
-    [formControlName]="this.controlName" [required]="this.question.options.required" />
+    [formControlName]="this.controlName" [required]="this.question.required" />
   <small>Min. characters: {{ this.min }}</small><br>
   <small>Max. characters: {{ this.max }}</small>
 

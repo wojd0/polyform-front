@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { FormModel } from 'src/app/shared/models/form.model';
 import QuestionModel from 'src/app/shared/models/question.model';
 import Question from 'src/app/shared/models/question.model';
 
@@ -11,7 +10,7 @@ export const CREATOR_CHANGES = '[Creator] Changes';
 
 export const uploadStart = createAction(
   CREATOR_UPLOAD,
-  props<{questions: Question[], name: string}>()
+  props<{questions: Question<any, any>[], name: string}>()
 );
 
 export const uploadSuccess = createAction(

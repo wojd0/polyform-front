@@ -1,40 +1,128 @@
-export default class QuestionModel {
-  [x: string]: any;
-  constructor(
-    public type: TextQuestion & DateQuestion & NumberQuestion & MultipleQuestion & FileQuestion = {},
-    public query: string = '',
-    public id: string = '',
-    public options: QuestionOptions = {},
-    public answerType: string = ''
-  ) {
-  }
+export const QuestionTypesMap = {
+  'text': () => new TextQuestion(),
+  'date': () => new DateQuestion(),
+  'number': () => new NumberQuestion(),
+  'multiple': () => new MultipleQuestion(),
+  'file': () => new FileQuestion()
 }
 
-export interface QuestionOptions{
+export function initQuestions(){
+  
+}
+
+export interface QuestionOptions {
+  id?: string;
+  formId?: string;
   index?: number;
+  query?: string;
+  url?: string;
   required?: boolean;
+  details?: any;
 }
 
-export interface TextQuestion {
-  minWords?: number;
-  maxWords?: number;
+
+export default class Question<
+  questionType extends MultipleQuestionOptions | TextQuestionOptions | DateQuestionOptions | NumberQuestionOptions | FileQuestionOptions,
+  answerType
+> implements QuestionOptions
+{
+  id?: string;
+  index?: number;
+  formId?: string;
+  query?: string;
+  url?: string;
+  required?: boolean;
+  details?: questionType;
+  type?: string;
+  validateQuestion: () => boolean;
+  validateAnswer: (value: answerType) => boolean = () => true;
+}
+export interface TextQuestionOptions {
+  minWords: number;
+  maxWords: number;
 }
 
-export interface DateQuestion {
-  displayFormat?: string;
+export class TextQuestion extends Question<TextQuestionOptions, string> {
+  override readonly type = "text";
+  override details: TextQuestionOptions = { minWords: 0, maxWords: 100 };
+
+  constructor(options?: QuestionOptions & TextQuestionOptions) {
+    super();
+    Object.assign(this, options);
+  }
+  override validateAnswer = (answer: string) => answer.length > this.details.maxWords && answer.length < this.details.minWords;
 }
 
-export interface NumberQuestion {
-  prefix?: string;
-  suffix?: string; 
-  min?: number; 
-  max?: number;
-  precision?: number;
+export interface NumberQuestionOptions {
+  prefix: string;
+  suffix: string;
+  min: number;
+  max: number;
+  precision: number;
 }
 
-export interface MultipleQuestion {
-  answers?: Array<string>;
-  limit?: number;
+export class NumberQuestion extends Question<NumberQuestionOptions, number> {
+  override readonly type = "number";
+  override details: NumberQuestionOptions = {
+    prefix: "",
+    suffix: "",
+    min: 0,
+    max: 100,
+    precision: 2,
+  };
+  constructor(options?: QuestionOptions & NumberQuestionOptions) {
+    super();
+    Object.assign(this, options);
+  }
+
+  override validateAnswer = (answer: number) => /*validation*/ true;
 }
 
-export class FileQuestion {}
+type DateDisplayFormats = "full" | "short";
+export interface DateQuestionOptions {
+  displayFormat: DateDisplayFormats;
+  showTime: boolean;
+  locale: boolean;
+}
+
+export class DateQuestion extends Question<DateQuestionOptions, Date> {
+  override details: DateQuestionOptions = {
+    showTime: true,
+    locale: true,
+    displayFormat: "full",
+  };
+
+  override readonly type = "date";
+
+  constructor(options?: QuestionOptions & DateQuestionOptions) {
+    super();
+    Object.assign(this, options);
+  }
+
+  override validateAnswer = (answer: Date) => /*validation*/ true;
+}
+
+export interface MultipleQuestionOptions {
+  answers: string[];
+  limit: number;
+}
+
+export class MultipleQuestion extends Question<MultipleQuestionOptions, string[]> {
+  override details?: MultipleQuestionOptions = {
+    answers: [],
+    limit: 0,
+  };
+
+  override readonly type = "multiple";
+
+  constructor(options?: QuestionOptions & MultipleQuestionOptions) {
+    super();
+    Object.assign(this, options);
+  }
+
+  override validateAnswer = (answer: string[]) => /*validation*/ true;
+}
+
+export interface FileQuestionOptions {}
+
+export class FileQuestion extends Question<null, null> {}

@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { FormModel } from "src/app/shared/models/form.model";
+import { Form } from "src/app/shared/models/form.model";
+import Question from "src/app/shared/models/question.model";
 import QuestionModel from "src/app/shared/models/question.model";
 
 import * as FormActions from "./form.actions";
@@ -7,8 +8,8 @@ import * as FormActions from "./form.actions";
 export const formFeatureKey = "form";
 
 export interface FormState {
-  questions: QuestionModel[];
-  form: FormModel;
+  questions: Question<any, any>[];
+  form: Form;
   done: boolean;
   errorMsg: string;
   errorId: string;

@@ -1,4 +1,4 @@
-<form [formGroup]="this.form" class="row"appCheckboxValidator [limit]="this.options.limit" [requiredAny]="this.question.options.required">
+<form [formGroup]="this.form" class="row"appCheckboxValidator [limit]="this.options.limit" [requiredAny]="this.question.required">
   
   <div *ngFor="let answer of this.options.answers; let i = index" class="col s6">
     <label class="checkbox">
