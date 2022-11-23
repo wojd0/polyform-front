@@ -15,7 +15,7 @@ export const uploadStart = createAction(
 
 export const uploadSuccess = createAction(
   CREATOR_UPLOAD_SUCCESS,
-  props<{ url: string, accessCode: string }>()
+  props<{ url: string, accessCode: string, id: string }>()
 );
 
 export const uploadFailure = createAction(

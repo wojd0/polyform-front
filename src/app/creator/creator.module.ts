@@ -10,6 +10,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { ListSizeValidatorDirective } from './formats/creator-multiple/list-size-validator.directive';
 
 
 
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     NumberCreatorComponent,
     TextCreatorComponent,
     MultipleCreatorComponent,
+    ListSizeValidatorDirective,
   ],
   imports: [
     FormsModule,

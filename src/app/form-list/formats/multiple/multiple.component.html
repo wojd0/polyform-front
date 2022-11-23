@@ -1,6 +1,6 @@
 <form [formGroup]="this.form" class="row"appCheckboxValidator [limit]="this.options.limit" [requiredAny]="this.question.required">
-  
-  <div *ngFor="let answer of this.options.answers; let i = index" class="col s6">
+  <!-- TODO: validate minimum/maximum answer length -->
+  <p *ngFor="let answer of this.options.answers; let i = index" class="col s6">
     <label class="checkbox">
       <input type="checkbox" [formControlName]="this.controlName + i"
        value="this.controlName"
@@ -8,9 +8,7 @@
       <span>{{ answer }}</span>
       
     </label>
-    
-    
-  </div>
+  </p>
   
 </form>
 <strong class="red-text" appOpacity [if]="this.form.errors">You can select only {{this.options.limit}} answers</strong>

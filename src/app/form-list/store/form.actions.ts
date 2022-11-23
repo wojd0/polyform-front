@@ -35,12 +35,12 @@ export const acknowledge = createAction(
 
 export const sendStart = createAction(
   FORM_SEND,
-  props<{values: (string | string[])[]}>()
+  props<{values: string[], questions: Question<any, any>[]}>()
 );
 
 export const sendSuccess = createAction(
   FORM_SEND_SUCCESS,
-  props<{ response: Submission}>()
+  props<{ response: string}>()
 );
 
 export const sendFailure = createAction(

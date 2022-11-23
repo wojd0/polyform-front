@@ -1,14 +1,30 @@
-export const QuestionTypesMap = {
-  'text': () => new TextQuestion(),
-  'date': () => new DateQuestion(),
-  'number': () => new NumberQuestion(),
-  'multiple': () => new MultipleQuestion(),
-  'file': () => new FileQuestion()
-}
-
-export function initQuestions(){
-  
-}
+export const questionTypes: {name: string, value: string, enabled: boolean}[] = [
+    {
+      name: 'Text Question',
+      value: 'text',
+      enabled: true
+    },
+    {
+      name: 'Number Question',
+      value: 'number',
+      enabled: true
+    },
+    {
+      name: 'Multiple Question',
+      value: 'multiple',
+      enabled: true
+    },
+    {
+      name: 'Date Question',
+      value: 'text',
+      enabled: false
+    },
+    {
+      name: 'File Question',
+      value: 'file',
+      enabled: false
+    }
+]
 
 export interface QuestionOptions {
   id?: string;
@@ -126,3 +142,20 @@ export class MultipleQuestion extends Question<MultipleQuestionOptions, string[]
 export interface FileQuestionOptions {}
 
 export class FileQuestion extends Question<null, null> {}
+
+export const QuestionTypesMap = (type: string) => {
+  switch(type){
+    case 'text':
+      return new TextQuestion()
+    case 'date':
+      return new DateQuestion()
+    case 'number':
+      return new NumberQuestion()
+    case 'file':
+      return new FileQuestion()
+    case 'multiple':
+      return new MultipleQuestion()
+    default:
+      return new Question<unknown, unknown>()
+  }
+}

@@ -13,8 +13,8 @@ import { Subscription } from "rxjs";
   styleUrls: ["./welcome.component.scss"],
 })
 export class WelcomeComponent implements OnInit {
-  showFillBox = false;
-  showAnswerBox = false;
+  showFillBox = true;
+  showAnswerBox = true;
   hello = "";
   formId = "";
   answerId = "";

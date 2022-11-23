@@ -6,6 +6,7 @@ import * as CreatorActions from './creator.actions';
 export const creatorFeatureKey = 'creator';
 
 export interface CreatorState {
+  id: string;
   url: string;
   errorMsg: string;
   done: boolean;
@@ -14,6 +15,7 @@ export interface CreatorState {
 }
 
 export const initialState: CreatorState = {
+  id: '',
   url: '',
   accessCode: '',
   done: true,
@@ -29,6 +31,7 @@ export const creatorReducer = createReducer(
     (state) => ({
       ...state,
       url: '',
+      id: '',
       accessCode: '',
       done: false
     })
@@ -38,6 +41,7 @@ export const creatorReducer = createReducer(
     CreatorActions.uploadSuccess,
     (state, action) => ({
       ...state,
+      id: action.id,
       url: action.url,
       accessCode: action.accessCode,
       done: true,
@@ -52,6 +56,7 @@ export const creatorReducer = createReducer(
       done: true,
       errorMsg: action.error,
       url: '',
+      id: '',
       accessCode: ''
     })
   ),

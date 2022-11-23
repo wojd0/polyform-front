@@ -1,10 +1,8 @@
-<form [formGroup]="this.form" class="row" appCheckboxValidator [limit]="1" [requiredAny]="this.question.required">
-  <div *ngFor="let answer of this.options.answers; let i = index" class="col s6">
+<form [formGroup]="this.form" class="grid" appCheckboxValidator [limit]="1" [requiredAny]="this.question.required">
+  <p *ngFor="let answer of this.options.answers; let i = index" class="s12 no-margin">
     <label class="radio">
       <input type="radio" [formControlName]="this.controlName" [value]="this.controlName + i" />
       <span>{{ answer }}</span>
     </label>
-    
-    
-  </div>
+  </p>
 </form>

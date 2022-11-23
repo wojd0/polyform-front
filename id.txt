@@ -1,2 +1,8 @@
-id: 01BB43
-access: B3JV88
+Your form has been created!
+You have successfully created a form. To access it, either use this URL:
+http://localhost:4200/f/7AK0O7
+
+or manually enter the ID on main page:
+ID: 7AK0O7
+To access the results go to website.com/results and enter this code:
+HZZALT

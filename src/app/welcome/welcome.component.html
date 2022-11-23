@@ -28,8 +28,8 @@
 
       <div class="col s6">
         <article class="border right-round small">
-          <div class="padding">
-            <div class="grid">
+          <div class="padding grid">
+            <div class="grid s12">
               <div class="col s12 s right-align">
                 <button
                   class="extended square extra"
@@ -51,7 +51,7 @@
                 </button>
               </div>
             </div>
-            <div class="row enterLink" *ngIf="this.showFillBox">
+            <div class="enterLink s9" *ngIf="this.showFillBox">
               <div class="field border no-margin">
                 <input
                   type="text"
@@ -68,9 +68,9 @@
       </div>
 
       <div class="col s12">
-        <article class="border bottom-round small">
-          <div class="padding">
-            <div class="row">
+        <article class="border bottom-round ">
+          <div class="padding grid">
+            <div class="s12">
               <button
                 class="absolute extended square extra right margin"
                 (click)="this.showAnswerBox = true"
@@ -85,7 +85,7 @@
                 </div>
               </div>
             </div>
-            <div class="row enterLink" *ngIf="this.showAnswerBox">
+            <div *ngIf="this.showAnswerBox" class="s6">
               <div class="field border no-margin">
                 <input
                   type="text"

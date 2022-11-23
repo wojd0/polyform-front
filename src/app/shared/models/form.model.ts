@@ -1,6 +1,7 @@
 export class Form {
   id: string;
   accessCode: string;
-  closed: boolean;
+  url: string;
   name: string;
+  questionCount: number;
 }

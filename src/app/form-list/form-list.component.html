@@ -1,6 +1,6 @@
 <h4 class="center-align margin">{{ this.formName | titlecase }}</h4>
 <form [formGroup]="this.formGroup" (ngSubmit)="this.onSubmit()" *ngIf="this.questions;">
-  <div class="row" *ngFor="let question of this.questions; let i = index">
+  <div class="grid" *ngFor="let question of this.questions; let i = index">
     <div class="col s2"></div>
     <div class="col s8">
       <article class="large-margin">
@@ -13,14 +13,14 @@
             <div class="col s"></div>
           </div>
         </div>
-        <div class="row margin">
+        <div class="row margin padding">
           <div class="col s12 m6">
             <h5>{{ question.query }}</h5>
           </div>
         </div>
         <hr>
         <br>
-        <div class="row">
+        <div class="grid">
           <div class="col m2"></div>
           <div class="col s12 m8" *ngIf="this.checkQuestionType(question) as parsedQuestion">
             <app-text *ngIf="parsedQuestion.type === 'text'" [question]="question" [form]="this.formGroup"></app-text>

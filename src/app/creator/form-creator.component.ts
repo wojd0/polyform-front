@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import Question, { MultipleQuestion, NumberQuestion, QuestionTypesMap, TextQuestion } from "src/app/shared/models/question.model";
+import Question, { MultipleQuestion, NumberQuestion, questionTypes, QuestionTypesMap, TextQuestion } from "src/app/shared/models/question.model";
 import { BeerService } from "../beer.service";
 import { AppState } from "../store/app.reducer";
 
@@ -22,15 +22,12 @@ interface CreatorData {
   styleUrls: ["./form-creator.component.scss"],
 })
 export class FormCreatorComponent implements OnInit {
-  @Input("index") index = 0;
   formName: string = "";
   questions: Question<any, any>[] = [];
   touched: boolean = false;
   finishedInfo = { url: "", id: "", accessCode: ''};
-  types: string[] = [];
-  haveQueries: boolean[] = []
 
-  formGroup: FormGroup;
+  questionTypes = questionTypes;
 
   constructor(private store: Store<AppState>, private beer: BeerService, private router: Router) {}
 
@@ -52,13 +49,11 @@ export class FormCreatorComponent implements OnInit {
   }
 
   //send the form to db
-  submitForm() {     
+  submitForm() {    
     this.store.dispatch(
       CreatorActions.uploadStart({
-        questions: this.questions.slice().map((question, index) => {
-          return ({...question, type: this.types[index]})
-        }),
-        name: this.formName,
+        questions: this.questions,
+        name: this.formName
       })
     );
         
@@ -66,41 +61,43 @@ export class FormCreatorComponent implements OnInit {
       if (state.url !== "" && state.done === true && !state.changes) {
         //display finish modal
         this.finishedInfo = {
-          id: state.url,
-          url: `website.com/${state.url}`,
+          id: state.id,
+          url: state.url,
           accessCode: state.accessCode
         };
 
         this.beer.modal.next({type: 'created', content: {
-          url: `https://website.com/${state.url}`,
-          id: state.url,
+          url: state.url,
+          id: state.id,
           accessCode: state.accessCode,
         }});
       }
     });
   }
 
-
   deleteForm(id: number) {
     this.questions.splice(id, 1);
-    this.types.splice(id, 1);
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
   }
 
-  onTypeChange(index: number, type: string){
-    this.types[index] = type;
+  changeType(index: number, type: string){
+    
+    const newQuestion = QuestionTypesMap(type);
+    
+    newQuestion.query = this.questions[index].query;
+    newQuestion.index = index;
+    this.questions[index] = newQuestion;
+    
   }
 
-  addMore() {
-    const newQuestion = new Question();
+  addMore() {    
+    const newQuestion = new TextQuestion();
     newQuestion.index = this.questions.length;
     newQuestion.required = false;
-    this.questions.push(newQuestion);
-    this.haveQueries.push(false);
-    this.types.push('text');
+    this.questions = [...this.questions, newQuestion];
     
     //delayed window scroll so the new question will be visible
     setTimeout(() => {

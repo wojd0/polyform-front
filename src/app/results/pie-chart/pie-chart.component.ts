@@ -23,7 +23,7 @@ export class PieChartComponent implements OnChanges {
   scheme: 'vivid'|'natural'|'cool'|'fire'|'solar'|'air'|'aqua'|'flame'|'ocean'|'forest'|'horizon'|'neons'|'picnic'|'night'|'nightLights' = 'forest';
 
   ngOnChanges(changes: SimpleChanges) {
-    if(this.results){
+    if(this.results){      
       this.names = this.results.map((result) => {
         return result.name;
       });

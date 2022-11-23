@@ -18,7 +18,7 @@ import * as FormActions from "./store/form.actions";
   templateUrl: "./form-list.component.html",
   styleUrls: ["./form-list.component.scss"],
 })
-export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
+export class FormListComponent implements OnInit, OnDestroy {
   form: Form;
   formName: string;
   questions: Question<any, any>[];
@@ -38,23 +38,14 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     const formId = this.router.url.substring(this.router.url.lastIndexOf("/") + 1);
 
-    this.actions.pipe(ofType(FormActions.sendSuccess), take(1)).subscribe(() => {
-      this.beerService.modal.next({type: 'general', content: {
-        msg: "Thank you for filling out the form.",
-        sub: "Your answers have been sent to the form's creator.",
-        redirect: true
-      }});
-      this.router.navigate(['/'])}
-    )
-
     //check if there is id in url
     if (formId.length === environment.idLength) {
       this.store.dispatch(FormActions.retrieveStart({ id: formId }));
+    }else{
+      this.router.navigate(['/'])
     }
-  }
 
-  ngAfterViewInit(): void {
-    //watch if the form is in the state
+    //await form data
     this.storeSub = this.store.select("form").subscribe((data) => {
       //redir to home on error
       if (data.errorMsg) {
@@ -65,12 +56,14 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
         this.form = data.form;
         this.formName = data.form.name || "Unnamed Form 🤷";
         this.questions = data.questions;
+        console.log(this.questions);
+        
 
         const formControls = {};
         let i = 0;
         for (let question of this.questions) {
           //handle multiple option question
-          if (question instanceof MultipleQuestion && question.details.limit !== 1) {
+          if (question.type === 'multiple' && question.details.limit !== 1) {
              //handle radio type question
              const answerControls = {};
              for (let [index, value] of question.details.answers.entries()) {
@@ -84,14 +77,23 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         }
         this.formGroup = new FormGroup(formControls);
-        console.log(this.questions);
-             
       }
     });
+
+    //catch end event
+    this.actions.pipe(ofType(FormActions.sendSuccess), take(1)).subscribe(() => {
+      this.beerService.modal.next({type: 'general', content: {
+        msg: "Thank you for filling out the form.",
+        sub: "Your answers have been sent to the form's creator.",
+        redirect: true
+      }});
+      this.router.navigate(['/'])}
+    )
+
   }
 
   onSubmit() {
-    this.store.dispatch(FormActions.sendStart({ values: this.flatValues(this.formGroup.value) }));
+    this.store.dispatch(FormActions.sendStart({ values: this.flatValues(this.formGroup.value), questions: this.questions }));
   }
 
   flatValues(values: { [key: string]: { [key: string]: string } | string }) {

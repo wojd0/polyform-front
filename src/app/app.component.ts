@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   }
 
   onDowntime() {
-    console.log("error");
     this.beerService.modal.next({
       type: "general",
       content: {

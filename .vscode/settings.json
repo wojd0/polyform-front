@@ -1,4 +1,24 @@
 {
    "material-icon-theme.activeIconPack": "angular",
-   "workbench.iconTheme": "material-icon-theme"
+   "workbench.iconTheme": "material-icon-theme",
+   "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#b02212",
+      "activityBar.background": "#b02212",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#12ad22",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#b02212",
+      "statusBar.background": "#82190d",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#b02212",
+      "statusBarItem.remoteBackground": "#82190d",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#82190d",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#82190d99",
+      "titleBar.inactiveForeground": "#e7e7e799"
+   },
+   "peacock.remoteColor": "#82190d"
 }

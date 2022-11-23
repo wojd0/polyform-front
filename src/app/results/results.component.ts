@@ -41,9 +41,10 @@ export class ResultsComponent implements OnInit, AfterViewInit {
             redirect: true,
           },
         });
-      }
-
+      }      
       this.results = state.results;
+      console.log(this.results);
+      
     });
   }
 
@@ -61,8 +62,8 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   //'BY SUBMISSIONS'
   showAnswersFromSubmission(id: number) {
     this.modalList = this.results.submissions[id].answers.map((answer, questionIndex) => ({
-      answers: answer,
       question: this.results.questions[questionIndex].query,
+      answers: [answer],
     }));
     this.listHeading = `Answers from submission number ${id + 1}`;
   }
@@ -71,24 +72,28 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   showAnswersToQuestion(id: number) {
     this.modalList = [
       {
-        question: this.results.questions[id].query,
-        answers: this.results.submissions.map((submission) => submission.answers[id]).flat(),
+        question: '',
+        answers: this.results.submissions.map((submission) => submission.answers[id]).filter(v=>v),
       },
     ];
-    this.listHeading = "byq";
+    this.listHeading = `Answers for ${this.results.questions[id].query}`;
   }
 
   showGraph(id: number) {
-    const answers = {};
-    this.results.submissions
-      .map((submission) => submission.answers[id])
-      .flat()
-      .forEach((ans, index) => {
-        answers[index] = typeof answers[index] === "undefined" ? 1 : answers[index] + 1;
-      });
-
-    this.graphResults = Object.entries(answers).map(([key, val]) => {
-      return { name: key, value: val };
-    });
+    const answers = new Array(this.results.submissions.length);
+    // this.results.submissions
+    //   .map((submission) => submission.answers[id])
+    //   .flat()
+    //   .forEach((ans, index) => {
+    //     answers[index] = typeof answers[index] === "undefined" ? 1 : answers[index] + 1;
+    //   });
+    this.results.submissions.forEach(result => {   
+      if(result.answers[id]) answers[' '+result.answers[id]] = answers[' '+result.answers[id]] ? answers[' '+result.answers[id]] + 1 : 1;
+    })
+    console.log(answers);
+    
+    answers.filter(val => !!val);
+    
+    this.graphResults = Object.entries(answers).map(([key, val]) => ({name: key, value: val}));
   }
 }

@@ -1,10 +1,18 @@
-<form class="grid margin" (ngSubmit)="this.add()" #form="ngForm">
+<form class="grid margin" (ngSubmit)="this.add()" novalidate="false">
   <div class="s12 m6">
+
     <div class="row max middle-align s12">
       <div class="max field background suffix">
-        <input type="text" name="newQuestion" [(ngModel)]="this.newQuestion" #newQuestionInput="ngModel" required placeholder="New question">
+
+
+
+        <input type="text" name="newAnswer" [(ngModel)]="this.newQuestion" #newAnswer="ngModel"
+          placeholder="New question" required [minlength]="this.limits.minlength" [maxlength]="this.limits.maxlength">
+        <span class="error" *ngIf="newAnswer.hasError('listsmall')">At least 2 answers are required</span>
+        <span class="error" *ngIf="newAnswer.hasError('listsmall')">Maximum of </span>
       </div>
-      <button class="circle green button" type="submit" [disabled]="!newQuestionInput.valid"><i>add</i></button>
+      <button class="circle green button" type="submit"
+        [disabled]="newAnswer.hasError('minlength') || newAnswer.hasError('required')"><i>add</i></button>
     </div>
 
 
@@ -18,9 +26,26 @@
       </li>
     </ul>
 
+
   </div>
-  <div class="s12 m6 field background suffix">
-    <input type="number" [appForceMinMax]="{min: 1}" name="limit" min="0" [(ngModel)]="this.max">
-    <span>Maximum selected answers</span>
+  <div class="s12 m6 field border suffix">
+    <select name="limit" [(ngModel)]="this.max">
+      <option value="0">Multiple selection</option>
+      <option value="1">Single selection</option>
+    </select>
+    <i>arrow_drop_down</i>
+    <input type="text" hidden ngModel #dummy="ngModel" [ngModelOptions]="{standalone: true}"
+    [appListSizeValidator]="{list: this.answers, minSize: this.limits.minanswers, maxSize: this.limits.maxanswers}">
+    <p>
+      <span>Multiple question type</span>
+    </p>
+    <p>
+      <span class="red-text bold" *ngIf="dummy.hasError('listsmall')">At least {{ this.limits.minanswers }} answers are required</span>
+    </p>
+    <p>
+      <span class="red-text bold" *ngIf="dummy.hasError('listbig')">You can ask a maximum of {{ this.limits.maxanswers }}
+        answers are required</span>
+    </p>
+    
   </div>
 </form>

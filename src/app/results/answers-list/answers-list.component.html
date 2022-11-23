@@ -1,37 +1,44 @@
-<div
+<!-- <div
   class="overlay"
   [ngClass]="{ active: this.show }"
   (click)="this.show = false"
-></div>
+></div> -->
 
 <!-- to question -->
-<div class="modal" [ngClass]="{ active: this.show }" *ngIf="this.list">
+
   <div class="padding" style="margin-bottom: 20px">
     <h5>{{ this.heading }}</h5>
     <button
       class="absolute right top margin circle transparent flat"
       (click)="this.show = false"
     >
-      <i>close</i>
     </button>
   </div>
-  <article>
+  <div>
     <ul class="" *ngIf="this.list.length === 1">
       <ng-container *ngTemplateOutlet="li"></ng-container>
     </ul>
-    <ol class="margin" *ngIf="this.list.length > 1" type="1">
+    <ol class="margin text-large" *ngIf="this.list.length > 1" type="1">
       <ng-container *ngTemplateOutlet="li"></ng-container>
     </ol>
-  </article>
+  </div>
   <nav class="right-align">
     <button class="red" (click)="this.show = false">Close</button>
   </nav>
-</div>
 
 <ng-template #li>
-  <li *ngFor="let item of this.list" style="margin-bottom: 5px">
-    <b>{{ item.question }} </b>
-    <p>{{ this.handleArray(item.answers) }}</p>
+  <li *ngFor="let item of this.list" class="margin">
+    <h6>{{ item.question }} </h6>
+    <ul>
+      <li class="row" *ngFor="let ans of item.answers">
+        <div>
+          <p *ngIf="ans; else noans">- {{ ans }}</p>
+          <ng-template #noans>
+            <p class="grey-text" >No Answer</p>
+          </ng-template>
+        </div>
+      </li>
+    </ul>
   </li>
 </ng-template>
 <!-- to submission -->

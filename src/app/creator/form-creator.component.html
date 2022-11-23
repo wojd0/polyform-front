@@ -1,13 +1,13 @@
 <div class="grid">
   <div class="col s1"></div>
-  <form class="col s10" cdkDropList (cdkDropListDropped)="this.drop($event)" #form="ngForm">
+  <form class="col s10" cdkDropList [cdkDropListLockAxis]="'y'" (cdkDropListDropped)="this.drop($event)" #form="ngForm" novalidate="false">
       <div class="row margin no-wrap">
         <div class="col">
           <div class="field">
             <input type="text" [(ngModel)]="formName" (change)="this.onTouch(name)" minlength="5" name="formName" required #name="ngModel">
             <small>Form name</small><br>
-            <small *ngIf="name.hasError('minlength')" class="red-text">The form name must be at least 5 letters long<br></small>
-            <small *ngIf="name.hasError('required')" class="red-text">Form name is required<br></small>
+            <span *ngIf="name.hasError('minlength')" class="red-text">The form name must be at least 5 letters long<br></span>
+            <span *ngIf="name.hasError('required')" class="red-text">Form name is required<br></span>
           </div> 
         </div>
         <div class="col right-align">
@@ -20,28 +20,28 @@
 
         <div class="grid">
           <article class="col s11 large-padding">
-
             <div class="padding margin row no-wrap">
+              <div>
                 <h3 class="absolute circle">{{ index + 1 }}.</h3>
-                <div class="max"></div>
-                <div>
-                  <button class="large red circle" (click)="this.deleteForm(index)"><i>delete</i></button>
-                </div>
-                
-                <label class="switch">
-                  Required&nbsp;
-                  <input type="checkbox" [(ngModel)]="this.questions[index].required" name="required">
-                  <span></span>
-                </label>
+              </div>
+              <div class="max"></div>
+              Require an answer&nbsp;
+              <label class="switch">
+                <input type="checkbox" [(ngModel)]="item.required" name="required{{index}}">
+                <span></span>
+              </label>
+              <div>
+                <button class="large red circle" (click)="this.deleteForm(index)"><i>delete</i></button>
+              </div>
+  
             </div>
-
             <div class="grid">
               <div class="s12">
                 <div class="field border background margin">
-                  <input type="text" name="name" [(ngModel)]="this.questions[index].query" required #query="ngModel" minlength="5" />
+                  <input type="text" name="query{{index}}" [(ngModel)]="questions[index].query" #query="ngModel" required minlength="5" />
                   <span>Question</span><br>
-                  <small *ngIf="query.hasError('minlength')" class="red-text">The question must be at least 5 letters long<br></small>
-                  <small *ngIf="query.hasError('required')" class="red-text">Question is required<br></small>
+                  <span *ngIf="query.hasError('minlength')" class="red-text">The question must be at least 5 letters long<br></span>
+                  <span *ngIf="query.hasError('required')" class="red-text">Question is required<br></span>
                 </div>
               </div>
             </div>
@@ -49,12 +49,8 @@
             <div class="grid">
               <div class="s12 m6">
                 <div class="field suffix border background margin">
-                  <select [(ngModel)]="this.types[index]" name="type">
-                    <option value="text">Text</option>
-                    <option value="number">Number</option>
-                    <option value="multiple">Multiple options</option>
-                    <option value="date gray" disabled>Date (soon)</option>
-                    <option value="file gray" disabled>File (soon)</option>
+                  <select ngModel #type="ngModel" (change)="this.changeType(index, type.value)" [(ngModel)]="item.type" name="type{{index}}">
+                    <option *ngFor="let type of this.questionTypes" [value]="type.value" [disabled]="!type.enabled">{{ type.name }}</option>
                   </select>
                   <i>arrow_drop_down</i>
                   <span>Answer type</span>
@@ -64,9 +60,9 @@
             <br>
             <hr>
             <br>
-            <div [ngSwitch]="this.types[index]">
+            <div [ngSwitch]="type.value">
               <creator-date *ngSwitchCase="'date'" (changed)="this.onQuestionChange($event, index)"></creator-date>
-              <creator-multiple *ngSwitchCase="'multiple'"  (changed)="this.onQuestionChange($event, index)">
+              <creator-multiple *ngSwitchCase="'multiple'"  (changed)="this.onQuestionChange($event, index)" [form]="form">
               </creator-multiple>
               <creator-number *ngSwitchCase="'number'" (changed)="this.onQuestionChange($event, index)">
               </creator-number>
@@ -90,5 +86,3 @@
 
 
 </div>
-
-

@@ -12,7 +12,7 @@ import { AppState } from "src/app/store/app.reducer";
 export class AnswersListComponent implements OnChanges, OnInit {
   show = false;
 
-  @Input('list') list: {question: string, answers: string | number | string[]}[];
+  @Input('list') list: {question: string, answers: string}[];
   @Input('heading') heading: string;
   results: Results;
   constructor(private state: Store<AppState>){}
@@ -23,13 +23,12 @@ export class AnswersListComponent implements OnChanges, OnInit {
     })
   }
 
-  handleArray(val: any){
-    if(Array.isArray(val)) return val.join(', ');
-    return val;
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    if(!changes['list'].isFirstChange()) this.show = true;      
+    if(!changes['list'].isFirstChange()) {
+      console.log(this.list);
+      
+      this.show = true;
+    }      
   }
 }

@@ -33,12 +33,13 @@ export class FormEffects {
       ofType(FormActions.retrieveStart),
       switchMap((action) =>
         this.http
-          .get<{ form: Form; questions: Question<any, any>[] }>(`${environment.myApi}form`, {
+          .get<{ form: Form; questions: Question<any, any>[] }>(`${environment.myApi}forms`, {
             params: new HttpParams().set("id", action.id),
           })
           .pipe(
-            map((resData) => {
+            map((resData) => {              
               if(!resData.form || !resData.questions) throw 'No such form!';
+              
               return FormActions.retrieveSuccess({ form: resData.form, questions: resData.questions });
             }),
             catchError((error) => {
@@ -55,13 +56,13 @@ export class FormEffects {
       withLatestFrom(this.store$.select("form").pipe(map((state) => (state.form ? state.form.id : null)))),
       switchMap(([action, formId]) =>
         this.http
-          .post<string | Submission>(`${environment.myApi}answers`, {
+          .post<string>(`${environment.myApi}answers`, {
             formId: formId,
-            answers: {answers: action.values, submitDate: new Date()},
+            answers: action.values,
+            questions: action.questions
           })
           .pipe(
             map((res) => {
-              if (typeof res === "string") throw res;
               return FormActions.sendSuccess({ response: res });
             }),
             catchError((err) => {

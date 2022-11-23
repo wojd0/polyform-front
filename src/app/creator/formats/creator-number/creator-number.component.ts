@@ -21,7 +21,13 @@ export class NumberCreatorComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.form.valueChanges?.subscribe(val=>{
-      this.value.emit(Object.assign(new Object, this));
+      this.value.emit({
+        max: this.max,
+        min: this.min,
+        precision: this.precision,
+        prefix: this.prefix,
+        suffix: this.suffix
+      });
     })
   }
 

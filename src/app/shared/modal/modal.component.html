@@ -1,23 +1,29 @@
 <div  [ngClass]="{'active': (this.modalSubject | async)}" *ngIf="(this.modalSubject | async) as modal">
   <div class="overlay active"></div>
   <div class="modal top active">
+
+
     <div id="finishModal" *ngIf="modal.type === 'created'">
       <h5 class="row">Your form has been created!</h5>
-      <div class="row">You have successfully created a form. To access it, use either this URL or manually enter the ID
-        on
-        main page:</div>
       <div class="row">
-        <h5><a [href]="'http://' + modal.content.url">URL: {{ modal.content.url }}</a></h5>
-        <h6>ID: {{ modal.content.id }}</h6>
+        You have successfully created a form. To access it, either use this URL:
+        <h5><a [href]="modal.content.url">{{ modal.content.url }}</a></h5><br>
       </div>
-      <div class="row">To access the results go to website.com/results and enter this code:</div>
       <div class="row">
+        or manually enter the ID on main page:
+        <h5>ID: {{ modal.content.id }}</h5>
+      </div>
+      <div class="row">
+        To access the results go to website.com/results and enter this code:
         <h5>{{ modal.content.accessCode }}</h5>
       </div>
       <nav class="left-align">
         <button (click)="this.returnToMain()">Return to main page</button>
       </nav>
     </div>
+
+
+
     <div id="finishModal" *ngIf="modal.type === 'general'">
       <div class="overlay">
       </div>
