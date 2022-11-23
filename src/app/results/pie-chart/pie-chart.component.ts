@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from "@angular/core";
 import {
+  Color,
   ColorHelper,
   colorSets,
   LegendPosition,
@@ -21,8 +22,11 @@ export class PieChartComponent implements OnChanges {
   constructor() {}
   
   scheme: 'vivid'|'natural'|'cool'|'fire'|'solar'|'air'|'aqua'|'flame'|'ocean'|'forest'|'horizon'|'neons'|'picnic'|'night'|'nightLights' = 'forest';
+  domain: Color = colorSets[this.scheme];
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
+    console.log(this.results);
+    
     if(this.results){      
       this.names = this.results.map((result) => {
         return result.name;
@@ -34,7 +38,9 @@ export class PieChartComponent implements OnChanges {
         null
       );
       this.show = true;
-    }    
+    }else{
+      this.show = false;
+    }
 
   }
 

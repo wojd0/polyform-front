@@ -1,7 +1,5 @@
-<div *ngIf="this.show">
-  <div class="overlay" [ngClass]="{'active': this.show}" (click)="this.show = false"></div>
-  <div class="modal" [ngClass]="{'active': this.show}">
-    <div class="chart"><ngx-charts-pie-chart [results]="this.results" [scheme]="this.scheme" [animations]="false" ></ngx-charts-pie-chart></div>
-    <div class="legend"><ngx-charts-advanced-legend class="chart-legend" [data]="this.results" [colors]="this.colors" title="Answers" [style]="{color: 'black'}" style="width: 100% !important;"></ngx-charts-advanced-legend></div>
-  </div>
-</div>
+<article *ngIf="this.show" class="grid" style="height: 50vh;">
+    <div class="chart s8"><ngx-charts-pie-chart [results]="this.results" [scheme]="this.scheme" [animations]="false" ></ngx-charts-pie-chart></div>
+    <div class="legend s4">
+      <ngx-charts-advanced-legend class="chart-legend" [data]="this.results" [colors]="this.colors" title="Answers" [style]="{color: 'black'}" style="width: 100% !important;"></ngx-charts-advanced-legend></div>
+</article>

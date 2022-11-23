@@ -26,7 +26,7 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   modalList: { question: string; answers: any }[];
   listHeading: string;
 
-  graphResults: any;
+  graphResults: any[] = [];
 
   ngOnInit(): void {
     this.accessCode = this.router.url.substring(this.router.url.lastIndexOf("/") + 1);
@@ -80,20 +80,18 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   }
 
   showGraph(id: number) {
-    const answers = new Array(this.results.submissions.length);
-    // this.results.submissions
-    //   .map((submission) => submission.answers[id])
-    //   .flat()
-    //   .forEach((ans, index) => {
-    //     answers[index] = typeof answers[index] === "undefined" ? 1 : answers[index] + 1;
-    //   });
-    this.results.submissions.forEach(result => {   
-      if(result.answers[id]) answers[' '+result.answers[id]] = answers[' '+result.answers[id]] ? answers[' '+result.answers[id]] + 1 : 1;
-    })
-    console.log(answers);
-    
-    answers.filter(val => !!val);
-    
-    this.graphResults = Object.entries(answers).map(([key, val]) => ({name: key, value: val}));
+    if(!this.graphResults[id]){
+      const answers = new Array(this.results.submissions.length);
+  
+      this.results.submissions.forEach(result => {   
+        if(result.answers[id]) answers[' '+result.answers[id]] = answers[' '+result.answers[id]] ? answers[' '+result.answers[id]] + 1 : 1;
+      })
+      
+      answers.filter(val => !!val);
+      
+      this.graphResults[id] = Object.entries(answers).map(([key, val]) => ({name: key, value: val}));
+    }else{
+      this.graphResults[id] = null;
+    }
   }
 }

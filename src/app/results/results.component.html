@@ -7,8 +7,8 @@
         <a [ngClass]="{ active: this.activeTab === 0 }" (click)="this.activeTab = 0">BY QUESTION</a>
         <a [ngClass]="{ active: this.activeTab === 1 }" (click)="this.activeTab = 1">BY SUBMISSIONS</a>
       </div>
-      <div class="page padding" [ngClass]="{ active: this.activeTab === 0 }">
-        <table class="border space" style="width: 100%">
+      <div class="page padding" [ngClass]="{ active: this.activeTab === 0 }" *ngIf="this.results">
+        <!-- <table class="border space" style="width: 100%">
           <thead class="table-width" style="width: 100%">
             <th></th>
             <th style="width: 10%">Question</th>
@@ -33,7 +33,23 @@
             </tr>
             
           </tbody>
-        </table>
+        </table> -->
+        <article *ngFor="let question of this.results.questions; let i = index">
+            <div class="row">
+              <h6>{{i+1}}.</h6>
+              <div class="max">
+                <h5>{{ question.query }}</h5>
+              </div>
+              <nav class="no-space" (click)="showGraph(i)">
+                <button class="left-round"><i>leaderboard</i>Anser graph</button>
+                <button class="right-round no-padding fill"><i>arrow_drop_down</i></button>
+              </nav>
+            </div>
+            <div class="row">
+              <app-pie-chart [results]="this.graphResults[i]" class="max"></app-pie-chart>
+            </div>
+
+        </article>
       </div>
       <div class="page padding" [ngClass]="{ active: this.activeTab === 1 }">
         <table class="border space">
@@ -63,4 +79,3 @@
 </div>
 
 
-<app-pie-chart [results]="this.graphResults"></app-pie-chart>
