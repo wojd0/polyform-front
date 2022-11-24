@@ -17,3 +17,10 @@
 ::ng-deep .advanced-pie-legend{
     color: black;
 }
+article{
+    height: 50vh;
+}
+.ngx-charts-outer {
+    -webkit-animation: chartFadeIn linear .6s;
+    animation: chartFadeIn linear .6s;
+}

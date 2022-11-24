@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from "@angular/animations";
 import {
   Component,
   Input,
@@ -17,17 +18,25 @@ import {
   selector: "app-pie-chart",
   templateUrl: "./pie-chart.component.html",
   styleUrls: ["./pie-chart.component.scss"],
+  
 })
 export class PieChartComponent implements OnChanges {
   constructor() {}
   
-  scheme: 'vivid'|'natural'|'cool'|'fire'|'solar'|'air'|'aqua'|'flame'|'ocean'|'forest'|'horizon'|'neons'|'picnic'|'night'|'nightLights' = 'forest';
-  domain: Color = colorSets[this.scheme];
-
+  scheme: 'vivid'|'natural'|'cool'|'fire'|'solar'|'air'|'aqua'|'flame'|'ocean'|'forest'|'horizon'|'neons'|'picnic'|'night'|'nightLights' = 'forest';  domain: Color = colorSets.find(cs => cs.name === this.scheme);
+  @Input("results") results: { name: string; value: any; }[];
+  show = false;
+  totalCount: number = 1;
+  names: string[];
+  colors: ColorHelper;
+  
+  pos = LegendPosition.Right;
+  
   ngOnChanges() {
     console.log(this.results);
     
-    if(this.results){      
+    if(this.results){
+      this.results = this.results.sort((a,b) => b.value - a.value)
       this.names = this.results.map((result) => {
         return result.name;
       });
@@ -37,18 +46,18 @@ export class PieChartComponent implements OnChanges {
         [],
         null
       );
+      this.totalCount = this.results.length;
+
       this.show = true;
+      
     }else{
       this.show = false;
     }
 
   }
 
-  @Input("results") results: { name: string; value: any }[];
-  show = false;
+  calculatePercent(val: number){
+    return +(val / this.totalCount).toPrecision(2)*100+'%';
+  }
 
-  names: string[];
-  colors: ColorHelper;
-
-  pos = LegendPosition.Right;
 }

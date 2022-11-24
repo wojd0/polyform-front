@@ -12,9 +12,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   declarations: [
     ResultsComponent,
     AnswersListComponent,
-    PieChartComponent,
-    
-    
+    PieChartComponent,    
   ],
   imports: [
     SharedModule,

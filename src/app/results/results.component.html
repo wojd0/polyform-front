@@ -42,7 +42,7 @@
               </div>
               <nav class="no-space" (click)="showGraph(i)">
                 <button class="left-round"><i>leaderboard</i>Anser graph</button>
-                <button class="right-round no-padding fill"><i>arrow_drop_down</i></button>
+                <button class="right-round no-padding fill"><i>{{ this.graphResults[i] ? 'arrow_drop_up' : 'arrow_drop_down' }}</i></button>
               </nav>
             </div>
             <div class="row">

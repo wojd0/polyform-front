@@ -1,5 +1,12 @@
-<article *ngIf="this.show" class="grid" style="height: 50vh;">
-    <div class="chart s8"><ngx-charts-pie-chart [results]="this.results" [scheme]="this.scheme" [animations]="false" ></ngx-charts-pie-chart></div>
+<article *ngIf="this.show" class="grid">
+    <div class="chart s8"><ngx-charts-pie-chart [results]="this.results" [scheme]="this.scheme" [animations]="false"></ngx-charts-pie-chart></div>
     <div class="legend s4">
-      <ngx-charts-advanced-legend class="chart-legend" [data]="this.results" [colors]="this.colors" title="Answers" [style]="{color: 'black'}" style="width: 100% !important;"></ngx-charts-advanced-legend></div>
+      <!-- <ngx-charts-advanced-legend class="chart-legend" [data]="this.results" [colors]="this.colors" title="Answers" [style]="{color: 'black'}" style="width: 100% !important;"></ngx-charts-advanced-legend> -->
+      <strong>Answers:</strong>
+      <div *ngFor="let res of this.results; let i = index" class="margin">
+        <div class="row"><button [style]="{'background-color': this.domain.domain[i]}" class="square"></button>
+          {{ res.name }} - {{res.value}} answer{{res.value !== 1 ? 's' : ''}}<b>{{ this.calculatePercent(res.value) }}</b>
+        </div>
+      </div>
+    </div>
 </article>

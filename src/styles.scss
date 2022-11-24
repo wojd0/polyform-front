@@ -4,3 +4,8 @@
 .pointer{
   cursor: pointer;
 }
+// ngx charts bypass
+.ngx-charts-outer {
+  -webkit-animation:chartFadeIn linear 0 !important;
+  animation:chartFadeIn linear 0 !important;
+}
