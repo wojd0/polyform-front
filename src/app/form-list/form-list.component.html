@@ -4,30 +4,25 @@
     <div class="col s2"></div>
     <div class="col s8">
       <article class="large-margin">
-        <h3 class="absolute circle">{{ i + 1 }}.</h3>
-        <div class="padding">
-          <div class="row no-wrap">
-            <div class="col"></div>
-            <!-- required -->
-            <i *ngIf="question.required">new_releases</i>
-            <div class="col s"></div>
-          </div>
+        <div class="row">
+          <h3 class="circle">{{ i + 1 }}.</h3>
+          <h5 class="max">{{ question.query }}</h5>
+          <div *ngIf="question.required"><i class="red-text">new_releases</i><div class="tooltip left">Answer to this question is required</div></div>
         </div>
-        <div class="row margin padding">
-          <div class="col s12 m6">
-            <h5>{{ question.query }}</h5>
-          </div>
-        </div>
+        <br>
         <hr>
         <br>
         <div class="grid">
           <div class="col m2"></div>
           <div class="col s12 m8" *ngIf="this.checkQuestionType(question) as parsedQuestion">
             <app-text *ngIf="parsedQuestion.type === 'text'" [question]="question" [form]="this.formGroup"></app-text>
-            <app-number *ngIf="parsedQuestion.type ===  'number'" [question]="question" [form]="this.formGroup"></app-number>
+            <app-number *ngIf="parsedQuestion.type ===  'number'" [question]="question" [form]="this.formGroup">
+            </app-number>
             <!-- <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question" [form]="this.formGroup"></app-date> -->
-            <app-radio *ngIf="parsedQuestion.type ===  'multiple' && parsedQuestion.details.limit" [question]="question" [form]="this.formGroup"></app-radio>
-            <app-multiple *ngIf="question.type ===  'multiple' && question.details.limit !== 1" [question]="question" [form]="this.nestedFormGroups[i]"></app-multiple>
+            <app-radio *ngIf="parsedQuestion.type ===  'multiple' && parsedQuestion.details.limit" [question]="question"
+              [form]="this.formGroup"></app-radio>
+            <app-multiple *ngIf="question.type ===  'multiple' && question.details.limit !== 1" [question]="question"
+              [form]="this.nestedFormGroups[i]"></app-multiple>
             <!-- <app-file *ngIf="question.answerType ==  'FileQuestion'" [question]="question" [form]="this.formGroup"></app-file> -->
           </div>
           <div class="col m2"></div>
@@ -36,6 +31,6 @@
     </div>
     <div class="col s2"></div>
   </div>
-  
-  <button class="button extra center" type="submit" [disabled]="!this.formGroup.valid">Submit&nbsp;&nbsp;<i>send</i></button>
+  <button class="button extra center" type="submit"
+    [disabled]="!this.formGroup.valid">Submit&nbsp;&nbsp;<i>send</i></button>
 </form>
