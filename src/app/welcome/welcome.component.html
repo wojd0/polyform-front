@@ -2,103 +2,79 @@
   <div class="col s0 l2"></div>
   <div class="col s12 l8">
     <div class="grid">
-      <div class="col s6">
-        <article class="border left-round small">
-          <div class="padding">
-            <div class="grid">
-              <div class="col m3 s12 l m">
-                <button class="extended square extra" routerLink="/f/new">
-                  <i>add</i>
-                </button>
+
+      <div class="s s1"></div>
+      <div class="m6 s10">
+        <article class="border round small middle-align">
+          <div class="full">
+            <div class="row">
+              <div class="fill round">
+                <i class="extra padding">library_add</i>
               </div>
-              <div class="col m3 s12 s left-align">
-                <button class="extended square extra" routerLink="/f/new">
-                  <i>add</i>
-                </button>
-              </div>
-              <div class="col m9 s12">
+              <div class="max right-align">
                 <h5 class="right-align">Create</h5>
-                <div class="right-align">Create a new form</div>
+                Create a new form
               </div>
               {{ this.hello }}
+            </div>
+            <div class="row right-align" *ngIf="this.showFillBox">
+              <button class="green large" routerLink="/f/new">Go to the form creator</button>
             </div>
           </div>
         </article>
       </div>
+      <div class="s s1"></div>
 
-      <div class="col s6">
-        <article class="border right-round small">
-          <div class="padding grid">
-            <div class="grid s12">
-              <div class="col s12 s right-align">
-                <button
-                  class="extended square extra"
-                  (click)="this.showFillBox = true"
-                >
-                  <i>checklist</i>
-                </button>
+      <div class="s s1"></div>
+      <div class="m6 s10">
+        <article class="border round small middle-align">
+          <div class="full">
+            <div class="row">
+              <div class="fill round">
+                <i class="extra padding">checklist</i>
               </div>
-              <div class="col m9 s12">
-                <h5 class="left-align">Fill</h5>
-                <div class="left-align">Fill a form with provided link</div>
-              </div>
-              <div class="col m3 s12 l m">
-                <button
-                  class="extended square extra"
-                  (click)="this.showFillBox = true"
-                >
-                  <i>checklist</i>
-                </button>
+              <div class="right-align max">
+                <h5 class="right-align">Fill</h5>
+                Fill a form with provided link
               </div>
             </div>
-            <div class="enterLink s9" *ngIf="this.showFillBox">
-              <div class="field border no-margin">
-                <input
-                  type="text"
-                  name="url"
-                  placeholder="Form code"
-                  [(ngModel)]="this.formId"
-                />
+
+            <div class="row right-align" *ngIf="this.showFillBox">
+              <div class="field border">
+                <input type="text" name="url" placeholder="Form code" [(ngModel)]="this.formId" />
                 <i class="front" (click)="goToForm()">done</i>
               </div>
             </div>
           </div>
-    
         </article>
       </div>
+      <div class="s s1"></div>
 
-      <div class="col s12">
-        <article class="border bottom-round ">
-          <div class="padding grid">
-            <div class="s12">
-              <button
-                class="absolute extended square extra right margin"
-                (click)="this.showAnswerBox = true"
-              >
-                <i>assessment</i>
-              </button>
-              <div class="grid padding">
-                <h5 class="left-align col s12 no-padding">Results</h5>
-                <div class="left-align col s8 m10 no-padding">
-                  Access your form's results using a code provided at it's
-                  creation
-                </div>
+      <div class="s1 m3"></div>
+      <div class="m6 s10">
+        <article class="border round small middle-align">
+          <div class="full">
+            <div class="row">
+              <div class="fill round">
+                <i class="extra padding">leaderboard</i>
+              </div>
+              <div class="max right-align">
+                <h5 class="right-align">Results</h5>
+                Access your form's results using a code provided at it's creation
               </div>
             </div>
-            <div *ngIf="this.showAnswerBox" class="s6">
-              <div class="field border no-margin">
-                <input
-                  type="text"
-                  name="url"
-                  placeholder="Results access code"
-                  [(ngModel)]="this.answerId"
-                />
-                <i class="front" (click)="goToResults()">done</i>
+
+            <div class="row right-align" *ngIf="this.showFillBox">
+              <div class="field border">
+                <input type="text" name="url" placeholder="Form code" [(ngModel)]="this.formId" />
+                <i class="front" (click)="goToForm()">done</i>
               </div>
             </div>
           </div>
         </article>
       </div>
+      <div class="s1 m3"></div>
+
     </div>
   </div>
   <div class="col s0 l2"></div>
