@@ -19,12 +19,14 @@ import { resultsReducer } from './results/store/results.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ResultsEffects } from './results/store/results.effects';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     WelcomeComponent,
+    AboutComponent,
   ],
   imports: [
     SharedModule,
