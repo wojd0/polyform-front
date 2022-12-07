@@ -1,0 +1,14 @@
+{
+  "name": "Polyform",
+  "description": ["Lorem", "Ipsum"],
+  "images": [
+    "alt": "some image",
+    "src": "https://loremipsum.io/500/400"
+  ],
+  "interactions": [
+    "name": "Angular",
+    "icon": "angular.png",
+    "url": "https://loremipsum.io/"
+  ],
+  "enabled": true
+}
