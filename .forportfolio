@@ -3,7 +3,7 @@
   "description": ["Lorem", "Ipsum"],
   "images": [{
     "alt": "some image",
-    "src": "https://loremipsum.io/500/400"
+    "src": "https://picsum.photos/200/300"
   }
   ],
   "interactions": [{
