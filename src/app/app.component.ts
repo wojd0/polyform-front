@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { catchError, map, of } from "rxjs";
+import { Observable, catchError, concat, concatMap, delay, map, mergeMap, of, retry, switchMap, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { BeerService } from "./beer.service";
+import { TreeMapModule } from "@swimlane/ngx-charts";
 
 @Component({
   selector: "app-root",
@@ -11,10 +12,24 @@ import { BeerService } from "./beer.service";
 })
 export class AppComponent implements OnInit {
   title = "polyform-front";
+  testConectivity: Observable<boolean>;
   constructor(private beerService: BeerService, private http: HttpClient) {}
+
   ngOnInit() {
     this.beerService.beerPage();
-    this.testConectivity();
+    this.testConectivity = this.http
+      .get(environment.myApi, {
+        responseType: "text",
+        
+      })
+      .pipe(
+        retry(3),
+        catchError((err) => {
+          this.onDowntime();
+          return of(false);
+        }),
+        map(() => true),
+      );
   }
 
   onDowntime() {
@@ -26,19 +41,5 @@ export class AppComponent implements OnInit {
         redirect: false,
       },
     });
-  }
-
-  testConectivity() {
-    this.http
-      .get<string>(environment.myApi)
-      .pipe(
-        catchError((err) => {
-          if (err.status !== 200) {
-            return of(this.onDowntime());
-          }
-          return of(null);
-        })
-      )
-      .subscribe();
   }
 }

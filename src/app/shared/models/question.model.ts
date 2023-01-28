@@ -16,7 +16,7 @@ export const questionTypes: {name: string, value: string, enabled: boolean}[] = 
     },
     {
       name: 'Date Question',
-      value: 'text',
+      value: 'date',
       enabled: false
     },
     {

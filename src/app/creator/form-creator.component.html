@@ -4,7 +4,7 @@
       <div class="row margin no-wrap">
         <div class="col">
           <div class="field">
-            <input type="text" [(ngModel)]="formName" (change)="this.onTouch(name)" minlength="5" name="formName" required #name="ngModel">
+            <input type="text" [(ngModel)]="formName" (change)="this.onTouch()" minlength="5" name="formName" required #name="ngModel">
             <small>Form name</small><br>
             <span *ngIf="name.hasError('minlength')" class="red-text">The form name must be at least 5 letters long<br></span>
             <span *ngIf="name.hasError('required')" class="red-text">Form name is required<br></span>
@@ -49,7 +49,7 @@
             <div class="grid">
               <div class="s12 m6">
                 <div class="field suffix border background margin">
-                  <select ngModel #type="ngModel" (change)="this.changeType(index, type.value)" [(ngModel)]="item.type" name="type{{index}}">
+                  <select (change)="this.changeType(index, $event.currentTarget['value'])" [ngModel]="item.type" name="type">
                     <option *ngFor="let type of this.questionTypes" [value]="type.value" [disabled]="!type.enabled">{{ type.name }}</option>
                   </select>
                   <i>arrow_drop_down</i>
@@ -60,7 +60,8 @@
             <br>
             <hr>
             <br>
-            <div [ngSwitch]="type.value">
+
+            <div [ngSwitch]="item.type">
               <creator-date *ngSwitchCase="'date'" (changed)="this.onQuestionChange($event, index)"></creator-date>
               <creator-multiple *ngSwitchCase="'multiple'"  (changed)="this.onQuestionChange($event, index)" [form]="form">
               </creator-multiple>

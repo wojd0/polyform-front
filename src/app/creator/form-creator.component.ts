@@ -35,7 +35,7 @@ export class FormCreatorComponent implements OnInit {
 
 
   //store info that form is changed and so the user will be warned when trying to leave the page
-  onTouch(val?: any) {
+  onTouch() {
     if (!this.touched) {
       this.touched = true;
       this.store.dispatch(CreatorActions.changes());
@@ -43,13 +43,13 @@ export class FormCreatorComponent implements OnInit {
     
   }
 
-  onQuestionChange(event: any, index: number) {
+  onQuestionChange(event: any, index: number) {   
     this.onTouch();
-    this.questions[index].details = event;    
+    this.questions[index].details = event;
   }
 
   //send the form to db
-  submitForm() {    
+  submitForm() {
     this.store.dispatch(
       CreatorActions.uploadStart({
         questions: this.questions,
@@ -88,14 +88,12 @@ export class FormCreatorComponent implements OnInit {
     const newQuestion = QuestionTypesMap(type);
     
     newQuestion.query = this.questions[index].query;
-    newQuestion.index = index;
     this.questions[index] = newQuestion;
     
   }
 
   addMore() {    
     const newQuestion = new TextQuestion();
-    newQuestion.index = this.questions.length;
     newQuestion.required = false;
     this.questions = [...this.questions, newQuestion];
     

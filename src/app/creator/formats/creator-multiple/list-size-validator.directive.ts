@@ -6,7 +6,7 @@ interface listSizeValidatorParams{minSize: number, maxSize: number, list: Array<
 export function listSizeValidator(params: listSizeValidatorParams){
   return (control: AbstractControl) => {
   if(params.list.length < params.minSize) return {'listsmall': true};
-  if(params.list.length > params.minSize) return {'listbig': true};
+  if(params.list.length > params.maxSize) return {'listbig': true};
 
   return null;
   }

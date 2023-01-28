@@ -17,12 +17,13 @@
 
 
     <ul>
-      <li class="row max middle-align divider background" *ngFor="let option of this.answers; let i = index">
-        <div class="max padding">
-          {{ option }}
-        </div>
-        <button class="red flat circle margin" style="margin-right: 16rem;"
-          (click)="this.remove(i)"><i>delete</i></button>
+      <li class="row max middle-align divider background" *ngFor="let option of this.answers; let i = index; trackBy: this.trackByIdentity">
+        <!-- I HAVE NO IDEA WHY I HAVE TO CHECK THIS, GOD FORBID ME -->
+          <div class="max padding">
+            {{ this.answers[i] }}
+          </div>
+          <button class="red flat circle margin" style="margin-right: 16rem;"
+            (click)="this.remove(i)"><i>delete</i></button>
       </li>
     </ul>
 
@@ -43,8 +44,7 @@
       <span class="red-text bold" *ngIf="dummy.hasError('listsmall')">At least {{ this.limits.minanswers }} answers are required</span>
     </p>
     <p>
-      <span class="red-text bold" *ngIf="dummy.hasError('listbig')">You can ask a maximum of {{ this.limits.maxanswers }}
-        answers are required</span>
+      <span class="red-text bold" *ngIf="dummy.hasError('listbig')">You can ask a maximum for {{ this.limits.maxanswers }} answers</span>
     </p>
     
   </div>

@@ -64,8 +64,7 @@ export const creatorReducer = createReducer(
   on(
     CreatorActions.uploadAcknowledge,
     (state) => ({
-      ...state,
-      errorMsg: '',
+      ...initialState
     })
   ),
 

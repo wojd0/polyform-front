@@ -15,7 +15,6 @@ export class MultipleCreatorComponent implements AfterViewInit, OnDestroy, Multi
   answers: string[] = [];
   newQuestion = "";
   max: number = 0;
-  dv
 
   @Input('form') globalForm: NgForm;
   @Output("changed") changed = new EventEmitter<MultipleQuestionOptions>();
@@ -41,7 +40,10 @@ export class MultipleCreatorComponent implements AfterViewInit, OnDestroy, Multi
 
   remove(index: number) {    
     this.answers.splice(index, 1);
+    this.answers = this.answers.filter(val => val)
     this.emitChanges();
+    console.log(this.answers);
+    
   }
 
 
@@ -51,4 +53,6 @@ export class MultipleCreatorComponent implements AfterViewInit, OnDestroy, Multi
       answers: this.answers, limit: this.limit
     })
   }
+
+  trackByIdentity = (index: number, item: any) => Math.random();
 }

@@ -66,8 +66,8 @@
 
             <div class="row right-align" *ngIf="this.showFillBox">
               <div class="field border">
-                <input type="text" name="url" placeholder="Form code" [(ngModel)]="this.formId" />
-                <i class="front" (click)="goToForm()">done</i>
+                <input type="text" name="url" placeholder="Form code" [(ngModel)]="this.answerId" />
+                <i class="front" (click)="this.goToResults()">done</i>
               </div>
             </div>
           </div>
