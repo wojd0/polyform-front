@@ -1,12 +1,18 @@
 <app-header></app-header>
 
-<router-outlet *ngIf="this.testConectivity | async; else wait"></router-outlet>
+<router-outlet *ngIf="this.connected | async; else wait"></router-outlet>
 
 <ng-template #wait>
 
   <div class="overlay active">
     <div class="modal active center-align">
-      <a class="loader large margin"></a>
+      <a class="loader large margin" *ngIf="!this.errorMessage; else error"></a>
+      <ng-template #error>
+        <h6 class="padding margin">
+          {{this.errorMessage}}
+        </h6>
+
+      </ng-template>
     </div>
   </div>
 </ng-template>

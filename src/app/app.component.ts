@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { Observable, catchError, concat, concatMap, delay, map, mergeMap, of, retry, switchMap, tap } from "rxjs";
+import { Observable, catchError, concat, concatMap, delay, map, mergeMap, of, retry, switchMap, tap, timeout } from "rxjs";
 import { environment } from "src/environments/environment";
 import { BeerService } from "./beer.service";
 import { TreeMapModule } from "@swimlane/ngx-charts";
@@ -12,23 +12,24 @@ import { TreeMapModule } from "@swimlane/ngx-charts";
 })
 export class AppComponent implements OnInit {
   title = "polyform-front";
-  testConectivity: Observable<boolean>;
+  connected: Observable<boolean>;
+
+  errorMessage = ''
   constructor(private beerService: BeerService, private http: HttpClient) {}
 
   ngOnInit() {
     this.beerService.beerPage();
-    this.testConectivity = this.http
+    this.connected = this.http
       .get(environment.myApi, {
         responseType: "text",
-        
       })
       .pipe(
-        retry(3),
+        timeout(2400),
+        map(() => true),
         catchError((err) => {
-          this.onDowntime();
+          this.errorMessage = 'Failed to establish a connection to the server. Try again later!'
           return of(false);
         }),
-        map(() => true),
       );
   }
 

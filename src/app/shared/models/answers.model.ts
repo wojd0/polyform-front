@@ -10,5 +10,3 @@ export default class Answer {
   }
 
 }
-
-new DateQuestion().setOptions({displayFormat: "full"})
