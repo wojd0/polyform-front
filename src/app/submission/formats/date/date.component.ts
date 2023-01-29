@@ -10,10 +10,16 @@ import Question, { DateQuestion, DateQuestionOptions } from 'src/app/shared/mode
 export class DateAnswerComponent implements OnInit {
   @Input('question') question: Question<DateQuestionOptions, Date>;
   @Input('form') form: FormGroup;
-
-  constructor() { }
-
+  controlName = ''
+  constructor() { 
+  }
+  
   ngOnInit(): void {
+    this.controlName = this.question.index + 'q'
+  }
+
+  onReset(){
+    this.form.get(this.controlName).reset()
   }
 
 }

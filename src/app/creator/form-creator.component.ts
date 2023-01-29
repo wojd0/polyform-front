@@ -52,7 +52,7 @@ export class FormCreatorComponent implements OnInit {
   submitForm() {
     this.store.dispatch(
       CreatorActions.uploadStart({
-        questions: this.questions,
+        questions: this.questions.map((q, i) => ({...q, index: i})),
         name: this.formName
       })
     );

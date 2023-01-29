@@ -18,7 +18,7 @@
             <app-text *ngIf="parsedQuestion.type === 'text'" [question]="question" [form]="this.formGroup"></app-text>
             <app-number *ngIf="parsedQuestion.type ===  'number'" [question]="question" [form]="this.formGroup">
             </app-number>
-            <!-- <app-date *ngIf="question.answerType == 'DateQuestion'" [question]="question" [form]="this.formGroup"></app-date> -->
+            <app-date *ngIf="question.type == 'date'" [question]="question" [form]="this.formGroup"></app-date>
             <app-radio *ngIf="parsedQuestion.type ===  'multiple' && parsedQuestion.details.limit" [question]="question"
               [form]="this.formGroup"></app-radio>
             <app-multiple *ngIf="question.type ===  'multiple' && question.details.limit !== 1" [question]="question"

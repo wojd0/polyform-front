@@ -1,16 +1,9 @@
-<div class="row">
-  <div class="field background border">
-    <input type="date" class="col">
-    <label class="active">Date</label>
+<form [formGroup]="this.form" class="grid middle-align">
+  <div class="s3"></div>
+  <div class="field background border s6 no-margin">
+    <input type="date" placeholder="Your answer" class="" [required]="this.question.required" [formControlName]="this.controlName" />
     <i>event</i>
   </div>
-  
-  <div class="field background border">
-    
-    
-    <input type="time">
-    <label class="active">Time</label>
-    <i>schedule</i>
-  </div>
-    
-</div>
+  <button *ngIf="this.form.get(this.controlName).value" (click)="this.onReset()">Reset <i>backspace</i></button>
+  <div class="s3"></div>
+</form>

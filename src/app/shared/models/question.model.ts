@@ -51,7 +51,6 @@ export default class Question<
   details?: questionType;
   type?: string;
   validateQuestion: () => boolean;
-  validateAnswer: (value: answerType) => boolean = () => true;
 }
 export interface TextQuestionOptions {
   minWords: number;
@@ -66,7 +65,6 @@ export class TextQuestion extends Question<TextQuestionOptions, string> {
     super();
     Object.assign(this, options);
   }
-  override validateAnswer = (answer: string) => answer.length > this.details.maxWords && answer.length < this.details.minWords;
 }
 
 export interface NumberQuestionOptions {
@@ -90,8 +88,6 @@ export class NumberQuestion extends Question<NumberQuestionOptions, number> {
     super();
     Object.assign(this, options);
   }
-
-  override validateAnswer = (answer: number) => /*validation*/ true;
 }
 
 type DateDisplayFormats = "full" | "short";
@@ -99,6 +95,8 @@ export interface DateQuestionOptions {
   displayFormat: DateDisplayFormats;
   showTime: boolean;
   locale: boolean;
+  min?: Date;
+  max?: Date;
 }
 
 export class DateQuestion extends Question<DateQuestionOptions, Date> {
@@ -114,8 +112,6 @@ export class DateQuestion extends Question<DateQuestionOptions, Date> {
     super();
     Object.assign(this, options);
   }
-
-  override validateAnswer = (answer: Date) => /*validation*/ true;
 }
 
 export interface MultipleQuestionOptions {
@@ -135,8 +131,6 @@ export class MultipleQuestion extends Question<MultipleQuestionOptions, string[]
     super();
     Object.assign(this, options);
   }
-
-  override validateAnswer = (answer: string[]) => /*validation*/ true;
 }
 
 export interface FileQuestionOptions {}
