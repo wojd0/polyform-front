@@ -50,7 +50,7 @@
               <div class="s12 m6">
                 <div class="field suffix border background margin">
                   <select (change)="this.changeType(index, $event.currentTarget['value'])" [ngModel]="item.type" name="type">
-                    <option *ngFor="let type of this.questionTypes" [value]="type.value" [disabled]="!type.enabled">{{ type.name }}</option>
+                    <option *ngFor="let type of this.questionTypes" [value]="type.value" [disabled]="!type.enabled" [ngClass]="{'grey-text': !type.enabled}">{{ type.name }}{{ type.enabled ? '' : ' (Soon!)'}}</option>
                   </select>
                   <i>arrow_drop_down</i>
                   <span>Answer type</span>

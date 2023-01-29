@@ -2,13 +2,13 @@
   <div class="s12 m6">
     <div class="field background suffix margin">
       <input type="number" appMakeInt [appForceMinMax]="{max: this.maxWords}"  name="minWords"  min="0" [(ngModel)]="this.minWords" >
-      <span>Minimum words</span>
+      <label for="minWords">Minimum words</label>
     </div>
   </div>
   <div class="s12 m6">
     <div class="field background suffix margin">
       <input type="number" appMakeInt [appForceMinMax]="{min: this.minWords}"  name="maxWords" min="0" [(ngModel)]="this.maxWords" >
-      <span>Maximum words</span>
+      <label for="maxWords">Maximum words</label>
     </div>
   </div>
 </form>

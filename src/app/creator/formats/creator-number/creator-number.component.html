@@ -2,21 +2,21 @@
   <div class="grid s12">
     <div class="field s12 m6 background suffix margin">
       <input appMakeInt type="number" name="min" [appForceMinMax]="{max: this.max}" [(ngModel)]="this.min">
-      <span>Minimum value</span>
+      <label for="min">Minimum value</label>
     </div>
     <div class="field s12 m6 background suffix margin">
       <input appMakeInt type="number" name="max" [appForceMinMax]="{min: this.min}" [(ngModel)]="this.max">
-      <span>Maximum value</span>
+      <label for="max">Maximum value</label>
     </div>
   </div>
   <div class="grid s12">
     <div class="field s12 m6 background suffix margin">
       <input appMakeInt type="text" name="prefix" [(ngModel)]="this.prefix">
-      <span>Prefix</span>
+      <label for="prefix">Prefix</label>
     </div>
     <div class="field s12 m6 background suffix margin">
       <input type="text" appMakeInt name="suffix" [(ngModel)]="this.suffix">
-      <span>Suffix</span>
+      <label for="suffix">Suffix</label>
     </div>
   </div>
 </form>

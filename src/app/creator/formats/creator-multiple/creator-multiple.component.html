@@ -7,7 +7,8 @@
 
 
         <input type="text" name="newAnswer" [(ngModel)]="this.newQuestion" #newAnswer="ngModel"
-          placeholder="New question" required [minlength]="this.limits.minlength" [maxlength]="this.limits.maxlength">
+          required [minlength]="this.limits.minlength" [maxlength]="this.limits.maxlength">
+          <label for="newAnswer">New question</label>
         <span class="error" *ngIf="newAnswer.hasError('listsmall')">At least 2 answers are required</span>
         <span class="error" *ngIf="newAnswer.hasError('listsmall')">Maximum of </span>
       </div>
@@ -35,11 +36,9 @@
       <option value="1">Single selection</option>
     </select>
     <i>arrow_drop_down</i>
-    <input type="text" hidden ngModel #dummy="ngModel" [ngModelOptions]="{standalone: true}"
+    <label for="limit">Selection type</label>
+    <input type="text" hidden ngModel #dummy="ngModel" [ngModelOptions]="{standalone: true}" name="type"
     [appListSizeValidator]="{list: this.answers, minSize: this.limits.minanswers, maxSize: this.limits.maxanswers}">
-    <p>
-      <span>Multiple question type</span>
-    </p>
     <p>
       <span class="red-text bold" *ngIf="dummy.hasError('listsmall')">At least {{ this.limits.minanswers }} answers are required</span>
     </p>
