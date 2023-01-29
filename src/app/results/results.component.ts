@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { BeerService } from "../beer.service";
 import QuestionModel from "../shared/models/question.model";
 import { Results } from "../shared/models/results.model";
-import { AppState } from "../store/app.reducer";
+import { AppState } from "../app.reducer";
 import { loadResults } from "./store/results.actions";
 
 @Component({

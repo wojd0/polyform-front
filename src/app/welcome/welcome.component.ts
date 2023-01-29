@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { BeerService } from "../beer.service";
-import { AppState } from "../store/app.reducer";
+import { AppState } from "../app.reducer";
 
-import * as FormActions from "../form-list/store/form.actions";
+import * as FormActions from "../submission/store/form.actions";
 import { Subscription } from "rxjs";
 
 @Component({

@@ -7,7 +7,7 @@ import { Subscription, take } from "rxjs";
 import { BeerService } from "src/app/beer.service";
 import Question, { DateQuestion, FileQuestion, MultipleQuestionOptions, NumberQuestion, TextQuestion } from "src/app/shared/models/question.model";
 import QuestionModel, { MultipleQuestion } from "src/app/shared/models/question.model";
-import { AppState } from "src/app/store/app.reducer";
+import { AppState } from "src/app/app.reducer";
 import { environment } from "src/environments/environment";
 import { Form } from "../shared/models/form.model";
 

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { map, Observable } from "rxjs";
-import { AppState } from "../store/app.reducer";
+import { AppState } from "../app.reducer";
 
 interface ComponentCanDeactivate {
   canDeactivate: () => boolean | Observable<boolean>;

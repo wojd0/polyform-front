@@ -7,7 +7,7 @@ import { Form } from "src/app/shared/models/form.model";
 import Question from "src/app/shared/models/question.model";
 import QuestionModel from "src/app/shared/models/question.model";
 import { Submission } from "src/app/shared/models/results.model";
-import { AppState } from "src/app/store/app.reducer";
+import { AppState } from "src/app/app.reducer";
 import { environment } from "src/environments/environment";
 
 import * as FormActions from "./form.actions";

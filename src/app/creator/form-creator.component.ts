@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import Question, { MultipleQuestion, NumberQuestion, questionTypes, QuestionTypesMap, TextQuestion } from "src/app/shared/models/question.model";
 import { BeerService } from "../beer.service";
-import { AppState } from "../store/app.reducer";
+import { AppState } from "../app.reducer";
 
 import * as CreatorActions from "./store/creator.actions";
 
