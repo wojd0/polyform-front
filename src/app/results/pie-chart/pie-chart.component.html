@@ -5,7 +5,12 @@
       <strong>Answers:</strong>
       <div *ngFor="let res of this.results; let i = index" class="margin">
         <div class="row"><button [style]="{'background-color': this.domain.domain[i]}" class="square"></button>
-          {{ res.name }} - {{res.value}} answer{{res.value !== 1 ? 's' : ''}}<b>{{ this.calculatePercent(res.value) }}</b>
+          <div>
+            <div class="row">{{ res.name }}</div>
+            <div class="row no-margin"><small>{{res.value}} answer{{res.value !== 1 ? 's' : ''}},<b> {{ this.calculatePercent(res.value) }}</b></small></div>
+
+          </div>
+
         </div>
       </div>
     </div>

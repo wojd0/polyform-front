@@ -32,9 +32,7 @@ export class PieChartComponent implements OnChanges {
   
   pos = LegendPosition.Right;
   
-  ngOnChanges() {
-    console.log(this.results);
-    
+  ngOnChanges() {    
     if(this.results){
       this.results = this.results.sort((a,b) => b.value - a.value)
       this.names = this.results.map((result) => {

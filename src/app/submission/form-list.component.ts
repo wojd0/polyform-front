@@ -56,7 +56,7 @@ export class FormListComponent implements OnInit, OnDestroy {
         this.form = data.form;
         this.formName = data.form.name || "Unnamed Form 🤷";
         this.questions = data.questions;
-        console.log(this.questions);
+
         
 
         const formControls = {};

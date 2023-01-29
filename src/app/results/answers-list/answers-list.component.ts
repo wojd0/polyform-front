@@ -23,11 +23,12 @@ export class AnswersListComponent implements OnChanges, OnInit {
     })
   }
 
+  onClose(){
+    this.show = false;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(!changes['list'].isFirstChange()) {
-      console.log(this.list);
-      
+    if(this.list && this.list.length != 0) {
       this.show = true;
     }      
   }

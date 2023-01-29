@@ -41,9 +41,7 @@ export class MultipleCreatorComponent implements AfterViewInit, OnDestroy, Multi
   remove(index: number) {    
     this.answers.splice(index, 1);
     this.answers = this.answers.filter(val => val)
-    this.emitChanges();
-    console.log(this.answers);
-    
+    this.emitChanges();    
   }
 
 

@@ -1,18 +1,13 @@
-<!-- <div
+<div
   class="overlay"
   [ngClass]="{ active: this.show }"
-  (click)="this.show = false"
-></div> -->
+  (click)="this.onClose()"
+></div>
 
 <!-- to question -->
-<div class="modal active">
+<div class="modal active" *ngIf="this.show">
   <div class="padding" style="margin-bottom: 20px">
     <h5>{{ this.heading }}</h5>
-    <button
-      class="absolute right top margin circle transparent flat"
-      (click)="this.show = false"
-    >
-    </button>
   </div>
   <div>
     <ul class="" *ngIf="this.list.length === 1">
@@ -23,7 +18,7 @@
     </ol>
   </div>
   <nav class="right-align">
-    <button class="red" (click)="this.show = false">Close</button>
+    <button class="red" (click)="this.onClose()">Close</button>
   </nav>
 
 <ng-template #li>
@@ -34,7 +29,7 @@
         <div>
           <p *ngIf="ans; else noans">- {{ ans }}</p>
           <ng-template #noans>
-            <p class="grey-text" >No Answer</p>
+            <p class="grey-text">No Answer</p>
           </ng-template>
         </div>
       </li>

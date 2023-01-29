@@ -43,7 +43,6 @@ export class ResultsComponent implements OnInit, AfterViewInit {
         });
       }      
       this.results = state.results;
-      this.showGraph(0)
     });
   }
 
