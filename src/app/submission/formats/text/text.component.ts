@@ -1,7 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import QuestionModel, { TextQuestionOptions } from 'src/app/shared/models/question.model';
-import Question, { TextQuestion } from 'src/app/shared/models/question.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import Question, { TextQuestionOptions } from 'src/app/shared/models/question.model';
 
 @Component({
   selector: 'app-text',

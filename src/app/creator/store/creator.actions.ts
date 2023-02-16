@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import QuestionModel from 'src/app/shared/models/question.model';
 import Question from 'src/app/shared/models/question.model';
 
 export const CREATOR_UPLOAD = '[Creator] Upload';

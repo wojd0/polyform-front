@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import Question, { MultipleQuestion, MultipleQuestionOptions } from "src/app/shared/models/question.model";
+import Question, { MultipleQuestionOptions } from "src/app/shared/models/question.model";
 
 @Component({
   selector: "app-multiple",

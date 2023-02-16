@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { Results } from 'src/app/shared/models/results.model';
 import * as ResultsActions from './results.actions';
 

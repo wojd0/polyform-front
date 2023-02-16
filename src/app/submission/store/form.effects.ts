@@ -2,12 +2,10 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
-import { of, switchMap, map, catchError, withLatestFrom } from "rxjs";
+import { catchError, map, of, switchMap, withLatestFrom } from "rxjs";
+import { AppState } from "src/app/app.reducer";
 import { Form } from "src/app/shared/models/form.model";
 import Question from "src/app/shared/models/question.model";
-import QuestionModel from "src/app/shared/models/question.model";
-import { Submission } from "src/app/shared/models/results.model";
-import { AppState } from "src/app/app.reducer";
 import { environment } from "src/environments/environment";
 
 import * as FormActions from "./form.actions";

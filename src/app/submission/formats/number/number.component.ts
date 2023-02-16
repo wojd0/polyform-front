@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import Question, { NumberQuestion, NumberQuestionOptions } from 'src/app/shared/models/question.model';
+import Question, { NumberQuestionOptions } from 'src/app/shared/models/question.model';
 
 @Component({
   selector: 'app-number',

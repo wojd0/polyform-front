@@ -1,6 +1,4 @@
-import { state } from '@angular/animations';
-import { Action, createReducer, on } from '@ngrx/store';
-import Question from 'src/app/shared/models/question.model';
+import { createReducer, on } from '@ngrx/store';
 import * as CreatorActions from './creator.actions';
 
 export const creatorFeatureKey = 'creator';

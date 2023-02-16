@@ -1,6 +1,4 @@
-import { NumberInput } from '@angular/cdk/coercion';
-import { Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appForceMinMax]',

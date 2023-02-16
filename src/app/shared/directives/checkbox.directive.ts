@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/core";
-import { FormGroup, ValidationErrors } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 
 @Directive({
   selector: "[appCheckboxValidator]",

@@ -1,7 +1,6 @@
-import { Action, createReducer, on } from "@ngrx/store";
+import { createReducer, on } from "@ngrx/store";
 import { Form } from "src/app/shared/models/form.model";
 import Question from "src/app/shared/models/question.model";
-import QuestionModel from "src/app/shared/models/question.model";
 
 import * as FormActions from "./form.actions";
 

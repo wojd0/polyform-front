@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import Question, { DateQuestion, DateQuestionOptions } from 'src/app/shared/models/question.model';
+import Question, { DateQuestionOptions } from 'src/app/shared/models/question.model';
 
 @Component({
   selector: 'app-date',

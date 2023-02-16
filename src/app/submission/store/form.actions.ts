@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { Submission } from 'src/app/shared/models/results.model';
 import { Form } from 'src/app/shared/models/form.model';
 import Question from 'src/app/shared/models/question.model';
 

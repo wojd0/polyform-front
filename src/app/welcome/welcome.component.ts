@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { BeerService } from "../beer.service";
 import { AppState } from "../app.reducer";
+import { BeerService } from "../beer.service";
 
-import * as FormActions from "../submission/store/form.actions";
 import { Subscription } from "rxjs";
+import * as FormActions from "../submission/store/form.actions";
 
 @Component({
   selector: "app-welcome",

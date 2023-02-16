@@ -1,8 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { Store } from "@ngrx/store";
-import QuestionModel from "src/app/shared/models/question.model";
-import { Results } from "src/app/shared/models/results.model";
 import { AppState } from "src/app/app.reducer";
+import { Results } from "src/app/shared/models/results.model";
 
 @Component({
   selector: "app-answers-list",

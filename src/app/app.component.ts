@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { Observable, catchError, concat, concatMap, delay, map, mergeMap, of, retry, switchMap, tap, timeout } from "rxjs";
+import { catchError, map, Observable, of, timeout } from "rxjs";
 import { environment } from "src/environments/environment";
 import { BeerService } from "./beer.service";
-import { TreeMapModule } from "@swimlane/ngx-charts";
 
 @Component({
   selector: "app-root",

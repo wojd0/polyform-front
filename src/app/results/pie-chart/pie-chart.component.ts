@@ -1,17 +1,14 @@
-import { animate, style, transition, trigger } from "@angular/animations";
 import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
+    Component,
+    Input,
+    OnChanges
 } from "@angular/core";
 import {
-  Color,
-  ColorHelper,
-  colorSets,
-  LegendPosition,
-  ScaleType,
+    Color,
+    ColorHelper,
+    colorSets,
+    LegendPosition,
+    ScaleType
 } from "@swimlane/ngx-charts";
 
 @Component({

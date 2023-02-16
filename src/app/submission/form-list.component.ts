@@ -1,13 +1,12 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Actions, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { Subscription, take } from "rxjs";
-import { BeerService } from "src/app/beer.service";
-import Question, { DateQuestion, FileQuestion, MultipleQuestionOptions, NumberQuestion, TextQuestion } from "src/app/shared/models/question.model";
-import QuestionModel, { MultipleQuestion } from "src/app/shared/models/question.model";
 import { AppState } from "src/app/app.reducer";
+import { BeerService } from "src/app/beer.service";
+import Question, { DateQuestion, FileQuestion, MultipleQuestion, NumberQuestion, TextQuestion } from "src/app/shared/models/question.model";
 import { environment } from "src/environments/environment";
 import { Form } from "../shared/models/form.model";
 

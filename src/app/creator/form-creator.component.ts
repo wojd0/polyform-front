@@ -1,11 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
-import { Component, Input, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import Question, { MultipleQuestion, NumberQuestion, questionTypes, QuestionTypesMap, TextQuestion } from "src/app/shared/models/question.model";
-import { BeerService } from "../beer.service";
 import { AppState } from "../app.reducer";
+import { BeerService } from "../beer.service";
 
 import * as CreatorActions from "./store/creator.actions";
 
