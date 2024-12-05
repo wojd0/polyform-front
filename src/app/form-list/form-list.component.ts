@@ -13,9 +13,10 @@ import { environment } from "src/environments/environment";
 import * as FormActions from "./store/form.actions";
 
 @Component({
-  selector: "app-form-list",
-  templateUrl: "./form-list.component.html",
-  styleUrls: ["./form-list.component.scss"],
+    selector: "app-form-list",
+    templateUrl: "./form-list.component.html",
+    styleUrls: ["./form-list.component.scss"],
+    standalone: false
 })
 export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
   form: FormModel;

@@ -5,9 +5,10 @@ import { Results } from "src/app/shared/models/results.model";
 import { AppState } from "src/app/store/app.reducer";
 
 @Component({
-  selector: "app-answers-list",
-  templateUrl: "./answers-list.component.html",
-  styleUrls: ["./answers-list.component.scss"],
+    selector: "app-answers-list",
+    templateUrl: "./answers-list.component.html",
+    styleUrls: ["./answers-list.component.scss"],
+    standalone: false
 })
 export class AnswersListComponent implements OnChanges, OnInit {
   show = false;

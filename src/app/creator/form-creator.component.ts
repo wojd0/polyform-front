@@ -19,9 +19,10 @@ interface CreatorData {
 type questionTypes = TextQuestion | NumberQuestion | MultipleQuestion;
 
 @Component({
-  selector: "app-form-creator",
-  templateUrl: "./form-creator.component.html",
-  styleUrls: ["./form-creator.component.scss"],
+    selector: "app-form-creator",
+    templateUrl: "./form-creator.component.html",
+    styleUrls: ["./form-creator.component.scss"],
+    standalone: false
 })
 export class FormCreatorComponent implements OnInit {
   @Input("index") index = 0;

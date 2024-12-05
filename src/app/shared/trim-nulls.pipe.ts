@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'trimNulls'
+    name: 'trimNulls',
+    standalone: false
 })
 export class TrimNullsPipe implements PipeTransform {
 

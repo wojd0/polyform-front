@@ -4,9 +4,10 @@ import QuestionModel from 'src/app/shared/models/question.model';
 import Question, { TextQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
-  selector: 'app-text',
-  templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss']
+    selector: 'app-text',
+    templateUrl: './text.component.html',
+    styleUrls: ['./text.component.scss'],
+    standalone: false
 })
 export class TextAnswerComponent implements OnInit {
   @Input('question') question: QuestionModel;

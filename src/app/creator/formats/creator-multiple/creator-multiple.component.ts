@@ -3,8 +3,9 @@ import { NgForm } from "@angular/forms";
 import { MultipleQuestion } from "src/app/shared/models/question.model";
 
 @Component({
-  selector: "creator-multiple",
-  templateUrl: "./creator-multiple.component.html",
+    selector: "creator-multiple",
+    templateUrl: "./creator-multiple.component.html",
+    standalone: false
 })
 export class MultipleCreatorComponent implements AfterViewInit {
   options = [];

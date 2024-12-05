@@ -3,9 +3,10 @@ import { UntypedFormGroup } from '@angular/forms';
 import Question, { MultipleQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
-  selector: 'app-radio',
-  templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss']
+    selector: 'app-radio',
+    templateUrl: './radio.component.html',
+    styleUrls: ['./radio.component.scss'],
+    standalone: false
 })
 export class RadioAnswerComponent implements OnInit {
   @Input("question") question = new Question();

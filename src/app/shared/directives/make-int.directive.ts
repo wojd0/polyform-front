@@ -3,7 +3,8 @@ import { Directive, ElementRef, EventEmitter, HostListener, OnInit, Output, Rend
 import { FormControl } from '@angular/forms';
 
 @Directive({
-  selector: '[appMakeInt]',
+    selector: '[appMakeInt]',
+    standalone: false
 })
 export class MakeIntDirective implements OnInit {
 

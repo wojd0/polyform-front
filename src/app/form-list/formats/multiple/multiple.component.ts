@@ -3,9 +3,10 @@ import { UntypedFormGroup } from "@angular/forms";
 import Question, { MultipleQuestion } from "src/app/shared/models/question.model";
 
 @Component({
-  selector: "app-multiple",
-  templateUrl: "./multiple.component.html",
-  styleUrls: ["./multiple.component.scss"],
+    selector: "app-multiple",
+    templateUrl: "./multiple.component.html",
+    styleUrls: ["./multiple.component.scss"],
+    standalone: false
 })
 export class MultipleAnswerComponent implements OnInit {
   @Input("question") question = new Question();

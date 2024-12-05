@@ -3,7 +3,8 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Outpu
 import { FormControl } from '@angular/forms';
 
 @Directive({
-  selector: '[appForceMinMax]',
+    selector: '[appForceMinMax]',
+    standalone: false
 })
 export class ForceMinMaxDirective implements OnInit {
   @Input('appForceMinMax') borders: {min?: number, max?: number} = {min: 0, max: 0};

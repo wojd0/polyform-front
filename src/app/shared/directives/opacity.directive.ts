@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[appOpacity]'
+    selector: '[appOpacity]',
+    standalone: false
 })
 export class OpacityDirective implements OnChanges {
   @Input('if') show: any;

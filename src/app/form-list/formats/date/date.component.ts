@@ -3,9 +3,10 @@ import { UntypedFormGroup } from '@angular/forms';
 import Question, { DateQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
-  selector: 'app-date',
-  templateUrl: './date.component.html',
-  styleUrls: ['./date.component.scss']
+    selector: 'app-date',
+    templateUrl: './date.component.html',
+    styleUrls: ['./date.component.scss'],
+    standalone: false
 })
 export class DateAnswerComponent implements OnInit {
   @Input('question') question = new Question();

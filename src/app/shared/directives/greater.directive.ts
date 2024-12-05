@@ -2,8 +2,9 @@ import { Directive, Input } from "@angular/core";
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from "@angular/forms";
 
 @Directive({
-  selector: '[appIsGreater]',
-  providers: [{provide: NG_VALIDATORS, useExisting: GreaterValidatorDirective, multi: true}]
+    selector: '[appIsGreater]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: GreaterValidatorDirective, multi: true }],
+    standalone: false
 })
 export class GreaterValidatorDirective implements Validator {
   @Input('than') than = 0;

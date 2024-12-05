@@ -5,9 +5,10 @@ import { sendSuccess } from "src/app/form-list/store/form.actions";
 import { AppState } from "src/app/store/app.reducer";
 
 @Component({
-  selector: "app-modal",
-  templateUrl: "./modal.component.html",
-  styleUrls: ["./modal.component.scss"],
+    selector: "app-modal",
+    templateUrl: "./modal.component.html",
+    styleUrls: ["./modal.component.scss"],
+    standalone: false
 })
 export class ModalComponent{
   constructor(private beer: BeerService, private router: Router) {}

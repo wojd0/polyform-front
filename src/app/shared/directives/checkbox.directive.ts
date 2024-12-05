@@ -2,7 +2,8 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/
 import { UntypedFormGroup, ValidationErrors } from "@angular/forms";
 
 @Directive({
-  selector: "[appCheckboxValidator]",
+    selector: "[appCheckboxValidator]",
+    standalone: false
 })
 export class CheckboxValidator {
   @Input('formGroup') formGroup: UntypedFormGroup;

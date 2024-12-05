@@ -13,9 +13,10 @@ import {
 } from "@swimlane/ngx-charts";
 
 @Component({
-  selector: "app-pie-chart",
-  templateUrl: "./pie-chart.component.html",
-  styleUrls: ["./pie-chart.component.scss"],
+    selector: "app-pie-chart",
+    templateUrl: "./pie-chart.component.html",
+    styleUrls: ["./pie-chart.component.scss"],
+    standalone: false
 })
 export class PieChartComponent implements OnChanges {
   constructor() {}

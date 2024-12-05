@@ -3,9 +3,10 @@ import { UntypedFormGroup } from '@angular/forms';
 import Question, { NumberQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
-  selector: 'app-number',
-  templateUrl: './number.component.html',
-  styleUrls: ['./number.component.scss']
+    selector: 'app-number',
+    templateUrl: './number.component.html',
+    styleUrls: ['./number.component.scss'],
+    standalone: false
 })
 export class NumberAnswerComponent implements OnInit {
   @Input('question') question= new Question;

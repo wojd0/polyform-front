@@ -4,8 +4,9 @@ import { NumberQuestion } from 'src/app/shared/models/question.model';
 
 //TODO: handle precision (float answers)
 @Component({
-  selector: 'creator-number',
-  templateUrl: './creator-number.component.html'
+    selector: 'creator-number',
+    templateUrl: './creator-number.component.html',
+    standalone: false
 })
 export class NumberCreatorComponent implements AfterViewInit {
   @Output('changed') value = new EventEmitter<NumberQuestion>();
