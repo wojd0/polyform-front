@@ -7,9 +7,9 @@ import { MultipleCreatorComponent } from './formats/creator-multiple/creator-mul
 import { FormsModule } from '@angular/forms';
 import { FormCreatorComponent } from './form-creator.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 

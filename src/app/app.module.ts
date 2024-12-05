@@ -34,7 +34,7 @@ import { ResultsEffects } from './results/store/results.effects';
     HttpClientModule,
     StoreModule.forRoot({creator: creatorReducer, form: formReducer, results: resultsReducer}),
     EffectsModule.forRoot([CreatorEffects, FormEffects, ResultsEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production , connectInZone: true}),
     
   ],
   providers: [ChangesGuard],
