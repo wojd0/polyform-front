@@ -1,9 +1,7 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, tap, map, switchMap, of } from "rxjs";
-import { FormModel } from "src/app/shared/models/form.model";
-import QuestionModel from "src/app/shared/models/question.model";
+import { catchError, map, switchMap, of } from "rxjs";
 import { environment } from "src/environments/environment";
 
 import * as CreatorActions from "./creator.actions";
@@ -43,7 +41,7 @@ export class CreatorEffects {
             map((resData) => {
               return handleUpload(resData);
             }),
-            catchError((errorRes) => {              
+            catchError((errorRes) => {
               return handleUploadError(errorRes);
             })
           );

@@ -77,12 +77,12 @@ export class FormCreatorComponent implements OnInit {
         //display finish modal
         this.finishedInfo = {
           id: state.url,
-          url: `website.com/${state.url}`,
+          url: `${window.origin}/${state.url}`,
           accessCode: state.accessCode
         };
 
         this.beer.modal.next({type: 'created', content: {
-          url: `https://website.com/${state.url}`,
+          url: `${window.origin}/${state.url}`,
           id: state.url,
           accessCode: state.accessCode,
         }});
