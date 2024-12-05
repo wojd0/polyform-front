@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { map, Observable } from "rxjs";
 import { AppState } from "../store/app.reducer";
@@ -11,7 +11,7 @@ interface ComponentCanDeactivate {
 @Injectable({
   providedIn: "root",
 })
-export class ChangesGuard implements CanDeactivate<unknown> {
+export class ChangesGuard  {
   constructor(private store: Store<AppState>) {}
 
   canDeactivate(
