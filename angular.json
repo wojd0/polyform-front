@@ -114,8 +114,11 @@
       }
     }
   },
-  "defaultProject": "polyform-front",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "packageManager": "pnpm",
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ],
+    "analytics": false
   }
 }

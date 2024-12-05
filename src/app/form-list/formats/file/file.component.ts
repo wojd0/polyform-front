@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import Question, { FileQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
@@ -9,7 +9,7 @@ import Question, { FileQuestion } from 'src/app/shared/models/question.model';
 })
 export class FileAnswerComponent implements OnInit {
   @Input('question') question = new Question();
-  @Input('form') form: FormGroup;
+  @Input('form') form: UntypedFormGroup;
 
   constructor() { }
 

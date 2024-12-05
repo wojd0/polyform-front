@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component, Input, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, UntypedFormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import Question, { MultipleQuestion, NumberQuestion, TextQuestion } from "src/app/shared/models/question.model";
@@ -31,7 +31,7 @@ export class FormCreatorComponent implements OnInit {
   finishedInfo = { url: "", id: "", accessCode: ''};
   ready = false;
 
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
   constructor(private store: Store<AppState>, private beer: BeerService, private router: Router) {}
 

@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import QuestionModel from 'src/app/shared/models/question.model';
 import Question, { TextQuestion } from 'src/app/shared/models/question.model';
 
@@ -10,7 +10,7 @@ import Question, { TextQuestion } from 'src/app/shared/models/question.model';
 })
 export class TextAnswerComponent implements OnInit {
   @Input('question') question: QuestionModel;
-  @Input('form') form: FormGroup;
+  @Input('form') form: UntypedFormGroup;
   options: TextQuestion;
   min = 0;
   max = 10;

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Actions, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
@@ -26,11 +26,11 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
   storeSub: Subscription;
   notFilled = true;
 
-  nestedFormGroups: FormGroup[] = [];
+  nestedFormGroups: UntypedFormGroup[] = [];
 
   required: string[][] = [];
 
-  formGroup: FormGroup = new FormGroup({});
+  formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(private store: Store<AppState>, private beerService: BeerService, private router: Router, private actions: Actions) {}
 
@@ -74,15 +74,15 @@ export class FormListComponent implements OnInit, OnDestroy, AfterViewInit {
             const answerControls = {};
             for (let [index, value] of question.type.answers.entries()) {
               const answerName = question.options.index + "q" + index;
-              answerControls[answerName] = new FormControl(false);
+              answerControls[answerName] = new UntypedFormControl(false);
             }
-            this.nestedFormGroups[question.options.index] = new FormGroup(answerControls);
+            this.nestedFormGroups[question.options.index] = new UntypedFormGroup(answerControls);
             formControls[question.options.index + "q"] = this.nestedFormGroups[question.options.index];
           } else {
-            formControls[question.options.index + "q"] = new FormControl(null, question.options.required ? Validators.required : null);
+            formControls[question.options.index + "q"] = new UntypedFormControl(null, question.options.required ? Validators.required : null);
           }
         }
-        this.formGroup = new FormGroup(formControls);
+        this.formGroup = new UntypedFormGroup(formControls);
         console.log(this.questions);
              
       }

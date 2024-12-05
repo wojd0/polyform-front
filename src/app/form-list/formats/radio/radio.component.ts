@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import Question, { MultipleQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
@@ -9,7 +9,7 @@ import Question, { MultipleQuestion } from 'src/app/shared/models/question.model
 })
 export class RadioAnswerComponent implements OnInit {
   @Input("question") question = new Question();
-  @Input("form") form: FormGroup;
+  @Input("form") form: UntypedFormGroup;
 
   controlName = "";
 
