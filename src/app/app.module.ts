@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { creatorReducer } from './creator/store/creator.reducer';
@@ -20,24 +20,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ResultsEffects } from './results/store/results.effects';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    WelcomeComponent,
-  ],
-  imports: [
-    SharedModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    StoreModule.forRoot({creator: creatorReducer, form: formReducer, results: resultsReducer}),
-    EffectsModule.forRoot([CreatorEffects, FormEffects, ResultsEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production , connectInZone: true}),
-    
-  ],
-  providers: [ChangesGuard],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        WelcomeComponent,
+    ],
+    bootstrap: [AppComponent], imports: [SharedModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        StoreModule.forRoot({ creator: creatorReducer, form: formReducer, results: resultsReducer }),
+        EffectsModule.forRoot([CreatorEffects, FormEffects, ResultsEffects]),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, connectInZone: true })], providers: [ChangesGuard, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
